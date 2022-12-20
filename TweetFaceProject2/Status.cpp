@@ -6,6 +6,8 @@
 using namespace std;
 #pragma warning(disable: 4996)
 
+const int TEN = 10;
+
 Status::Status(const char* txt) : date(), time()
 {
 	text = new char[strlen(txt) + 1];
@@ -19,9 +21,9 @@ Status::~Status()
 
 void Status::printStatus() const
 {
-	cout << "\nThe status wroten at: " << (date.getDay() < 10 ? "0" : "") << date.getDay() << " / "
-		<< (date.getmonth() < 10 ? "0" : "") << date.getmonth() << " / " << date.getYear() << endl
+	cout << "\nThe status wroten at: " << (date.getDay() < TEN ? "0" : "") << date.getDay() << " / "
+		<< (date.getmonth() < TEN ? "0" : "") << date.getmonth() << " / " << date.getYear() << endl
 		<< "At time: " << (time.getHour() < 10 ? "0" : "") << time.getHour() << " : "
-		<< (time.getminute() < 10 ? "0" : "") << time.getminute() << endl
+		<< (time.getminute() < TEN ? "0" : "") << time.getminute() << endl
 		<< "The status is: " << text << endl;
 }

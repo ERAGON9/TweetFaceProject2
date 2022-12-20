@@ -63,18 +63,6 @@ void TwittFace::addFanPageToSystem(FansPage& newFanPage)
 }
 
 
-//bool TwittFace::isUserExist(const char* userName) const
-//{
-//	for (int i = 0; i < usersLogic; i++)
-//	{
-//		if (strcmp(allTheUsers[i]->getName(), userName) == 0)
-//			return true;
-//	}
-//
-//	return false;
-//}
-
-
 User* TwittFace::getPUserbyName(const char* userName)
 {
 	for (int i = 0; i < usersLogic; i++)
@@ -84,18 +72,6 @@ User* TwittFace::getPUserbyName(const char* userName)
 	}
 	return nullptr;
 }
-
-
-//bool TwittFace::isFanPageExist(const char* fanPageName) const
-//{
-//	for (int i = 0; i < fanPagesLogic; i++)
-//	{
-//		if (strcmp(allTheFanPages[i]->getName(), fanPageName) == 0)
-//			return true;
-//	}
-//
-//	return false;
-//}
 
 
 FansPage* TwittFace::getPFanPagebyName(const char* fanPageName)

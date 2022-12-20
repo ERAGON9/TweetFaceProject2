@@ -10,46 +10,10 @@
 
 using namespace std;
 
-const int maxName = 31;
-const int maxStatus = 501;
-
-
-void initHardCodedData(TwittFace& system)
-{
-	User* lior = new User("Lior Barak", 3, 2, 1999);
-	User* shalev = new User("Shalev Kedar", 29, 3, 1999);
-	User* noa = new User("Noa Margolius", 9, 6, 1999);
-	FansPage* liorFP = new FansPage("Lior Business");
-	FansPage* shalevFP = new FansPage("Shalev Business");
-	FansPage* noaFP = new FansPage("Noa Business");
-
-	system.addUserToSystem(*lior);
-	system.addUserToSystem(*shalev);
-	system.addUserToSystem(*noa);
-	system.addFanPageToSystem(*liorFP);
-	system.addFanPageToSystem(*shalevFP);
-	system.addFanPageToSystem(*noaFP);
-
-	lior->addStatus(*new Status("Lior Barak First status"));
-	lior->addStatus(*new Status("Lior Barak Second status"));
-	shalev->addStatus(*new Status("Shalev Kedar First status"));
-	shalev->addStatus(*new Status("Shalev Kedar Second status"));
-	noa->addStatus(*new Status("Noa Margolius First status"));
-	noa->addStatus(*new Status("Noa Margolius Second status"));
-	liorFP->addStatus(*new Status("Lior Business First status"));
-	liorFP->addStatus(*new Status("Lior Business Second status"));
-	shalevFP->addStatus(*new Status("Shalev BusinessFirst status"));
-	shalevFP->addStatus(*new Status("Shalev Business Second status"));
-	noaFP->addStatus(*new Status("Noa Business First status"));
-	noaFP->addStatus(*new Status("Noa Business Second status"));
-
-	shalev->addFriend(*lior);
-	lior->addFriend(*noa);
-	shalev->addFansPage(*shalevFP);
-	lior->addFansPage(*liorFP);
-	noa->addFansPage(*noaFP);
-}
-
+const int MAXNAME = 31;
+const int MAXSTATUS = 501;
+const char USER = 'U';
+const char FANPAGE = 'F';
 
 void printMenu()
 {
@@ -114,11 +78,11 @@ void action(int value, TwittFace& system)
 // action 1
 void addUser(TwittFace& system)
 {
-	char userName[maxName];
+	char userName[MAXNAME];
 	int day, month, year;
 	cout << "Please enter User name (no more than 30 characters): ";
 	cleanBuffer();
-	cin.getline(userName, maxName);
+	cin.getline(userName, MAXNAME);
 
 	if (system.getPUserbyName(userName) == nullptr)
 	{
@@ -145,10 +109,10 @@ void cleanBuffer()
 // action 2
 void addFanPage(TwittFace& system)
 {
-	char fanPageName[maxName];
+	char fanPageName[MAXNAME];
 	cout << "Please enter fan page name (no more than 30 characters): ";
 	cleanBuffer();
-	cin.getline(fanPageName, maxName);
+	cin.getline(fanPageName, MAXNAME);
 
 	if (system.getPFanPagebyName(fanPageName) == nullptr)
 	{
@@ -166,9 +130,9 @@ void addStatus(TwittFace& system)
 	char answer;
 	cout << "Please select to who you want to add new status: (U-user / F-fan page) ";
 	cin >> answer;
-	if (answer == 'U')
+	if (answer == USER)
 		addStatusToUser(system);
-	else if (answer == 'F')
+	else if (answer == FANPAGE)
 		addStatuesToFanPage(system);
 	else
 		cout << "\nYou entered wrong input, back to menu." << endl;
@@ -177,20 +141,19 @@ void addStatus(TwittFace& system)
 // sub function of action 3
 void addStatusToUser(TwittFace& system)
 {
-	char userName[maxName];
+	char userName[MAXNAME];
 	cout << "\nPlease enter the name of the user: ";
 	cleanBuffer();
-	cin.getline(userName, maxName);
+	cin.getline(userName, MAXNAME);
 
 	User* curUser = system.getPUserbyName(userName);
 
 	if (curUser != nullptr)
 	{
-		char statusData[maxStatus];
+		char statusData[MAXSTATUS];
 		cout << "\nPlease enter the new status (no more than 500 characters): ";
-		cin.getline(statusData, maxStatus);
-		Status* newstatus = new Status(statusData);
-		curUser->addStatus(*newstatus);
+		cin.getline(statusData, MAXSTATUS);
+		curUser->addStatus(statusData);
 		cout << "\nUser status added successfully" << endl;
 	}
 	else
@@ -200,20 +163,19 @@ void addStatusToUser(TwittFace& system)
 // sub function of action 3
 void addStatuesToFanPage(TwittFace& system)
 {
-	char fanPageName[maxName];
+	char fanPageName[MAXNAME];
 	cout << "\nPlease enter the name of the fan page: ";
 	cleanBuffer();
-	cin.getline(fanPageName, maxName);
+	cin.getline(fanPageName, MAXNAME);
 
 	FansPage* curFanPage = system.getPFanPagebyName(fanPageName);
 
 	if (curFanPage != nullptr)
 	{
-		char statusData[maxStatus];
+		char statusData[MAXSTATUS];
 		cout << "\nPlease enter the new status (no more than 500 characters): ";
-		cin.getline(statusData, maxStatus);
-		Status* newstatus = new Status(statusData);
-		curFanPage->addStatus(*newstatus);
+		cin.getline(statusData, MAXSTATUS);
+		curFanPage->addStatus(statusData);
 		cout << "\nFan page status added successfully" << endl;
 	}
 	else
@@ -226,9 +188,9 @@ void printAllStatuses(TwittFace& system)
 	char answer;
 	cout << "Please select to who you want to show all the statuses: (U-user / F-fan page) ";
 	cin >> answer;
-	if (answer == 'U')
+	if (answer == USER)
 		printAllUserStatuses(system);
-	else if (answer == 'F')
+	else if (answer == FANPAGE)
 		printAllFanPageStatuses(system);
 	else
 		cout << "\nYou entered wrong input, back to menu." << endl;
@@ -237,10 +199,10 @@ void printAllStatuses(TwittFace& system)
 // sub function of action 4
 void printAllUserStatuses(TwittFace& system)
 {
-	char userName[maxName];
+	char userName[MAXNAME];
 	cout << "\nPlease enter the name of the user: ";
 	cleanBuffer();
-	cin.getline(userName, maxName);
+	cin.getline(userName, MAXNAME);
 
 	User* curUser = system.getPUserbyName(userName);
 
@@ -256,10 +218,10 @@ void printAllUserStatuses(TwittFace& system)
 // sub function of action 4
 void printAllFanPageStatuses(TwittFace& system)
 {
-	char fanPageName[maxName];
+	char fanPageName[MAXNAME];
 	cout << "\nPlease enter the name of the fan page: ";
 	cleanBuffer();
-	cin.getline(fanPageName, maxName);
+	cin.getline(fanPageName, MAXNAME);
 
 	FansPage* curFanPage = system.getPFanPagebyName(fanPageName);
 
@@ -275,10 +237,10 @@ void printAllFanPageStatuses(TwittFace& system)
 // action 5
 void printTenMostRecentFriendsStatuses(TwittFace& system)
 {
-	char userName[maxName];
+	char userName[MAXNAME];
 	cout << "Please enter the name of the user: ";
 	cleanBuffer();
-	cin.getline(userName, maxName);
+	cin.getline(userName, MAXNAME);
 
 	User* curUser = system.getPUserbyName(userName);
 
@@ -297,18 +259,18 @@ void printTenMostRecentFriendsStatuses(TwittFace& system)
 // action 6
 void connectUsers(TwittFace& system)
 {
-	char name1[maxName], name2[maxName];
+	char name1[MAXNAME], name2[MAXNAME];
 
 	cout << "Please enter the name of the first user: ";
 	cleanBuffer();
-	cin.getline(name1, maxName);
+	cin.getline(name1, MAXNAME);
 
 	User* curUser1 = system.getPUserbyName(name1);
 
 	if (curUser1 != nullptr)
 	{
 		cout << "\nPlease enter the name of the second user: ";
-		cin.getline(name2, maxName);
+		cin.getline(name2, MAXNAME);
 
 		User* curUser2 = system.getPUserbyName(name2);
 
@@ -332,18 +294,18 @@ void connectUsers(TwittFace& system)
 // action 7
 void seperateUsers(TwittFace& system)
 {
-	char name1[maxName], name2[maxName];
+	char name1[MAXNAME], name2[MAXNAME];
 
 	cout << "Please enter the name of the first user: ";
 	cleanBuffer();
-	cin.getline(name1, maxName);
+	cin.getline(name1, MAXNAME);
 
 	User* curUser1 = system.getPUserbyName(name1);
 
 	if (curUser1 != nullptr)
 	{
 		cout << "\nPlease enter the name of the second user: ";
-		cin.getline(name2, maxName);
+		cin.getline(name2, MAXNAME);
 
 		User* curUser2 = system.getPUserbyName(name2);
 
@@ -367,17 +329,17 @@ void seperateUsers(TwittFace& system)
 // action 8
 void addFanToFanPage(TwittFace& system)
 {
-	char fanPageName[maxName], newfanName[maxName];
+	char fanPageName[MAXNAME], newfanName[MAXNAME];
 	cout << "Please enter the name of the fan page: ";
 	cleanBuffer();
-	cin.getline(fanPageName, maxName);
+	cin.getline(fanPageName, MAXNAME);
 
 	FansPage* curFanPage = system.getPFanPagebyName(fanPageName);
 
 	if (curFanPage != nullptr)
 	{
 		cout << "\nPlease enter the name of the new fan (user name): ";
-		cin.getline(newfanName, maxName);
+		cin.getline(newfanName, MAXNAME);
 
 		User* newFan = system.getPUserbyName(newfanName);
 
@@ -401,17 +363,17 @@ void addFanToFanPage(TwittFace& system)
 // action 9
 void removeFanFromFanPage(TwittFace& system)
 {
-	char fanPageName[maxName], oldfanName[maxName];
+	char fanPageName[MAXNAME], oldfanName[MAXNAME];
 	cout << "Please enter the name of the fan page: ";
 	cleanBuffer();
-	cin.getline(fanPageName, maxName);
+	cin.getline(fanPageName, MAXNAME);
 
 	FansPage* curFanPage = system.getPFanPagebyName(fanPageName);
 
 	if (curFanPage != nullptr)
 	{
 		cout << "\nPlease enter the name of the user, to be no more a fan of the fan page: ";
-		cin.getline(oldfanName, maxName);
+		cin.getline(oldfanName, MAXNAME);
 
 		User* oldFan = system.getPUserbyName(oldfanName);
 
@@ -454,9 +416,9 @@ void showAllFriendsOrFans(TwittFace& system)
 	char answer;
 	cout << "Please select if to show, all the friends of a user/ all the fans of a fan page: (U-user / F-fan page) ";
 	cin >> answer;
-	if (answer == 'U')
+	if (answer == USER)
 		showAllFriens(system);
-	else if (answer == 'F')
+	else if (answer == FANPAGE)
 		showAllFans(system);
 	else
 		cout << "\nYou entered wrong input, back to menu." << endl;
@@ -465,10 +427,10 @@ void showAllFriendsOrFans(TwittFace& system)
 // sub function of action 11
 void showAllFriens(TwittFace& system)
 {
-	char userName[maxName];
+	char userName[MAXNAME];
 	cout << "\nPlease enter the name of the user: ";
 	cleanBuffer();
-	cin.getline(userName, maxName);
+	cin.getline(userName, MAXNAME);
 
 	User* curUser = system.getPUserbyName(userName);
 
@@ -484,10 +446,10 @@ void showAllFriens(TwittFace& system)
 // sub function of action 11
 void showAllFans(TwittFace& system)
 {
-	char fanPageName[maxName];
+	char fanPageName[MAXNAME];
 	cout << "\nPlease enter the name of the fan page: ";
 	cleanBuffer();
-	cin.getline(fanPageName, maxName);
+	cin.getline(fanPageName, MAXNAME);
 
 	FansPage* curFanPage = system.getPFanPagebyName(fanPageName);
 

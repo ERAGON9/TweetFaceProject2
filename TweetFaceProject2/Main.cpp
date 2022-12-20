@@ -21,7 +21,38 @@ int main()
 	TwittFace system;
 	int input;
 
-	initHardCodedData(system);
+	User lior("Lior Barak", 3, 2, 1999);
+	User shalev("Shalev Kedar", 29, 3, 1999);
+	User noa("Noa Margolius", 9, 6, 1999);
+	FansPage liorFP("Lior Business");
+	FansPage shalevFP("Shalev Business");
+	FansPage noaFP("Noa Business");
+
+	system.addUserToSystem(lior);
+	system.addUserToSystem(shalev);
+	system.addUserToSystem(noa);
+	system.addFanPageToSystem(liorFP);
+	system.addFanPageToSystem(shalevFP);
+	system.addFanPageToSystem(noaFP);
+
+	lior.addStatus("Lior Barak First status");
+	lior.addStatus("Lior Barak Second status");
+	shalev.addStatus("Shalev Kedar First status");
+	shalev.addStatus("Shalev Kedar Second status");
+	noa.addStatus("Noa Margolius First status");
+	noa.addStatus("Noa Margolius Second status");
+	liorFP.addStatus("Lior Business First status");
+	liorFP.addStatus("Lior Business Second status");
+	shalevFP.addStatus("Shalev BusinessFirst status");
+	shalevFP.addStatus("Shalev Business Second status");
+	noaFP.addStatus("Noa Business First status");
+	noaFP.addStatus("Noa Business Second status");
+
+	shalev.addFriend(lior);
+	lior.addFriend(noa);
+	shalev.addFansPage(shalevFP);
+	lior.addFansPage(liorFP);
+	noa.addFansPage(noaFP);
 
 	do
 	{

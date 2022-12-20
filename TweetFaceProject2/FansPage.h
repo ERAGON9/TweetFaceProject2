@@ -24,7 +24,7 @@ public:
 
 	const char* getName() const { return name; }
 
-	void addStatus(Status& status);
+	void addStatus(const char* text);
 	void printAllStatuses() const;
 	void addFan(User& newFan);
 	bool checkIfFan(const User& fan) const;

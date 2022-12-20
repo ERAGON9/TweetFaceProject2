@@ -25,16 +25,16 @@ FansPage::~FansPage()
 {
 	delete[]name;
 
-	//for (int i = 0; i < statusCount; i++)
-	//{
-	//	delete[]publishBoard[i];
-	//}
+	for (int i = 0; i < statusCount; i++)
+	{
+		delete[]publishBoard[i];
+	}
 	delete[]publishBoard;
 	delete[]pArrFans;
 }
 
 
-void FansPage::addStatus(Status& status)
+void FansPage::addStatus(const char* text)
 {
 	if (statusCount == statusPhysic)
 	{
@@ -47,8 +47,10 @@ void FansPage::addStatus(Status& status)
 		delete[]publishBoard;
 		publishBoard = tmp;
 	}
+	
+	Status* tweet = new Status(text);
 
-	publishBoard[statusCount] = &status;
+	publishBoard[statusCount] = tweet;
 	statusCount++;
 }
 

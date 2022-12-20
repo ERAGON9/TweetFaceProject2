@@ -1,5 +1,9 @@
-﻿  Functions.cpp
+﻿  Date.cpp
+  FansPage.cpp
+  Functions.cpp
   Main.cpp
+  Status.cpp
   TwittFace.cpp
+  Users.cpp
   Generating Code...
   TweetFaceProject2.vcxproj -> C:\מדעי המחשב\שנה ב\סמסטר א\תכנות c++\TweetFaceProject2\TweetFaceProject2\Debug\TweetFaceProject2.exe

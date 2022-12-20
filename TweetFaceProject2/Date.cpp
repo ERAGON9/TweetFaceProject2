@@ -4,6 +4,8 @@
 
 #pragma warning(disable: 4996)
 
+const int LASTCENTURY = 1900;
+
 Date::Date()
 {
 	time_t timeSecounds = time(0);
@@ -11,7 +13,7 @@ Date::Date()
 
 	day = currentTime->tm_mday;
 	month = 1 + currentTime->tm_mon;
-	year = 1900 + currentTime->tm_year;
+	year = LASTCENTURY + currentTime->tm_year;
 }
 
 Date::Date(const int day, const int month, const int year) : day(day), month(month), year(year)

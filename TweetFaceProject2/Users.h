@@ -33,7 +33,7 @@ public:
 	User** getFriends() { return friends; }
 
 	void printTenLastStatusOfTheUser() const;
-	void addStatus(Status& status);
+	void addStatus(const char* text);
 	void addFriend(User& _friend);
 	void removeFriend(User& _friend);
 	void printAllFriends() const;

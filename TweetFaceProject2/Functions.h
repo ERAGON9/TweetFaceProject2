@@ -4,7 +4,6 @@
 class TwittFace;
 class User;
 
-void initHardCodedData(TwittFace& system);
 void printMenu();
 void action(int value, TwittFace& system);
 void addUser(TwittFace& system);

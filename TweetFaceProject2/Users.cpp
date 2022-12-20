@@ -46,7 +46,7 @@ void User::printTenLastStatusOfTheUser() const
 }
 
 
-void User::addStatus(Status& tweet)
+void User::addStatus(const char* text)
 {
 	if (statusCount == statusPhysic)
 	{
@@ -60,7 +60,9 @@ void User::addStatus(Status& tweet)
 		publishBoard = tmp;
 	}
 
-	publishBoard[statusCount] = &tweet;
+	Status* tweet = new Status(text);
+
+	publishBoard[statusCount] = tweet;
 	statusCount++;
 }
 
