@@ -1,12 +1,5 @@
-﻿  Date.cpp
-  FansPage.cpp
-  Functions.cpp
+﻿  Functions.cpp
   Main.cpp
-  Status.cpp
-  Time.cpp
   TwittFace.cpp
-  Users.cpp
   Generating Code...
-C:\מדעי המחשב\שנה ב\סמסטר א\תכנות c++\TweetFaceProject2\TweetFaceProject2\TwittFace.cpp(85): warning C4715: 'TwittFace::getUserbyName': not all control paths return a value
-C:\מדעי המחשב\שנה ב\סמסטר א\תכנות c++\TweetFaceProject2\TweetFaceProject2\TwittFace.cpp(107): warning C4715: 'TwittFace::getFanPagebyName': not all control paths return a value
   TweetFaceProject2.vcxproj -> C:\מדעי המחשב\שנה ב\סמסטר א\תכנות c++\TweetFaceProject2\TweetFaceProject2\Debug\TweetFaceProject2.exe

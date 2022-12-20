@@ -27,10 +27,8 @@ public:
 
 	void addUserToSystem(User& newUser);
 	void addFanPageToSystem(FansPage& newFanPage);
-	bool isUserExist(const char* userName) const;
-	User& getUserbyName(const char* userName);
-	bool isFanPageExist(const char* fanPageName) const;
-	FansPage& getFanPagebyName(const char* fanPageName);
+	User* getPUserbyName(const char* userName);
+	FansPage* getPFanPagebyName(const char* fanPageName);
 };
 
 #endif // !___TWITTFACE_H
