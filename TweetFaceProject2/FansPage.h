@@ -18,7 +18,7 @@ private:
 	int statusPhysic;
 
 public:
-	FansPage(const char* name);
+	FansPage(const char* name = " ");
 	FansPage(const FansPage& other) = delete;
 	~FansPage();
 

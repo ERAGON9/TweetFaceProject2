@@ -88,8 +88,7 @@ void addUser(TwittFace& system)
 	{
 		cout << "\nPlease enter your birth day (day (space/enter)  month (space/enter) year ): ";
 		cin >> day >> month >> year;
-		User* newUser = new User(userName, day, month, year);
-		system.addUserToSystem(*newUser);
+		system.addUserToSystem(userName, day, month, year);
 		cout << "\nUser added successfully" << endl;
 	}
 	else
@@ -116,8 +115,7 @@ void addFanPage(TwittFace& system)
 
 	if (system.getPFanPagebyName(fanPageName) == nullptr)
 	{
-		FansPage* newFanPage = new FansPage(fanPageName);
-		system.addFanPageToSystem(*newFanPage);
+		system.addFanPageToSystem(fanPageName);
 		cout << "\nFan page added successfully" << endl;
 	}
 	else
@@ -128,7 +126,7 @@ void addFanPage(TwittFace& system)
 void addStatus(TwittFace& system)
 {
 	char answer;
-	cout << "Please select to who you want to add new status: (U-user / F-fan page) ";
+	cout << "Please select to who you want to add new status: (U-user / F-fan page / else to go back to menu) ";
 	cin >> answer;
 	if (answer == USER)
 		addStatusToUser(system);
@@ -400,13 +398,13 @@ void printAllObjects(TwittFace& system)
 	cout << "All the users at the system are: " << endl;
 	for (int i = 0; i < system.getNumOfUsers(); i++)
 	{
-		system.getAllTheUsers()[i]->printUser();
+		system.getTheUser(i).printUser();
 	}
 
 	cout << "\nAll the fan pages at the system are: " << endl;
 	for (int j = 0; j < system.getNumOfFanPages(); j++) // check that actions
 	{
-		system.getAllTheFanPages()[j]->printFanPage();
+		system.getAllTheFanPages(j).printFanPage();
 	}
 }
 

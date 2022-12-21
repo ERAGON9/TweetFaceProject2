@@ -21,38 +21,30 @@ int main()
 	TwittFace system;
 	int input;
 
-	User lior("Lior Barak", 3, 2, 1999);
-	User shalev("Shalev Kedar", 29, 3, 1999);
-	User noa("Noa Margolius", 9, 6, 1999);
-	FansPage liorFP("Lior Business");
-	FansPage shalevFP("Shalev Business");
-	FansPage noaFP("Noa Business");
+	system.addUserToSystem("Lior Barak", 3, 2, 1999);
+	system.addUserToSystem("Shalev Kedar", 29, 3, 1999);
+	system.addUserToSystem("Noa Margolius", 9, 6, 1999);
+	system.addFanPageToSystem("Lior Business");
+	system.addFanPageToSystem("Shalev Business");
+	system.addFanPageToSystem("Noa Business");
 
-	system.addUserToSystem(lior);
-	system.addUserToSystem(shalev);
-	system.addUserToSystem(noa);
-	system.addFanPageToSystem(liorFP);
-	system.addFanPageToSystem(shalevFP);
-	system.addFanPageToSystem(noaFP);
-
-	lior.addStatus("Lior Barak First status");
-	lior.addStatus("Lior Barak Second status");
-	shalev.addStatus("Shalev Kedar First status");
-	shalev.addStatus("Shalev Kedar Second status");
-	noa.addStatus("Noa Margolius First status");
-	noa.addStatus("Noa Margolius Second status");
-	liorFP.addStatus("Lior Business First status");
-	liorFP.addStatus("Lior Business Second status");
-	shalevFP.addStatus("Shalev BusinessFirst status");
-	shalevFP.addStatus("Shalev Business Second status");
-	noaFP.addStatus("Noa Business First status");
-	noaFP.addStatus("Noa Business Second status");
-
-	shalev.addFriend(lior);
-	lior.addFriend(noa);
-	shalev.addFansPage(shalevFP);
-	lior.addFansPage(liorFP);
-	noa.addFansPage(noaFP);
+	system.getPUserbyName("Lior Barak")->addStatus("Lior Barak first status");
+	system.getPUserbyName("Lior Barak")->addStatus("Lior Barak second status");
+	system.getPUserbyName("Shalev Kedar")->addStatus("Shalev Kedar first status");
+	system.getPUserbyName("Shalev Kedar")->addStatus("Shalev Kedar second status");
+	system.getPUserbyName("Noa Margolius")->addStatus("Noa Margolius first status");
+	system.getPUserbyName("Noa Margolius")->addStatus("Noa Margolius second status");
+	system.getPFanPagebyName("Lior Business")->addStatus("Lior Business first status");
+	system.getPFanPagebyName("Lior Business")->addStatus("Lior Business second status"); 
+	system.getPFanPagebyName("Shalev Business")->addStatus("Shalev Business first status");
+	system.getPFanPagebyName("Shalev Business")->addStatus("Shalev Business second status");
+	system.getPFanPagebyName("Noa Business")->addStatus("Noa Business first status");
+	system.getPFanPagebyName("Noa Business")->addStatus("Noa Business second status");
+	system.getPUserbyName("Shalev Kedar")->addFriend(*(system.getPUserbyName("Lior Barak")));
+	system.getPUserbyName("Shalev Kedar")->addFansPage(*(system.getPFanPagebyName("Shalev Business")));
+	system.getPUserbyName("Lior Barak")->addFriend(*(system.getPUserbyName("Noa Margolius")));
+	system.getPUserbyName("Lior Barak")->addFansPage(*(system.getPFanPagebyName("Lior Business")));
+	system.getPUserbyName("Noa Margolius")->addFansPage(*(system.getPFanPagebyName("Noa Business")));
 
 	do
 	{

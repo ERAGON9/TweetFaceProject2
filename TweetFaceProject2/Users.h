@@ -24,7 +24,7 @@ private:
 	int pagesCount;
 
 public:
-	User(const char* _name, const int day, const int month, const int year);
+	User(const char* _name = " ", const int day = 0, const int month = 0, const int year = 0);
 	User(const User& other) = delete;
 	~User();
 
