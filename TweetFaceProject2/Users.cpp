@@ -26,11 +26,11 @@ User::User(const char* _name, const int day, const int month, const int year) : 
 
 User::~User()
 {
-	delete[]name;
+	delete name;
 
 	for (int i = 0; i < statusCount; i++)
 	{
-		delete[]publishBoard[i];
+		delete publishBoard[i];
 	}
 
 	delete[]publishBoard;

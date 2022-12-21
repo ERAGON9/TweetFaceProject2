@@ -1,0 +1,6 @@
+﻿  Main.cpp
+C:\Users\shale\source\repos\TweetFaceProject2\TweetFaceProject2\TwittFace.h(27,28): warning C4267: 'return': conversion from 'size_t' to 'int', possible loss of data
+  TwittFace.cpp
+C:\Users\shale\source\repos\TweetFaceProject2\TweetFaceProject2\TwittFace.h(27,28): warning C4267: 'return': conversion from 'size_t' to 'int', possible loss of data
+  Generating Code...
+  TweetFaceProject2.vcxproj -> C:\Users\shale\source\repos\TweetFaceProject2\TweetFaceProject2\x64\Debug\TweetFaceProject2.exe

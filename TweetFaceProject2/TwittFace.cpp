@@ -8,10 +8,6 @@
 
 TwittFace::TwittFace()
 {
-	usersLogic = 0;
-	userPhysic = 1;
-	allTheUsers = new User * [userPhysic];
-
 	fanPagesLogic = 0;
 	fansPagesPhysic = 1;
 	allTheFanPages = new FansPage * [fansPagesPhysic];
@@ -19,32 +15,24 @@ TwittFace::TwittFace()
 
 TwittFace::~TwittFace()
 {
-	delete[]allTheUsers;
+	//delete[]allTheUsers;
 	delete[]allTheFanPages;
 
 }
 
 
-void TwittFace::addUserToSystem(User& newUser)
+void TwittFace::addUserToSystem(const char* userName, int day, int month, int year)
 {
-	if (usersLogic == userPhysic)
-	{
-		userPhysic *= 2;
-		User** tmp = new User * [userPhysic];
+	//if (allTheUsers.size() == allTheUsers.capacity())
+	//	allTheUsers.reserve((allTheUsers.capacity() + 1) * 2);
 
-		for (int i = 0; i < usersLogic; i++)
-			tmp[i] = allTheUsers[i];
+	User* newUserTwittFace = new User(userName, day ,month, year);
 
-		delete[] allTheUsers;
-		allTheUsers = tmp;
-	}
-
-	allTheUsers[usersLogic] = &newUser;
-	usersLogic++;
+	allTheUsers.push_back(newUserTwittFace);
 }
 
 
-void TwittFace::addFanPageToSystem(FansPage& newFanPage)
+void TwittFace::addFanPageToSystem(const char* fanPageName)
 {
 	if (fanPagesLogic == fansPagesPhysic)
 	{
@@ -58,14 +46,16 @@ void TwittFace::addFanPageToSystem(FansPage& newFanPage)
 		allTheFanPages = tmp;
 	}
 
-	allTheFanPages[fanPagesLogic] = &newFanPage;
+	FansPage* newFanPageTwittFace = new FansPage(fanPageName);
+
+	allTheFanPages[fanPagesLogic] = newFanPageTwittFace;
 	fanPagesLogic++;
 }
 
 
 User* TwittFace::getPUserbyName(const char* userName)
 {
-	for (int i = 0; i < usersLogic; i++)
+	for (int i = 0; i < allTheUsers.size(); i++)
 	{
 		if (strcmp(allTheUsers[i]->getName(), userName) == 0)
 			return allTheUsers[i];
