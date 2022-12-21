@@ -1,7 +1,6 @@
 #ifndef __TWITTFACE_H
 #define __TWITTFACE_H
 
-using namespace std;
 #include <vector>
 #include "Users.h"
 #include "FansPage.h"
@@ -12,12 +11,8 @@ class FansPage;
 class TwittFace
 {
 private:
-	vector<User*> allTheUsers;
-
-	FansPage** allTheFanPages;
-	//vector<FansPage> allTheFanPages;
-	int fanPagesLogic;
-	int fansPagesPhysic;
+	std::vector<User*> allTheUsers;
+	std::vector<FansPage*> allTheFanPages;
 
 public:
 	TwittFace();
@@ -25,7 +20,7 @@ public:
 	~TwittFace();
 
 	int getNumOfUsers() const { return allTheUsers.size(); }
-	int getNumOfFanPages() const { return fanPagesLogic; }
+	int getNumOfFanPages() const { return allTheFanPages.size(); }
 	User& getTheUser(const int i) { return *(allTheUsers[i]); }
 	FansPage& getAllTheFanPages(const int i) { return *(allTheFanPages[i]); }
 

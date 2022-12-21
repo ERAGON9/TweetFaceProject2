@@ -126,7 +126,7 @@ void addFanPage(TwittFace& system)
 void addStatus(TwittFace& system)
 {
 	char answer;
-	cout << "Please select to who you want to add new status: (U-user / F-fan page) ";
+	cout << "Please select to who you want to add new status: (U-user / F-fan page / else to go back to menu) ";
 	cin >> answer;
 	if (answer == USER)
 		addStatusToUser(system);
