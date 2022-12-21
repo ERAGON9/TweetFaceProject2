@@ -1,6 +1,8 @@
 #ifndef __Users_H
 #define __Users_H
 
+#include <vector>
+#include <string>
 #include "Date.h"
 class FansPage;
 class Status;
@@ -8,39 +10,31 @@ class Status;
 class User
 {
 private:
-	char* name;
+	std::string name;
 	Date bDay;
 
-	Status** publishBoard;
-	int statusCount;
-	int statusPhysic;
-
-	User** friends;
-	int friendsPhysic;
-	int friendsCount;
-
-	FansPage** pArrFansPages;
-	int pagesPhysic;
-	int pagesCount;
+	std::vector<Status*> publishBoard;
+	std::vector<User*> friends;
+	std::vector<FansPage*> fansPages;
 
 public:
-	User(const char* _name = " ", const int day = 0, const int month = 0, const int year = 0);
+	User(const std::string _name, int day, int month, int year);
 	User(const User& other) = delete;
 	~User();
 
-	const char* getName() const { return name; }
-	const int getNumOfFriends() const { return friendsCount; }
-	User** getFriends() { return friends; }
+	std::string getName() const { return name; }
+	const int getNumOfFriends() const { return friends.size(); }
+	User& getFriend(const int i) { return *(friends[i]); }
 
 	void printTenLastStatusOfTheUser() const;
-	void addStatus(const char* text);
+	void addStatus(const std::string text);
 	void addFriend(User& _friend);
 	void removeFriend(User& _friend);
 	void printAllFriends() const;
 	void printAllStatuses() const;
 	void addFansPage(FansPage& page);
 	void removeFansPage(FansPage& page);
-	bool checkIfFriend(const char* name) const;
+	bool checkIfFriend(const string name) const;
 	bool checkIfFanOfFanPage(const FansPage& fanPage) const;
 	void printAllFanPages() const;
 	void printUser() const;

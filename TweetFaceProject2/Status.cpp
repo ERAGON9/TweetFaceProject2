@@ -1,6 +1,6 @@
 
 #include "Status.h"
-#include <string.h>
+#include <string>
 #include <iostream>
 
 using namespace std;
@@ -8,15 +8,9 @@ using namespace std;
 
 const int TEN = 10;
 
-Status::Status(const char* txt) : date(), time()
+Status::Status(const std::string text) : date(), time()
 {
-	text = new char[strlen(txt) + 1];
-	strcpy(text, txt);
-}
-
-Status::~Status()
-{
-	delete[]text;
+	this->text = text;
 }
 
 void Status::printStatus() const
