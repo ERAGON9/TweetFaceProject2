@@ -2,7 +2,7 @@
 #include "TwittFace.h"
 #include "Users.h"
 #include "FansPage.h"
-#include <string.h>
+#include <string>
 
 #pragma warning(disable: 4996)
 
@@ -26,7 +26,7 @@ TwittFace::~TwittFace()
 }
 
 
-void TwittFace::addUserToSystem(const char* userName, int day, int month, int year)
+void TwittFace::addUserToSystem(std::string userName, int day, int month, int year)
 {
 	User* newUserTwittFace = new User(userName, day ,month, year);
 
@@ -34,7 +34,7 @@ void TwittFace::addUserToSystem(const char* userName, int day, int month, int ye
 }
 
 
-void TwittFace::addFanPageToSystem(const char* fanPageName)
+void TwittFace::addFanPageToSystem(std::string fanPageName)
 {
 	FansPage* newFanPageTwittFace = new FansPage(fanPageName);
 
@@ -42,22 +42,22 @@ void TwittFace::addFanPageToSystem(const char* fanPageName)
 }
 
 
-User* TwittFace::getPUserbyName(const char* userName)
+User* TwittFace::getPUserbyName(std::string userName)
 {
 	for (int i = 0; i < allTheUsers.size(); i++)
 	{
-		if (strcmp(allTheUsers[i]->getName(), userName) == 0)
+		if (allTheUsers[i]->getName() == userName)
 			return allTheUsers[i];
 	}
 	return nullptr;   // If the name not belong to user at the system, the function return NULL;
 }
 
 
-FansPage* TwittFace::getPFanPagebyName(const char* fanPageName)
+FansPage* TwittFace::getPFanPagebyName(std::string fanPageName)
 {
 	for (int i = 0; i < allTheFanPages.size(); i++)
 	{
-		if (strcmp(allTheFanPages[i]->getName(), fanPageName) == 0)
+		if (allTheFanPages[i]->getName() == fanPageName)
 			return allTheFanPages[i];
 	}
 

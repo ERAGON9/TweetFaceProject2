@@ -1,5 +1,7 @@
 #ifndef __FANSPAGE_H
 #define __FANSPAGE_H
+#include <string>
+#include <vector>
 
 class Status;
 class User;
@@ -7,24 +9,21 @@ class User;
 class FansPage
 {
 private:
-	char* name;
+	std::string name;
 
-	User** pArrFans;
-	int friendsPhysic;
-	int friendsCount;
+	std::vector<User*> pArrFans;
 
 	Status** publishBoard;
 	int statusCount;
 	int statusPhysic;
 
 public:
-	FansPage(const char* name = " ");
+	FansPage(std::string name = " ");
 	FansPage(const FansPage& other) = delete;
-	~FansPage();
 
-	const char* getName() const { return name; }
+	std::string getName() const { return name; }
 
-	void addStatus(const char* text);
+	void addStatus(std::string text);
 	void printAllStatuses() const;
 	void addFan(User& newFan);
 	bool checkIfFan(const User& fan) const;

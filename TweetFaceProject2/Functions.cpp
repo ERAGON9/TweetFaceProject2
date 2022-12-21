@@ -4,14 +4,12 @@
 #include "TwittFace.h"
 #include "Users.h"
 #include "FansPage.h"
-#include <string.h>
+#include <string>
 #include "Status.h"
 #include "Users.h"
 
 using namespace std;
 
-const int MAXNAME = 31;
-const int MAXSTATUS = 501;
 const char USER = 'U';
 const char FANPAGE = 'F';
 
@@ -78,11 +76,11 @@ void action(int value, TwittFace& system)
 // action 1
 void addUser(TwittFace& system)
 {
-	char userName[MAXNAME];
+	std::string userName;
 	int day, month, year;
 	cout << "Please enter User name (no more than 30 characters): ";
 	cleanBuffer();
-	cin.getline(userName, MAXNAME);
+	getline(cin, userName);
 
 	if (system.getPUserbyName(userName) == nullptr)
 	{
@@ -108,10 +106,10 @@ void cleanBuffer()
 // action 2
 void addFanPage(TwittFace& system)
 {
-	char fanPageName[MAXNAME];
+	std::string fanPageName;
 	cout << "Please enter fan page name (no more than 30 characters): ";
 	cleanBuffer();
-	cin.getline(fanPageName, MAXNAME);
+	getline(cin, fanPageName);
 
 	if (system.getPFanPagebyName(fanPageName) == nullptr)
 	{
@@ -139,18 +137,18 @@ void addStatus(TwittFace& system)
 // sub function of action 3
 void addStatusToUser(TwittFace& system)
 {
-	char userName[MAXNAME];
+	std::string userName;
 	cout << "\nPlease enter the name of the user: ";
 	cleanBuffer();
-	cin.getline(userName, MAXNAME);
+	getline(cin, userName);
 
 	User* curUser = system.getPUserbyName(userName);
 
 	if (curUser != nullptr)
 	{
-		char statusData[MAXSTATUS];
+		std::string statusData;
 		cout << "\nPlease enter the new status (no more than 500 characters): ";
-		cin.getline(statusData, MAXSTATUS);
+		getline(cin, statusData);
 		curUser->addStatus(statusData);
 		cout << "\nUser status added successfully" << endl;
 	}
@@ -161,18 +159,18 @@ void addStatusToUser(TwittFace& system)
 // sub function of action 3
 void addStatuesToFanPage(TwittFace& system)
 {
-	char fanPageName[MAXNAME];
+	std::string fanPageName;
 	cout << "\nPlease enter the name of the fan page: ";
 	cleanBuffer();
-	cin.getline(fanPageName, MAXNAME);
+	getline(cin, fanPageName);
 
 	FansPage* curFanPage = system.getPFanPagebyName(fanPageName);
 
 	if (curFanPage != nullptr)
 	{
-		char statusData[MAXSTATUS];
+		std::string statusData;
 		cout << "\nPlease enter the new status (no more than 500 characters): ";
-		cin.getline(statusData, MAXSTATUS);
+		getline(cin, statusData);
 		curFanPage->addStatus(statusData);
 		cout << "\nFan page status added successfully" << endl;
 	}
@@ -197,10 +195,10 @@ void printAllStatuses(TwittFace& system)
 // sub function of action 4
 void printAllUserStatuses(TwittFace& system)
 {
-	char userName[MAXNAME];
+	std::string userName;
 	cout << "\nPlease enter the name of the user: ";
 	cleanBuffer();
-	cin.getline(userName, MAXNAME);
+	getline(cin, userName);
 
 	User* curUser = system.getPUserbyName(userName);
 
@@ -216,10 +214,10 @@ void printAllUserStatuses(TwittFace& system)
 // sub function of action 4
 void printAllFanPageStatuses(TwittFace& system)
 {
-	char fanPageName[MAXNAME];
+	std::string fanPageName;
 	cout << "\nPlease enter the name of the fan page: ";
 	cleanBuffer();
-	cin.getline(fanPageName, MAXNAME);
+	getline(cin, fanPageName);
 
 	FansPage* curFanPage = system.getPFanPagebyName(fanPageName);
 
@@ -235,10 +233,10 @@ void printAllFanPageStatuses(TwittFace& system)
 // action 5
 void printTenMostRecentFriendsStatuses(TwittFace& system)
 {
-	char userName[MAXNAME];
+	std::string userName;
 	cout << "Please enter the name of the user: ";
 	cleanBuffer();
-	cin.getline(userName, MAXNAME);
+	getline(cin, userName);
 
 	User* curUser = system.getPUserbyName(userName);
 
@@ -257,18 +255,18 @@ void printTenMostRecentFriendsStatuses(TwittFace& system)
 // action 6
 void connectUsers(TwittFace& system)
 {
-	char name1[MAXNAME], name2[MAXNAME];
+	std::string name1, name2;
 
 	cout << "Please enter the name of the first user: ";
 	cleanBuffer();
-	cin.getline(name1, MAXNAME);
+	getline(cin, name1);
 
 	User* curUser1 = system.getPUserbyName(name1);
 
 	if (curUser1 != nullptr)
 	{
 		cout << "\nPlease enter the name of the second user: ";
-		cin.getline(name2, MAXNAME);
+		getline(cin, name2);
 
 		User* curUser2 = system.getPUserbyName(name2);
 
@@ -292,18 +290,18 @@ void connectUsers(TwittFace& system)
 // action 7
 void seperateUsers(TwittFace& system)
 {
-	char name1[MAXNAME], name2[MAXNAME];
+	std::string name1, name2;
 
 	cout << "Please enter the name of the first user: ";
 	cleanBuffer();
-	cin.getline(name1, MAXNAME);
+	getline(cin, name1);
 
 	User* curUser1 = system.getPUserbyName(name1);
 
 	if (curUser1 != nullptr)
 	{
 		cout << "\nPlease enter the name of the second user: ";
-		cin.getline(name2, MAXNAME);
+		getline(cin, name2);
 
 		User* curUser2 = system.getPUserbyName(name2);
 
@@ -327,17 +325,17 @@ void seperateUsers(TwittFace& system)
 // action 8
 void addFanToFanPage(TwittFace& system)
 {
-	char fanPageName[MAXNAME], newfanName[MAXNAME];
+	std::string fanPageName, newfanName;
 	cout << "Please enter the name of the fan page: ";
 	cleanBuffer();
-	cin.getline(fanPageName, MAXNAME);
+	getline(cin, fanPageName);
 
 	FansPage* curFanPage = system.getPFanPagebyName(fanPageName);
 
 	if (curFanPage != nullptr)
 	{
 		cout << "\nPlease enter the name of the new fan (user name): ";
-		cin.getline(newfanName, MAXNAME);
+		getline(cin, newfanName);
 
 		User* newFan = system.getPUserbyName(newfanName);
 
@@ -361,17 +359,17 @@ void addFanToFanPage(TwittFace& system)
 // action 9
 void removeFanFromFanPage(TwittFace& system)
 {
-	char fanPageName[MAXNAME], oldfanName[MAXNAME];
+	std::string fanPageName, oldfanName;
 	cout << "Please enter the name of the fan page: ";
 	cleanBuffer();
-	cin.getline(fanPageName, MAXNAME);
+	getline(cin, fanPageName);
 
 	FansPage* curFanPage = system.getPFanPagebyName(fanPageName);
 
 	if (curFanPage != nullptr)
 	{
 		cout << "\nPlease enter the name of the user, to be no more a fan of the fan page: ";
-		cin.getline(oldfanName, MAXNAME);
+		getline(cin, oldfanName);
 
 		User* oldFan = system.getPUserbyName(oldfanName);
 
@@ -425,10 +423,10 @@ void showAllFriendsOrFans(TwittFace& system)
 // sub function of action 11
 void showAllFriens(TwittFace& system)
 {
-	char userName[MAXNAME];
+	std::string userName;
 	cout << "\nPlease enter the name of the user: ";
 	cleanBuffer();
-	cin.getline(userName, MAXNAME);
+	getline(cin, userName);
 
 	User* curUser = system.getPUserbyName(userName);
 
@@ -444,10 +442,10 @@ void showAllFriens(TwittFace& system)
 // sub function of action 11
 void showAllFans(TwittFace& system)
 {
-	char fanPageName[MAXNAME];
+	std::string fanPageName;
 	cout << "\nPlease enter the name of the fan page: ";
 	cleanBuffer();
-	cin.getline(fanPageName, MAXNAME);
+	getline(cin, fanPageName);
 
 	FansPage* curFanPage = system.getPFanPagebyName(fanPageName);
 

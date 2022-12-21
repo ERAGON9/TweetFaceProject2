@@ -24,10 +24,10 @@ public:
 	User& getTheUser(const int i) { return *(allTheUsers[i]); }
 	FansPage& getAllTheFanPages(const int i) { return *(allTheFanPages[i]); }
 
-	void addUserToSystem(const char* userName, int day, int month, int year);
-	void addFanPageToSystem(const char* fanPageName);
-	User* getPUserbyName(const char* userName);
-	FansPage* getPFanPagebyName(const char* fanPageName);
+	void addUserToSystem(std::string userName, int day, int month, int year);
+	void addFanPageToSystem(std::string fanPageName);
+	User* getPUserbyName(std::string userName);
+	FansPage* getPFanPagebyName(std::string fanPageName);
 };
 
 #endif // !___TWITTFACE_H
