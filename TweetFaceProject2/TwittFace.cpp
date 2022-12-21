@@ -70,7 +70,7 @@ User* TwittFace::getPUserbyName(const char* userName)
 		if (strcmp(allTheUsers[i]->getName(), userName) == 0)
 			return allTheUsers[i];
 	}
-	return nullptr;
+	return nullptr;   // If the name not belong to user at the system, the function return NULL;
 }
 
 

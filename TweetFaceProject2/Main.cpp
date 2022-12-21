@@ -14,7 +14,7 @@ Good luck!
 
 using namespace std;
 #pragma warning(disable: 4996)
-
+const int EXIT = 12;
 
 int main()
 {
@@ -61,5 +61,5 @@ int main()
 		cout << endl;
 		action(input, system);
 
-	} while (input != 12);
+	} while (input != EXIT);
 }
