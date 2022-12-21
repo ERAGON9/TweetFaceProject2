@@ -1,6 +1,6 @@
 
 #include <iostream>
-#include <string.h>
+#include <string>
 #include "Users.h"
 #include "Status.h"
 #include "FansPage.h"

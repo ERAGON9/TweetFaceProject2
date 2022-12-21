@@ -1,6 +1,6 @@
 #ifndef __Users_H
 #define __Users_H
-
+#include <string>
 #include "Date.h"
 class FansPage;
 class Status;
@@ -8,7 +8,7 @@ class Status;
 class User
 {
 private:
-	char* name;
+	std::string name;
 	Date bDay;
 
 	Status** publishBoard;
@@ -24,11 +24,11 @@ private:
 	int pagesCount;
 
 public:
-	User(const char* _name = " ", const int day = 0, const int month = 0, const int year = 0);
+	User(const char* _name, int day, int month, int year);
 	User(const User& other) = delete;
 	~User();
 
-	const char* getName() const { return name; }
+	std::string getName() const { return name; }
 	const int getNumOfFriends() const { return friendsCount; }
 	User** getFriends() { return friends; }
 

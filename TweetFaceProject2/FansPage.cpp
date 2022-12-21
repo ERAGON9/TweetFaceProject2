@@ -1,6 +1,6 @@
 
 #include "FansPage.h"
-#include <string.h>
+#include <string>
 #include "Status.h"
 #include "Users.h"
 #include <iostream>
@@ -8,33 +8,15 @@
 using namespace std;
 #pragma warning(disable: 4996)
 
-FansPage::FansPage(const char* n)
+FansPage::FansPage(std::string name)
 {
-	name = new char[strlen(n) + 1];
-	strcpy(name, n);
+	this->name = name;
 	statusCount = 0;
 	statusPhysic = 1;
-	friendsCount = 0;
-	friendsPhysic = 1;
-	pArrFans = new User * [friendsPhysic];
 	publishBoard = new Status * [statusPhysic];
 }
 
-
-FansPage::~FansPage()
-{
-	delete name;
-
-	for (int i = 0; i < statusCount; i++)
-	{
-		delete publishBoard[i];
-	}
-	delete[]publishBoard;
-	delete[]pArrFans;
-}
-
-
-void FansPage::addStatus(const char* text)
+void FansPage::addStatus(std::string text)
 {
 	if (statusCount == statusPhysic)
 	{
@@ -66,21 +48,7 @@ void FansPage::addFan(User& newFan)
 {
 	if (checkIfFan(newFan) == false)
 	{
-		if (friendsCount == friendsPhysic)
-		{
-			friendsPhysic *= 2;
-			User** tmp = new User * [friendsPhysic];
-
-			for (int i = 0; i < friendsCount; i++)
-				tmp[i] = pArrFans[i];
-
-			delete[]pArrFans;
-			pArrFans = tmp;
-		}
-
-		pArrFans[friendsCount] = &newFan;
-		friendsCount++;
-
+		pArrFans.push_back(&newFan);
 		newFan.addFansPage(*this);
 	}
 }
@@ -88,7 +56,9 @@ void FansPage::addFan(User& newFan)
 
 bool FansPage::checkIfFan(const User& fan) const
 {
-	for (int i = 0; i < friendsCount; i++)
+	int size = pArrFans.size();
+
+	for (int i = 0; i < size; i++)
 	{
 		if (pArrFans[i]->getName() == fan.getName())
 			return true;
@@ -100,17 +70,18 @@ bool FansPage::checkIfFan(const User& fan) const
 
 void FansPage::removeFan(User& fan)
 {
+	int size = pArrFans.size();
+
 	if (checkIfFan(fan) == true)
 	{
-		for (int i = 0; i < friendsCount; i++)
+		for (int i = 0; i < size; i++)
 		{
 			if (pArrFans[i] == &fan)
 			{
-				if (i != friendsCount - 1)
-					pArrFans[i] = pArrFans[friendsCount - 1];
-				pArrFans[friendsCount - 1] = nullptr;
-				i = friendsCount;
-				friendsCount--;
+				if (i != size - 1)
+					swap(pArrFans[i], pArrFans[size - 1]);
+				pArrFans[size - 1] = nullptr;
+				i = size;
 			}
 		}
 		fan.removeFansPage(*this);
@@ -120,7 +91,9 @@ void FansPage::removeFan(User& fan)
 
 void FansPage::printAllFans() const
 {
-	for (int i = 0; i < friendsCount; i++)
+	int size = pArrFans.size();
+
+	for (int i = 0; i < size; i++)
 		pArrFans[i]->printUser();
 }
 
