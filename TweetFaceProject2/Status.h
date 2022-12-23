@@ -16,7 +16,10 @@ private:
 public:
 	Status(const std::string text);
 	Status(const Status& other) = delete;
+	bool operator==(const Status& otherStatus);
+	bool operator!=(const Status& otherStatus);
 
+	std::string getText() const { return text; }
 	void printStatus() const;
 };
 

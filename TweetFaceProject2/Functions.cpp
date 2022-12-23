@@ -12,6 +12,7 @@ using namespace std;
 
 const char USER = 'U';
 const char FANPAGE = 'F';
+enum options { OPTION1=1, OPTION2, OPTION3, OPTION4, OPTION5, OPTION6, OPTION7, OPTION8, OPTION9, OPTION10, OPTION11 };
 
 void printMenu()
 {
@@ -21,8 +22,8 @@ void printMenu()
 		<< " 3 - Add Status for a user / fans page." << endl
 		<< " 4 - Show all the statuses for a user / fans page." << endl
 		<< " 5 - Show 10 most recent statuses of all the friends of a user." << endl
-		<< " 6 - Connect friendship between 2 friends." << endl
-		<< " 7 - Delete friendship between 2 friends." << endl
+		<< " 6 - Connect friendship between 2 users." << endl
+		<< " 7 - Delete friendship between 2 users." << endl
 		<< " 8 - Add a user to a fan page." << endl
 		<< " 9 - Delete a user from a fan page." << endl
 		<< "10 - Show all the users and fan pages at the system." << endl
@@ -35,37 +36,37 @@ void action(int value, TwittFace& system)
 {
 	switch (value)
 	{
-	case 1:
+	case options::OPTION1:
 		addUser(system);
 		break;
-	case 2:
+	case options::OPTION2:
 		addFanPage(system);
 		break;
-	case 3:
+	case options::OPTION3:
 		addStatus(system);
 		break;
-	case 4:
+	case options::OPTION4:
 		printAllStatuses(system);
 		break;
-	case 5:
+	case options::OPTION5:
 		printTenMostRecentFriendsStatuses(system);
 		break;
-	case 6:
+	case options::OPTION6:
 		connectUsers(system);
 		break;
-	case 7:
+	case options::OPTION7:
 		seperateUsers(system);
 		break;
-	case 8:
+	case options::OPTION8:
 		addFanToFanPage(system);
 		break;
-	case 9:
+	case options::OPTION9:
 		removeFanFromFanPage(system);
 		break;
-	case 10:
+	case options::OPTION10:
 		printAllObjects(system);
 		break;
-	case 11:
+	case options::OPTION11:
 		showAllFriendsOrFans(system);
 		break;
 	default:
@@ -97,6 +98,7 @@ void addUser(TwittFace& system)
 void cleanBuffer()
 {
 	int c;
+
 	do
 	{
 		c = getchar();
@@ -131,7 +133,7 @@ void addStatus(TwittFace& system)
 	else if (answer == FANPAGE)
 		addStatuesToFanPage(system);
 	else
-		cout << "\nYou entered wrong input, back to menu." << endl;
+		cout << "\nBack to menu." << endl;
 }
 
 // sub function of action 3
@@ -242,10 +244,13 @@ void printTenMostRecentFriendsStatuses(TwittFace& system)
 
 	if (curUser != nullptr)
 	{
-		for (int i = 0; i < curUser->getNumOfFriends(); i++)
+		int numberOfFriends = curUser->getNumOfFriends();
+
+		for (int i = 0; i < numberOfFriends; i++)
 		{
-			cout << "\nThe most recent statuses of " << curUser->getFriends()[i]->getName() << " are:" << endl;
-			curUser->getFriends()[i]->printTenLastStatusOfTheUser();
+			const User& friendOfUser = curUser->getFriend(i);
+			cout << "\nThe most recent statuses of " << friendOfUser.getName() << " are:" << endl;
+			friendOfUser.printTenLastStatusOfTheUser();
 		}
 	}
 	else
@@ -268,23 +273,28 @@ void connectUsers(TwittFace& system)
 		cout << "\nPlease enter the name of the second user: ";
 		getline(cin, name2);
 
-		User* curUser2 = system.getPUserbyName(name2);
-
-		if (curUser2 != nullptr)
+		if (name1 != name2)
 		{
-			if (curUser1->checkIfFriend(name2) == false)
+			User* curUser2 = system.getPUserbyName(name2);
+
+			if (curUser2 != nullptr)
 			{
-				curUser1->addFriend(*curUser2);
-				cout << "\nThe connection added successfully" << endl;
+				if (curUser1->checkIfFriend(name2) == false)
+				{
+					*curUser1 += *curUser2;
+					cout << "\nThe connection added successfully" << endl;
+				}
+				else
+					cout << "\nYou entered two users that already friends" << endl;
 			}
 			else
-				cout << "\nYou entered two users that already friends" << endl;
+				cout << "\nThe name of the second user does not exist at the system, back to menu." << endl;
 		}
 		else
-			cout << "\nThe name does not exist at the system, back to menu." << endl;
+			cout << "\nYou can't make an user a friend of himself." << endl;
 	}
 	else
-		cout << "\nThe name does not exist at the system, back to menu." << endl;
+		cout << "\nThe name of the first user does not exist at the system, back to menu." << endl;
 }
 
 // action 7
@@ -343,7 +353,7 @@ void addFanToFanPage(TwittFace& system)
 		{
 			if (curFanPage->checkIfFan(*newFan) == false)
 			{
-				curFanPage->addFan(*newFan);
+				*curFanPage += *newFan;
 				cout << "\nThe user is a fan of the fan page now" << endl;
 			}
 			else
@@ -394,13 +404,17 @@ void removeFanFromFanPage(TwittFace& system)
 void printAllObjects(TwittFace& system)
 {
 	cout << "All the users at the system are: " << endl;
-	for (int i = 0; i < system.getNumOfUsers(); i++)
+
+	int usersAmount = system.getNumOfUsers();
+	for (int i = 0; i < usersAmount; i++)
 	{
 		system.getTheUser(i).printUser();
 	}
 
 	cout << "\nAll the fan pages at the system are: " << endl;
-	for (int j = 0; j < system.getNumOfFanPages(); j++) // check that actions
+
+	int fanPagesAmount = system.getNumOfFanPages();
+	for (int j = 0; j < fanPagesAmount; j++) // check that actions
 	{
 		system.getAllTheFanPages(j).printFanPage();
 	}

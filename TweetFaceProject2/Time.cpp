@@ -2,7 +2,7 @@
 #include "Time.h"
 #include <ctime>
 
-#pragma warning(disable: 4996)
+#pragma warning (disable: 4996)
 
 Time::Time()
 {

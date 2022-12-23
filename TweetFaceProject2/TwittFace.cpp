@@ -4,11 +4,8 @@
 #include "FansPage.h"
 #include <string>
 
-#pragma warning(disable: 4996)
-
 TwittFace::TwittFace()
-{
-}
+{}
 
 TwittFace::~TwittFace()
 {
@@ -49,7 +46,7 @@ User* TwittFace::getPUserbyName(std::string userName)
 		if (allTheUsers[i]->getName() == userName)
 			return allTheUsers[i];
 	}
-	return nullptr;   // If the name not belong to user at the system, the function return NULL;
+	return nullptr;   // If the name don't belong to an User at the system, the function return NULL;
 }
 
 
@@ -61,5 +58,5 @@ FansPage* TwittFace::getPFanPagebyName(std::string fanPageName)
 			return allTheFanPages[i];
 	}
 
-	return nullptr;
+	return nullptr; // If the name don't belong to a Fan Page at the system, the function return NULL;
 }

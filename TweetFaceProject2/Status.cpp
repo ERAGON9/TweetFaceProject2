@@ -4,7 +4,6 @@
 #include <iostream>
 
 using namespace std;
-#pragma warning(disable: 4996)
 
 const int TEN = 10;
 
@@ -12,6 +11,25 @@ Status::Status(const std::string text) : date(), time()
 {
 	this->text = text;
 }
+
+
+bool Status::operator==(const Status& otherStatus)
+{
+	if (text == otherStatus.getText())
+		return true;
+	else
+		return false;
+}
+
+
+bool Status::operator!=(const Status& otherStatus)
+{
+	if (*this == otherStatus)
+		return false;
+	else
+		return true;
+}
+
 
 void Status::printStatus() const
 {

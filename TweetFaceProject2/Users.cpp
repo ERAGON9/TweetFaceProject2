@@ -6,11 +6,10 @@
 #include "FansPage.h"
 
 using namespace std;
-#pragma warning(disable: 4996)
 
 User::User(const string _name, int day, int month, int year) : bDay(day, month, year)
 {
-	this->name = name;
+	this->name = _name;
 }
 
 
@@ -23,10 +22,66 @@ User::~User()
 }
 
 
+
+const User& User::operator+=(User& _friend)
+{
+	if (checkIfFriend(_friend.getName()) == false)
+	{
+		friends.push_back(&_friend);
+
+		_friend += *this;
+	}
+
+	return *this;
+}
+
+
+const User& User::operator+=(FansPage& fanPage)
+{
+	if (checkIfFanOfFanPage(fanPage) == false)
+	{
+		fansPages.push_back(&fanPage);
+
+		fanPage += *this;
+	}
+
+	return *this;
+}
+
+
+bool User::operator>(const User& _friend) const
+{
+	if (friends.size() > _friend.friends.size())
+		return true;
+	else
+		return false;
+}
+
+bool User::operator<(const User& _friend) const
+{
+	return _friend > *this;
+}
+
+bool User::operator>(const FansPage& fanPage) const
+{
+	if (friends.size() > fanPage.getNumOfFans())
+		return true;
+	else
+		return false;
+}
+bool User::operator<(const FansPage& fanPage) const
+{
+	return fanPage > *this;
+}
+
 void User::printTenLastStatusOfTheUser() const
 {
-	for (int i = publishBoard.size() - 1; (i > (publishBoard.size() - 1) - 10) && (i >= 0); i--)
+	int size = publishBoard.size();
+
+	for (int i = size - 1; (i > (size - 1) - 10) && (i >= 0); i--)
+	{
 		publishBoard[i]->printStatus();
+	}
 }
 
 
@@ -37,29 +92,20 @@ void User::addStatus(const string text)
 }
 
 
-void User::addFriend(User& _friend)
-{
-	if (checkIfFriend(_friend.getName()) == false)
-	{
-		friends.push_back(&_friend);
-
-		_friend.addFriend(*this);
-	}
-}
-
-
 void User::removeFriend(User& _friend)
 {
+	int size = friends.size();
+
 	if (checkIfFriend(_friend.getName()) == true)
 	{
-		for (int i = 0; i < friends.size(); i++)
+		for (int i = 0; i < size; i++)
 		{
 			if (friends[i] == &_friend)
 			{
 				if (i != friends.size() - 1)
-					friends[i] = friends[friends.size() - 1];
+					swap(friends[i], friends[size - 1]);
 				friends.pop_back();
-				i = friends.size();
+				i = size;
 			}
 		}
 		_friend.removeFriend(*this);
@@ -69,41 +115,40 @@ void User::removeFriend(User& _friend)
 
 void User::printAllFriends() const
 {
-	for (int i = 0; i < friends.size(); i++)
+	int size = friends.size();
+
+	for (int i = 0; i < size; i++)
+	{
 		friends[i]->printUser();
+	}
 }
 
 
 void User::printAllStatuses() const
 {
-	for (int i = 0; i < publishBoard.size(); i++)
-		publishBoard[i]->printStatus();
-}
+	int size = publishBoard.size();
 
-
-void User::addFansPage(FansPage& fanPage)
-{
-	if (checkIfFanOfFanPage(fanPage) == false)
+	for (int i = 0; i < size; i++)
 	{
-		fansPages.push_back(&fanPage);
-
-		fanPage.addFan(*this);
+		publishBoard[i]->printStatus();
 	}
 }
 
 
 void User::removeFansPage(FansPage& page)
 {
+	int size = fansPages.size();
+
 	if (checkIfFanOfFanPage(page) == true)
 	{
-		for (int i = 0; i < fansPages.size(); i++)
+		for (int i = 0; i < size; i++)
 		{
 			if (fansPages[i] == &page)
 			{
 				if (i != fansPages.size() - 1)
-					fansPages[i] = fansPages[fansPages.size() - 1];
+					swap(fansPages[i], fansPages[size - 1]);
 				fansPages.pop_back();
-				i = fansPages.size();
+				i = size;
 			}
 		}
 		page.removeFan(*this);
@@ -113,7 +158,9 @@ void User::removeFansPage(FansPage& page)
 
 bool User::checkIfFriend(const string name) const
 {
-	for (int i = 0; i < friends.size(); i++)
+	int size = friends.size();
+
+	for (int i = 0; i < size; i++)
 	{
 		if (friends[i]->name == name)
 			return true;
@@ -125,7 +172,9 @@ bool User::checkIfFriend(const string name) const
 
 bool User::checkIfFanOfFanPage(const FansPage& fanPage) const
 {
-	for (int i = 0; i < fansPages.size(); i++)
+	int size = fansPages.size();
+
+	for (int i = 0; i < size; i++)
 	{
 		if (fansPages[i]->getName() == fanPage.getName())
 			return true;
@@ -137,8 +186,12 @@ bool User::checkIfFanOfFanPage(const FansPage& fanPage) const
 
 void User::printAllFanPages() const
 {
-	for (int i = 0; i < fansPages.size(); i++)
+	int size = fansPages.size();
+
+	for (int i = 0; i < size; i++)
+	{
 		fansPages[i]->printFanPage();
+	}
 }
 
 

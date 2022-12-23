@@ -13,17 +13,19 @@ Good luck!
 #include "Functions.h"
 
 using namespace std;
-#pragma warning(disable: 4996)
 const int EXIT = 12;
+enum lior_details { Lior_day = 3, Lior_month = 2, Lior_year = 1999 };
+enum shalev_details { Shalev_day = 29, Shalev_month = 3, Shalev_year = 1999 };
+enum Noa_details { day = 9, month = 6, year = 1999 };
 
 int main()
 {
 	TwittFace system;
 	int input;
 
-	system.addUserToSystem("Lior Barak", 3, 2, 1999);
-	system.addUserToSystem("Shalev Kedar", 29, 3, 1999);
-	system.addUserToSystem("Noa Margolius", 9, 6, 1999);
+	system.addUserToSystem("Lior Barak", lior_details::Lior_day, lior_details::Lior_month, lior_details::Lior_year);
+	system.addUserToSystem("Shalev Kedar", shalev_details::Shalev_day, shalev_details::Shalev_month, shalev_details::Shalev_year);
+	system.addUserToSystem("Noa Margolius", Noa_details::day, Noa_details::month, Noa_details::year);
 	system.addFanPageToSystem("Lior Business");
 	system.addFanPageToSystem("Shalev Business");
 	system.addFanPageToSystem("Noa Business");
@@ -40,11 +42,12 @@ int main()
 	system.getPFanPagebyName("Shalev Business")->addStatus("Shalev Business second status");
 	system.getPFanPagebyName("Noa Business")->addStatus("Noa Business first status");
 	system.getPFanPagebyName("Noa Business")->addStatus("Noa Business second status");
-	system.getPUserbyName("Shalev Kedar")->addFriend(*(system.getPUserbyName("Lior Barak")));
-	system.getPUserbyName("Shalev Kedar")->addFansPage(*(system.getPFanPagebyName("Shalev Business")));
-	system.getPUserbyName("Lior Barak")->addFriend(*(system.getPUserbyName("Noa Margolius")));
-	system.getPUserbyName("Lior Barak")->addFansPage(*(system.getPFanPagebyName("Lior Business")));
-	system.getPUserbyName("Noa Margolius")->addFansPage(*(system.getPFanPagebyName("Noa Business")));
+
+	*system.getPUserbyName("Shalev Kedar") += *system.getPUserbyName("Lior Barak");
+	*system.getPUserbyName("Lior Barak") += *system.getPUserbyName("Noa Margolius");
+	*system.getPUserbyName("Shalev Kedar") += *system.getPFanPagebyName("Shalev Business");
+	*system.getPUserbyName("Lior Barak") += *system.getPFanPagebyName("Lior Business");
+	*system.getPUserbyName("Noa Margolius") += *system.getPFanPagebyName("Noa Business");
 
 	do
 	{

@@ -9,8 +9,8 @@ private:
 
 public:
 	Time();
-	const int getHour() const { return hour; };
-	const int getminute() const { return minute; };
+	int getHour() const { return hour; };
+	int getminute() const { return minute; };
 };
 
 #endif

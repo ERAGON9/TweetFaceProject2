@@ -6,61 +6,88 @@
 #include <iostream>
 
 using namespace std;
-#pragma warning(disable: 4996)
 
 FansPage::FansPage(std::string name)
 {
 	this->name = name;
-	statusCount = 0;
-	statusPhysic = 1;
-	publishBoard = new Status * [statusPhysic];
 }
+
+
+FansPage::~FansPage()
+{
+	for (int i = 0; i < publishBoard.size(); i++)
+	{
+		delete publishBoard[i];
+	}
+}
+
+
+const FansPage& FansPage::operator+=(User& newFan)
+{
+	if (checkIfFan(newFan) == false)
+	{
+		Fans.push_back(&newFan);
+
+		newFan += *this;
+	}
+
+	return *this;
+}
+
+
+bool FansPage::operator>(const FansPage& fanPage) const
+{
+	if (Fans.size() > fanPage.Fans.size())
+		return true;
+	else
+		return false;
+}
+
+
+bool FansPage::operator<(const FansPage& fanPage) const
+{
+	return fanPage > *this;
+}
+
+
+bool FansPage::operator>(const User& user) const
+{
+	if (Fans.size() > user.getNumOfFriends())
+		return true;
+	else
+		return false;
+}
+bool FansPage::operator<(const User& user) const
+{
+	return user > *this;
+}
+
 
 void FansPage::addStatus(std::string text)
 {
-	if (statusCount == statusPhysic)
-	{
-		statusPhysic *= 2;
-		Status** tmp = new Status * [statusPhysic];
-
-		for (int i = 0; i < statusCount; i++)
-			tmp[i] = publishBoard[i];
-
-		delete[]publishBoard;
-		publishBoard = tmp;
-	}
-	
 	Status* tweet = new Status(text);
-
-	publishBoard[statusCount] = tweet;
-	statusCount++;
+	publishBoard.push_back(tweet);
 }
 
 
 void FansPage::printAllStatuses() const
 {
-	for (int i = 0; i < statusCount; i++)
-		publishBoard[i]->printStatus();
-}
+	int size = publishBoard.size();
 
-
-void FansPage::addFan(User& newFan)
-{
-	if (checkIfFan(newFan) == false)
+	for (int i = 0; i < size; i++)
 	{
-		pArrFans.push_back(&newFan);
-		newFan.addFansPage(*this);
+		publishBoard[i]->printStatus();
 	}
 }
 
 
 bool FansPage::checkIfFan(const User& fan) const
 {
-	int size = pArrFans.size();
+	int size = Fans.size();
 
 	for (int i = 0; i < size; i++)
 	{
-		if (pArrFans[i]->getName() == fan.getName())
+		if (Fans[i]->getName() == fan.getName())
 			return true;
 	}
 
@@ -70,17 +97,17 @@ bool FansPage::checkIfFan(const User& fan) const
 
 void FansPage::removeFan(User& fan)
 {
-	int size = pArrFans.size();
+	int size = Fans.size();
 
 	if (checkIfFan(fan) == true)
 	{
 		for (int i = 0; i < size; i++)
 		{
-			if (pArrFans[i] == &fan)
+			if (Fans[i] == &fan)
 			{
 				if (i != size - 1)
-					swap(pArrFans[i], pArrFans[size - 1]);
-				pArrFans[size - 1] = nullptr;
+					swap(Fans[i], Fans[size - 1]);
+				Fans.pop_back();
 				i = size;
 			}
 		}
@@ -91,10 +118,12 @@ void FansPage::removeFan(User& fan)
 
 void FansPage::printAllFans() const
 {
-	int size = pArrFans.size();
+	int size = Fans.size();
 
 	for (int i = 0; i < size; i++)
-		pArrFans[i]->printUser();
+	{
+		Fans[i]->printUser();
+	}
 }
 
 void FansPage::printFanPage() const

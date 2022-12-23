@@ -4,6 +4,7 @@
 #include <vector>
 #include <string>
 #include "Date.h"
+
 class FansPage;
 class Status;
 
@@ -22,19 +23,24 @@ public:
 	User(const User& other) = delete;
 	~User();
 
+	const User& operator+=(User& _friend);
+	const User& operator+=(FansPage& fanPage);
+	bool operator>(const User& _friend) const;
+	bool operator<(const User& _friend) const;
+	bool operator>(const FansPage& fanPage) const;
+	bool operator<(const FansPage& fanPage) const;
+
 	std::string getName() const { return name; }
-	const int getNumOfFriends() const { return friends.size(); }
+	int getNumOfFriends() const { return friends.size(); }
 	User& getFriend(const int i) { return *(friends[i]); }
 
 	void printTenLastStatusOfTheUser() const;
 	void addStatus(const std::string text);
-	void addFriend(User& _friend);
 	void removeFriend(User& _friend);
 	void printAllFriends() const;
 	void printAllStatuses() const;
-	void addFansPage(FansPage& page);
 	void removeFansPage(FansPage& page);
-	bool checkIfFriend(const string name) const;
+	bool checkIfFriend(const std::string name) const;
 	bool checkIfFanOfFanPage(const FansPage& fanPage) const;
 	void printAllFanPages() const;
 	void printUser() const;
