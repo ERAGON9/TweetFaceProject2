@@ -74,26 +74,6 @@ void action(int value, TwittFace& system)
 	}
 }
 
-// action 1
-void addUser(TwittFace& system)
-{
-	std::string userName;
-	int day, month, year;
-	cout << "Please enter User name (no more than 30 characters): ";
-	cleanBuffer();
-	getline(cin, userName);
-
-	if (system.getPUserbyName(userName) == nullptr)
-	{
-		cout << "\nPlease enter your birth day (day (space/enter)  month (space/enter) year ): ";
-		cin >> day >> month >> year;
-		system.addUserToSystem(userName, day, month, year);
-		cout << "\nUser added successfully" << endl;
-	}
-	else
-		cout << "\nThe name already taken, back to menu." << endl;
-}
-
 // sub function
 void cleanBuffer()
 {
@@ -105,21 +85,57 @@ void cleanBuffer()
 	} while (c != EOF && c != '\n');
 }
 
+// action 1
+void addUser(TwittFace& system)
+{
+	string userName;
+	int day, month, year;
+
+	cout << "Please enter User name: ";
+	cleanBuffer();
+	getline(cin, userName);
+
+	cout << "\nPlease enter your birth day (day (space/enter)  month (space/enter) year ): ";
+	cin >> day >> month >> year;
+	try
+	{
+		system.addUserToSystem(userName, day, month, year);
+		cout << "\nUser added successfully" << endl;
+	}
+	catch (const char* msg)
+	{
+		cout << msg << " , back to menu." << endl;
+	}
+	catch(...)
+	{
+		cout << "\nSome eror occurred at function 1, call support team.";
+		exit(1);
+	}
+}
+
 // action 2
 void addFanPage(TwittFace& system)
 {
-	std::string fanPageName;
-	cout << "Please enter fan page name (no more than 30 characters): ";
+	string fanPageName;
+	cout << "Please enter fan page name: ";
 	cleanBuffer();
 	getline(cin, fanPageName);
 
-	if (system.getPFanPagebyName(fanPageName) == nullptr)
+	try 
 	{
 		system.addFanPageToSystem(fanPageName);
 		cout << "\nFan page added successfully" << endl;
 	}
-	else
-		cout << "\nThe name already taken, back to menu." << endl;
+	catch (const char* msg)
+	{
+		cout << msg <<" , back to menu." << endl;
+	}
+	catch (...)
+	{
+		cout << "\nSome eror occurred at function 2, call support team.";
+		exit(1);
+	}
+
 }
 
 // action 3
@@ -139,7 +155,7 @@ void addStatus(TwittFace& system)
 // sub function of action 3
 void addStatusToUser(TwittFace& system)
 {
-	std::string userName;
+	string userName;
 	cout << "\nPlease enter the name of the user: ";
 	cleanBuffer();
 	getline(cin, userName);
@@ -148,8 +164,8 @@ void addStatusToUser(TwittFace& system)
 
 	if (curUser != nullptr)
 	{
-		std::string statusData;
-		cout << "\nPlease enter the new status (no more than 500 characters): ";
+		string statusData;
+		cout << "\nPlease enter the new status: ";
 		getline(cin, statusData);
 		curUser->addStatus(statusData);
 		cout << "\nUser status added successfully" << endl;
@@ -161,7 +177,7 @@ void addStatusToUser(TwittFace& system)
 // sub function of action 3
 void addStatuesToFanPage(TwittFace& system)
 {
-	std::string fanPageName;
+	string fanPageName;
 	cout << "\nPlease enter the name of the fan page: ";
 	cleanBuffer();
 	getline(cin, fanPageName);
@@ -170,8 +186,8 @@ void addStatuesToFanPage(TwittFace& system)
 
 	if (curFanPage != nullptr)
 	{
-		std::string statusData;
-		cout << "\nPlease enter the new status (no more than 500 characters): ";
+		string statusData;
+		cout << "\nPlease enter the new status: ";
 		getline(cin, statusData);
 		curFanPage->addStatus(statusData);
 		cout << "\nFan page status added successfully" << endl;
@@ -184,20 +200,20 @@ void addStatuesToFanPage(TwittFace& system)
 void printAllStatuses(TwittFace& system)
 {
 	char answer;
-	cout << "Please select to who you want to show all the statuses: (U-user / F-fan page) ";
+	cout << "Please select to who you want to show all the statuses: (U-user / F-fan page / else to go back to menu) ";
 	cin >> answer;
 	if (answer == USER)
 		printAllUserStatuses(system);
 	else if (answer == FANPAGE)
 		printAllFanPageStatuses(system);
 	else
-		cout << "\nYou entered wrong input, back to menu." << endl;
+		cout << "\nBack to menu." << endl;
 }
 
 // sub function of action 4
 void printAllUserStatuses(TwittFace& system)
 {
-	std::string userName;
+	string userName;
 	cout << "\nPlease enter the name of the user: ";
 	cleanBuffer();
 	getline(cin, userName);
@@ -216,7 +232,7 @@ void printAllUserStatuses(TwittFace& system)
 // sub function of action 4
 void printAllFanPageStatuses(TwittFace& system)
 {
-	std::string fanPageName;
+	string fanPageName;
 	cout << "\nPlease enter the name of the fan page: ";
 	cleanBuffer();
 	getline(cin, fanPageName);
@@ -235,7 +251,7 @@ void printAllFanPageStatuses(TwittFace& system)
 // action 5
 void printTenMostRecentFriendsStatuses(TwittFace& system)
 {
-	std::string userName;
+	string userName;
 	cout << "Please enter the name of the user: ";
 	cleanBuffer();
 	getline(cin, userName);
@@ -260,7 +276,7 @@ void printTenMostRecentFriendsStatuses(TwittFace& system)
 // action 6
 void connectUsers(TwittFace& system)
 {
-	std::string name1, name2;
+	string name1, name2;
 
 	cout << "Please enter the name of the first user: ";
 	cleanBuffer();
@@ -300,7 +316,7 @@ void connectUsers(TwittFace& system)
 // action 7
 void seperateUsers(TwittFace& system)
 {
-	std::string name1, name2;
+	string name1, name2;
 
 	cout << "Please enter the name of the first user: ";
 	cleanBuffer();
@@ -335,7 +351,7 @@ void seperateUsers(TwittFace& system)
 // action 8
 void addFanToFanPage(TwittFace& system)
 {
-	std::string fanPageName, newfanName;
+	string fanPageName, newfanName;
 	cout << "Please enter the name of the fan page: ";
 	cleanBuffer();
 	getline(cin, fanPageName);
@@ -344,7 +360,7 @@ void addFanToFanPage(TwittFace& system)
 
 	if (curFanPage != nullptr)
 	{
-		cout << "\nPlease enter the name of the new fan (user name): ";
+		cout << "\nPlease enter the user name of the new fan: ";
 		getline(cin, newfanName);
 
 		User* newFan = system.getPUserbyName(newfanName);
@@ -369,7 +385,7 @@ void addFanToFanPage(TwittFace& system)
 // action 9
 void removeFanFromFanPage(TwittFace& system)
 {
-	std::string fanPageName, oldfanName;
+	string fanPageName, oldfanName;
 	cout << "Please enter the name of the fan page: ";
 	cleanBuffer();
 	getline(cin, fanPageName);
@@ -424,20 +440,20 @@ void printAllObjects(TwittFace& system)
 void showAllFriendsOrFans(TwittFace& system)
 {
 	char answer;
-	cout << "Please select if to show, all the friends of a user/ all the fans of a fan page: (U-user / F-fan page) ";
+	cout << "Please select if to show, all the friends of a user/ all the fans of a fan page: (U-user / F-fan page / else to go back to menu) ";
 	cin >> answer;
 	if (answer == USER)
 		showAllFriens(system);
 	else if (answer == FANPAGE)
 		showAllFans(system);
 	else
-		cout << "\nYou entered wrong input, back to menu." << endl;
+		cout << "\nBack to menu." << endl;
 }
 
 // sub function of action 11
 void showAllFriens(TwittFace& system)
 {
-	std::string userName;
+	string userName;
 	cout << "\nPlease enter the name of the user: ";
 	cleanBuffer();
 	getline(cin, userName);
@@ -456,7 +472,7 @@ void showAllFriens(TwittFace& system)
 // sub function of action 11
 void showAllFans(TwittFace& system)
 {
-	std::string fanPageName;
+	string fanPageName;
 	cout << "\nPlease enter the name of the fan page: ";
 	cleanBuffer();
 	getline(cin, fanPageName);

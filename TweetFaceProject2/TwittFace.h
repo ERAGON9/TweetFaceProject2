@@ -25,7 +25,7 @@ public:
 	FansPage& getAllTheFanPages(const int i) { return *(allTheFanPages[i]); }
 
 	void addUserToSystem(std::string userName, int day, int month, int year);
-	void addFanPageToSystem(std::string fanPageName);
+	void addFanPageToSystem(std::string fanPageName) throw (const char*);
 	User* getPUserbyName(std::string userName);
 	FansPage* getPFanPagebyName(std::string fanPageName);
 };

@@ -1,6 +1,8 @@
-﻿  Date.cpp
-  Users.cpp
-C:\מדעי המחשב\שנה ב\סמסטר א\תכנות c++\TweetFaceProject2\TweetFaceProject2\Users.cpp(18,20): warning C4018: '<': signed/unsigned mismatch
-C:\מדעי המחשב\שנה ב\סמסטר א\תכנות c++\TweetFaceProject2\TweetFaceProject2\Users.cpp(67,21): warning C4018: '>': signed/unsigned mismatch
+﻿  Functions.cpp
+C:\מדעי המחשב\שנה ב\סמסטר א\תכנות c++\TweetFaceProject2\TweetFaceProject2\Date.h(15,6): warning C4290: C++ exception specification ignored except to indicate a function is not __declspec(nothrow)
+C:\מדעי המחשב\שנה ב\סמסטר א\תכנות c++\TweetFaceProject2\TweetFaceProject2\TwittFace.h(28,69): warning C4290: C++ exception specification ignored except to indicate a function is not __declspec(nothrow)
+  Main.cpp
+C:\מדעי המחשב\שנה ב\סמסטר א\תכנות c++\TweetFaceProject2\TweetFaceProject2\Date.h(15,6): warning C4290: C++ exception specification ignored except to indicate a function is not __declspec(nothrow)
+C:\מדעי המחשב\שנה ב\סמסטר א\תכנות c++\TweetFaceProject2\TweetFaceProject2\TwittFace.h(28,69): warning C4290: C++ exception specification ignored except to indicate a function is not __declspec(nothrow)
   Generating Code...
   TweetFaceProject2.vcxproj -> C:\מדעי המחשב\שנה ב\סמסטר א\תכנות c++\TweetFaceProject2\TweetFaceProject2\Debug\TweetFaceProject2.exe

@@ -6,12 +6,12 @@ class User;
 
 void printMenu();
 void action(int value, TwittFace& system);
+void cleanBuffer();
 void addUser(TwittFace& system);
 void addFanPage(TwittFace& system);
 void addStatus(TwittFace& system);
 void addStatusToUser(TwittFace& system);
 void addStatuesToFanPage(TwittFace& system);
-void cleanBuffer();
 void printAllStatuses(TwittFace& system);
 void printAllUserStatuses(TwittFace& system);
 void printAllFanPageStatuses(TwittFace& system);

@@ -1,5 +1,7 @@
+
 #ifndef __DATE_H
 #define __DATE_H
+
 
 class Date
 {
@@ -9,8 +11,8 @@ private:
 	int year;
 
 public:
-	Date();                                // constractor with the current date.
-	Date(int day, int month, int year);   // constructor with day, month, year by values.
+	Date();                                                  // constractor with the current date.
+	Date(int day, int month, int year) throw (const char*);   // constructor with day, month, year by values.
 	const int getDay() const { return day; };
 	const int getmonth() const { return month; };
 	const int getYear() const { return year; };

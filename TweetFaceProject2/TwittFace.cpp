@@ -4,6 +4,8 @@
 #include "FansPage.h"
 #include <string>
 
+using namespace std;
+
 TwittFace::TwittFace()
 {}
 
@@ -23,23 +25,29 @@ TwittFace::~TwittFace()
 }
 
 
-void TwittFace::addUserToSystem(std::string userName, int day, int month, int year)
+void TwittFace::addUserToSystem(string userName, int day, int month, int year) throw (const char*)
 {
-	User* newUserTwittFace = new User(userName, day ,month, year);
+	if (this->getPUserbyName(userName) != nullptr)
+		throw "\nThe name already taken";
+
+	User* newUserTwittFace = new User(userName, day, month, year);
 
 	allTheUsers.push_back(newUserTwittFace);
 }
 
 
-void TwittFace::addFanPageToSystem(std::string fanPageName)
+void TwittFace::addFanPageToSystem(string fanPageName) throw (const char*)
 {
+	if (this->getPFanPagebyName(fanPageName) != nullptr)
+		throw "\nThe name already taken";
+
 	FansPage* newFanPageTwittFace = new FansPage(fanPageName);
 
 	allTheFanPages.push_back(newFanPageTwittFace);
 }
 
 
-User* TwittFace::getPUserbyName(std::string userName)
+User* TwittFace::getPUserbyName(string userName)
 {
 	for (int i = 0; i < allTheUsers.size(); i++)
 	{
@@ -50,7 +58,7 @@ User* TwittFace::getPUserbyName(std::string userName)
 }
 
 
-FansPage* TwittFace::getPFanPagebyName(std::string fanPageName)
+FansPage* TwittFace::getPFanPagebyName(string fanPageName)
 {
 	for (int i = 0; i < allTheFanPages.size(); i++)
 	{
