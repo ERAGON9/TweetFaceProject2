@@ -1,8 +1,4 @@
-﻿  Functions.cpp
+﻿  Main.cpp
 C:\מדעי המחשב\שנה ב\סמסטר א\תכנות c++\TweetFaceProject2\TweetFaceProject2\Date.h(15,6): warning C4290: C++ exception specification ignored except to indicate a function is not __declspec(nothrow)
-C:\מדעי המחשב\שנה ב\סמסטר א\תכנות c++\TweetFaceProject2\TweetFaceProject2\TwittFace.h(28,69): warning C4290: C++ exception specification ignored except to indicate a function is not __declspec(nothrow)
-  Main.cpp
-C:\מדעי המחשב\שנה ב\סמסטר א\תכנות c++\TweetFaceProject2\TweetFaceProject2\Date.h(15,6): warning C4290: C++ exception specification ignored except to indicate a function is not __declspec(nothrow)
-C:\מדעי המחשב\שנה ב\סמסטר א\תכנות c++\TweetFaceProject2\TweetFaceProject2\TwittFace.h(28,69): warning C4290: C++ exception specification ignored except to indicate a function is not __declspec(nothrow)
-  Generating Code...
+C:\מדעי המחשב\שנה ב\סמסטר א\תכנות c++\TweetFaceProject2\TweetFaceProject2\TwittFace.h(30,69): warning C4290: C++ exception specification ignored except to indicate a function is not __declspec(nothrow)
   TweetFaceProject2.vcxproj -> C:\מדעי המחשב\שנה ב\סמסטר א\תכנות c++\TweetFaceProject2\TweetFaceProject2\Debug\TweetFaceProject2.exe

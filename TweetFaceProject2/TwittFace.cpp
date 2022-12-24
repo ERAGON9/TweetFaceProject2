@@ -25,9 +25,33 @@ TwittFace::~TwittFace()
 }
 
 
+User& TwittFace::getUserbyName(string userName)  throw (const char*)
+{
+	for (int i = 0; i < allTheUsers.size(); i++)
+	{
+		if (allTheUsers[i]->getName() == userName)
+			return *(allTheUsers[i]);
+	}
+
+	throw "\nThe name of the user does not exist at the system";
+}
+
+
+FansPage& TwittFace::getFanPagebyName(string fanPageName)
+{
+	for (int i = 0; i < allTheFanPages.size(); i++)
+	{
+		if (allTheFanPages[i]->getName() == fanPageName)
+			return *(allTheFanPages[i]);
+	}
+
+	throw "\nThe name of the fan page does not exist at the system";
+}
+
+
 void TwittFace::addUserToSystem(string userName, int day, int month, int year) throw (const char*)
 {
-	if (this->getPUserbyName(userName) != nullptr)
+	if (this->checkIfUserExist(userName))
 		throw "\nThe name already taken";
 
 	User* newUserTwittFace = new User(userName, day, month, year);
@@ -38,7 +62,7 @@ void TwittFace::addUserToSystem(string userName, int day, int month, int year) t
 
 void TwittFace::addFanPageToSystem(string fanPageName) throw (const char*)
 {
-	if (this->getPFanPagebyName(fanPageName) != nullptr)
+	if (this->checkIfFanPageExist(fanPageName))
 		throw "\nThe name already taken";
 
 	FansPage* newFanPageTwittFace = new FansPage(fanPageName);
@@ -47,24 +71,25 @@ void TwittFace::addFanPageToSystem(string fanPageName) throw (const char*)
 }
 
 
-User* TwittFace::getPUserbyName(string userName)
+bool TwittFace::checkIfUserExist(std::string userName)
 {
 	for (int i = 0; i < allTheUsers.size(); i++)
 	{
 		if (allTheUsers[i]->getName() == userName)
-			return allTheUsers[i];
+			return true;
 	}
-	return nullptr;   // If the name don't belong to an User at the system, the function return NULL;
+
+	return false;
 }
 
 
-FansPage* TwittFace::getPFanPagebyName(string fanPageName)
+bool TwittFace::checkIfFanPageExist(std::string fanPageName)
 {
 	for (int i = 0; i < allTheFanPages.size(); i++)
 	{
 		if (allTheFanPages[i]->getName() == fanPageName)
-			return allTheFanPages[i];
+			return true;
 	}
 
-	return nullptr; // If the name don't belong to a Fan Page at the system, the function return NULL;
+	return false;
 }

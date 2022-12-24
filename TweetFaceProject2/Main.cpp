@@ -32,24 +32,24 @@ int main()
 		system.addFanPageToSystem("Shalev Business");
 		system.addFanPageToSystem("Noa Business");
 
-		system.getPUserbyName("Lior Barak")->addStatus("Lior Barak first status");
-		system.getPUserbyName("Lior Barak")->addStatus("Lior Barak second status");
-		system.getPUserbyName("Shalev Kedar")->addStatus("Shalev Kedar first status");
-		system.getPUserbyName("Shalev Kedar")->addStatus("Shalev Kedar second status");
-		system.getPUserbyName("Noa Margolius")->addStatus("Noa Margolius first status");
-		system.getPUserbyName("Noa Margolius")->addStatus("Noa Margolius second status");
-		system.getPFanPagebyName("Lior Business")->addStatus("Lior Business first status");
-		system.getPFanPagebyName("Lior Business")->addStatus("Lior Business second status");
-		system.getPFanPagebyName("Shalev Business")->addStatus("Shalev Business first status");
-		system.getPFanPagebyName("Shalev Business")->addStatus("Shalev Business second status");
-		system.getPFanPagebyName("Noa Business")->addStatus("Noa Business first status");
-		system.getPFanPagebyName("Noa Business")->addStatus("Noa Business second status");
+		system.getUserbyName("Lior Barak").addStatus("Lior Barak first status");
+		system.getUserbyName("Lior Barak").addStatus("Lior Barak second status");
+		system.getUserbyName("Shalev Kedar").addStatus("Shalev Kedar first status");
+		system.getUserbyName("Shalev Kedar").addStatus("Shalev Kedar second status");
+		system.getUserbyName("Noa Margolius").addStatus("Noa Margolius first status");
+		system.getUserbyName("Noa Margolius").addStatus("Noa Margolius second status");
+		system.getFanPagebyName("Lior Business").addStatus("Lior Business first status");
+		system.getFanPagebyName("Lior Business").addStatus("Lior Business second status");
+		system.getFanPagebyName("Shalev Business").addStatus("Shalev Business first status");
+		system.getFanPagebyName("Shalev Business").addStatus("Shalev Business second status");
+		system.getFanPagebyName("Noa Business").addStatus("Noa Business first status");
+		system.getFanPagebyName("Noa Business").addStatus("Noa Business second status");
 
-		*system.getPUserbyName("Shalev Kedar") += *system.getPUserbyName("Lior Barak");
-		*system.getPUserbyName("Lior Barak") += *system.getPUserbyName("Noa Margolius");
-		*system.getPUserbyName("Shalev Kedar") += *system.getPFanPagebyName("Shalev Business");
-		*system.getPUserbyName("Lior Barak") += *system.getPFanPagebyName("Lior Business");
-		*system.getPUserbyName("Noa Margolius") += *system.getPFanPagebyName("Noa Business");
+		system.getUserbyName("Shalev Kedar") += system.getUserbyName("Lior Barak");
+		system.getUserbyName("Lior Barak") += system.getUserbyName("Noa Margolius");
+		system.getUserbyName("Shalev Kedar") += system.getFanPagebyName("Shalev Business");
+		system.getUserbyName("Lior Barak") += system.getFanPagebyName("Lior Business");
+		system.getUserbyName("Noa Margolius") += system.getFanPagebyName("Noa Business");
 	}
 	catch (const char* msg)
 	{

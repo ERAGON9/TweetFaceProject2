@@ -160,19 +160,27 @@ void addStatusToUser(TwittFace& system)
 	cleanBuffer();
 	getline(cin, userName);
 
-	User* curUser = system.getPUserbyName(userName);
-
-	if (curUser != nullptr)
+	try
 	{
+		User& curUser = system.getUserbyName(userName);
+
 		string statusData;
 		cout << "\nPlease enter the new status: ";
 		getline(cin, statusData);
-		curUser->addStatus(statusData);
+		curUser.addStatus(statusData);
 		cout << "\nUser status added successfully" << endl;
 	}
-	else
-		cout << "\nThe name does not exist at the system, back to menu." << endl;
+	catch (const char* msg)
+	{
+		cout << msg << " , back to menu." << endl;
+	}
+	catch (...)
+	{
+		cout << "\nSome eror occurred at function 3 (user), call support team.";
+		exit(1);
+	}
 }
+
 
 // sub function of action 3
 void addStatuesToFanPage(TwittFace& system)
@@ -182,18 +190,27 @@ void addStatuesToFanPage(TwittFace& system)
 	cleanBuffer();
 	getline(cin, fanPageName);
 
-	FansPage* curFanPage = system.getPFanPagebyName(fanPageName);
-
-	if (curFanPage != nullptr)
+	try
 	{
+		FansPage& curFanPage = system.getFanPagebyName(fanPageName);
+
 		string statusData;
 		cout << "\nPlease enter the new status: ";
 		getline(cin, statusData);
-		curFanPage->addStatus(statusData);
+		curFanPage.addStatus(statusData);
 		cout << "\nFan page status added successfully" << endl;
-	}
-	else
+
 		cout << "\nThe name does not exist at the system, back to menu." << endl;
+	}
+	catch (const char* msg)
+	{
+		cout << msg << " , back to menu." << endl;
+	}
+	catch (...)
+	{
+		cout << "\nSome eror occurred at function 3 (fan page), call support team.";
+		exit(1);
+	}
 }
 
 // action 4
@@ -218,15 +235,22 @@ void printAllUserStatuses(TwittFace& system)
 	cleanBuffer();
 	getline(cin, userName);
 
-	User* curUser = system.getPUserbyName(userName);
-
-	if (curUser != nullptr)
+	try
 	{
+		User& curUser = system.getUserbyName(userName);
+
 		cout << "\nAll the user statuses are:" << endl;
-		curUser->printAllStatuses();
+		curUser.printAllStatuses();
 	}
-	else
-		cout << "\nThe name does not exist at the system, back to menu." << endl;
+	catch (const char* msg)
+	{
+		cout << msg << " , back to menu." << endl;
+	}
+	catch (...)
+	{
+		cout << "\nSome eror occurred at function 4 (user), call support team.";
+		exit(1);
+	}
 }
 
 // sub function of action 4
@@ -237,15 +261,22 @@ void printAllFanPageStatuses(TwittFace& system)
 	cleanBuffer();
 	getline(cin, fanPageName);
 
-	FansPage* curFanPage = system.getPFanPagebyName(fanPageName);
-
-	if (curFanPage != nullptr)
+	try
 	{
+		FansPage& curFanPage = system.getFanPagebyName(fanPageName);
+
 		cout << "\nAll the fan page statuses are:" << endl;
-		curFanPage->printAllStatuses();
+		curFanPage.printAllStatuses();
 	}
-	else
-		cout << "\nThe name does not exist at the system, back to menu." << endl;
+	catch (const char* msg)
+	{
+		cout << msg << " , back to menu." << endl;
+	}
+	catch (...)
+	{
+		cout << "\nSome eror occurred at function 4 (fan page), call support team.";
+		exit(1);
+	}
 }
 
 // action 5
@@ -256,21 +287,29 @@ void printTenMostRecentFriendsStatuses(TwittFace& system)
 	cleanBuffer();
 	getline(cin, userName);
 
-	User* curUser = system.getPUserbyName(userName);
-
-	if (curUser != nullptr)
+	try
 	{
-		int numberOfFriends = curUser->getNumOfFriends();
+		User& curUser = system.getUserbyName(userName);
+
+		int numberOfFriends = curUser.getNumOfFriends();
 
 		for (int i = 0; i < numberOfFriends; i++)
 		{
-			const User& friendOfUser = curUser->getFriend(i);
+			const User& friendOfUser = curUser.getFriend(i);
 			cout << "\nThe most recent statuses of " << friendOfUser.getName() << " are:" << endl;
 			friendOfUser.printTenLastStatusOfTheUser();
 		}
+
 	}
-	else
-		cout << "\nThe name does not exist at the system, back to menu." << endl;
+	catch (const char* msg)
+	{
+		cout << msg << " , back to menu." << endl;
+	}
+	catch (...)
+	{
+		cout << "\nSome eror occurred at function 5, call support team.";
+		exit(1);
+	}
 }
 
 // action 6
@@ -282,35 +321,37 @@ void connectUsers(TwittFace& system)
 	cleanBuffer();
 	getline(cin, name1);
 
-	User* curUser1 = system.getPUserbyName(name1);
-
-	if (curUser1 != nullptr)
+	try
 	{
+		User& curUser1 = system.getUserbyName(name1);
+
 		cout << "\nPlease enter the name of the second user: ";
 		getline(cin, name2);
 
 		if (name1 != name2)
 		{
-			User* curUser2 = system.getPUserbyName(name2);
+			User& curUser2 = system.getUserbyName(name2);
 
-			if (curUser2 != nullptr)
+			if (curUser1.checkIfFriend(name2) == false)
 			{
-				if (curUser1->checkIfFriend(name2) == false)
-				{
-					*curUser1 += *curUser2;
-					cout << "\nThe connection added successfully" << endl;
-				}
-				else
-					cout << "\nYou entered two users that already friends" << endl;
+				curUser1 += curUser2;
+				cout << "\nThe connection added successfully" << endl;
 			}
 			else
-				cout << "\nThe name of the second user does not exist at the system, back to menu." << endl;
+				cout << "\nYou entered two users that already friends" << endl;
 		}
 		else
 			cout << "\nYou can't make an user a friend of himself." << endl;
 	}
-	else
-		cout << "\nThe name of the first user does not exist at the system, back to menu." << endl;
+	catch (const char* msg)
+	{
+		cout << msg << " , back to menu." << endl;
+	}
+	catch (...)
+	{
+		cout << "\nSome eror occurred at function 6, call support team.";
+		exit(1);
+	}
 }
 
 // action 7
@@ -322,30 +363,32 @@ void seperateUsers(TwittFace& system)
 	cleanBuffer();
 	getline(cin, name1);
 
-	User* curUser1 = system.getPUserbyName(name1);
-
-	if (curUser1 != nullptr)
+	try
 	{
+		User& curUser1 = system.getUserbyName(name1);
+
 		cout << "\nPlease enter the name of the second user: ";
 		getline(cin, name2);
 
-		User* curUser2 = system.getPUserbyName(name2);
+		User& curUser2 = system.getUserbyName(name2);
 
-		if (curUser2 != nullptr)
+		if (curUser1.checkIfFriend(name2) == true)
 		{
-			if (curUser1->checkIfFriend(name2) == true)
-			{
-				curUser1->removeFriend(*curUser2);
-				cout << "\nThe seperate happened, the two users no more friends" << endl;
-			}
-			else
-				cout << "\nYou entered two users that not friends" << endl;
+			curUser1.removeFriend(curUser2);
+			cout << "\nThe seperate happened, the two users no more friends" << endl;
 		}
 		else
-			cout << "\nThe name does not exist at the system, back to menu." << endl;
+			cout << "\nYou entered two users that not friends" << endl;
 	}
-	else
-		cout << "\nThe name does not exist at the system, back to menu." << endl;
+	catch (const char* msg)
+	{
+		cout << msg << " , back to menu." << endl;
+	}
+	catch (...)
+	{
+		cout << "\nSome eror occurred at function 7, call support team.";
+		exit(1);
+	}
 }
 
 // action 8
@@ -356,30 +399,32 @@ void addFanToFanPage(TwittFace& system)
 	cleanBuffer();
 	getline(cin, fanPageName);
 
-	FansPage* curFanPage = system.getPFanPagebyName(fanPageName);
-
-	if (curFanPage != nullptr)
+	try
 	{
+		FansPage& curFanPage = system.getFanPagebyName(fanPageName);
+
 		cout << "\nPlease enter the user name of the new fan: ";
 		getline(cin, newfanName);
 
-		User* newFan = system.getPUserbyName(newfanName);
+		User& newFan = system.getUserbyName(newfanName);
 
-		if (newFan != nullptr)
+		if (curFanPage.checkIfFan(newFan) == false)
 		{
-			if (curFanPage->checkIfFan(*newFan) == false)
-			{
-				*curFanPage += *newFan;
-				cout << "\nThe user is a fan of the fan page now" << endl;
-			}
-			else
-				cout << "\nThe user already a fan of this fan page, back to menu." << endl;
+			curFanPage += newFan;
+			cout << "\nThe user is a fan of the fan page now" << endl;
 		}
 		else
-			cout << "\nThe name does not exist at the system, back to menu." << endl;
+			cout << "\nThe user already a fan of this fan page, back to menu." << endl;
 	}
-	else
-		cout << "\nThe name does not exist at the system, back to menu." << endl;
+	catch (const char* msg)
+	{
+		cout << msg << " , back to menu." << endl;
+	}
+	catch (...)
+	{
+		cout << "\nSome eror occurred at function 8, call support team.";
+		exit(1);
+	}
 }
 
 // action 9
@@ -390,30 +435,32 @@ void removeFanFromFanPage(TwittFace& system)
 	cleanBuffer();
 	getline(cin, fanPageName);
 
-	FansPage* curFanPage = system.getPFanPagebyName(fanPageName);
-
-	if (curFanPage != nullptr)
+	try
 	{
+		FansPage& curFanPage = system.getFanPagebyName(fanPageName);
+
 		cout << "\nPlease enter the name of the user, to be no more a fan of the fan page: ";
 		getline(cin, oldfanName);
 
-		User* oldFan = system.getPUserbyName(oldfanName);
+		User& oldFan = system.getUserbyName(oldfanName);
 
-		if (oldFan != nullptr)
+		if (curFanPage.checkIfFan(oldFan) == true)
 		{
-			if (curFanPage->checkIfFan(*oldFan) == true)
-			{
-				curFanPage->removeFan(*oldFan);
-				cout << "\nThe user no more fan of the fan page" << endl;
-			}
-			else
-				cout << "\nThe user already not a fan of this fan page, back to menu." << endl;
+			curFanPage.removeFan(oldFan);
+			cout << "\nThe user no more fan of the fan page" << endl;
 		}
 		else
-			cout << "\nThe name does not exist at the system, back to menu." << endl;
+			cout << "\nThe user already not a fan of this fan page, back to menu." << endl;
 	}
-	else
-		cout << "\nThe name does not exist at the system, back to menu." << endl;
+	catch (const char* msg)
+	{
+		cout << msg << " , back to menu." << endl;
+	}
+	catch (...)
+	{
+		cout << "\nSome eror occurred at function 9, call support team.";
+		exit(1);
+	}
 }
 
 // action 10
@@ -424,7 +471,7 @@ void printAllObjects(TwittFace& system)
 	int usersAmount = system.getNumOfUsers();
 	for (int i = 0; i < usersAmount; i++)
 	{
-		system.getTheUser(i).printUser();
+		system.getUser(i).printUser();
 	}
 
 	cout << "\nAll the fan pages at the system are: " << endl;
@@ -432,7 +479,7 @@ void printAllObjects(TwittFace& system)
 	int fanPagesAmount = system.getNumOfFanPages();
 	for (int j = 0; j < fanPagesAmount; j++) // check that actions
 	{
-		system.getAllTheFanPages(j).printFanPage();
+		system.getFanPage(j).printFanPage();
 	}
 }
 
@@ -458,15 +505,22 @@ void showAllFriens(TwittFace& system)
 	cleanBuffer();
 	getline(cin, userName);
 
-	User* curUser = system.getPUserbyName(userName);
-
-	if (curUser != nullptr)
+	try
 	{
+		User& curUser = system.getUserbyName(userName);
+
 		cout << "\nAll the friends of " << userName << " are:" << endl;
-		system.getPUserbyName(userName)->printAllFriends();
+		curUser.printAllFriends();
 	}
-	else
-		cout << "\nThe name does not exist at the system, back to menu." << endl;
+	catch (const char* msg)
+	{
+		cout << msg << " , back to menu." << endl;
+	}
+	catch (...)
+	{
+		cout << "\nSome eror occurred at function 11 (user), call support team.";
+		exit(1);
+	}
 }
 
 // sub function of action 11
@@ -477,13 +531,20 @@ void showAllFans(TwittFace& system)
 	cleanBuffer();
 	getline(cin, fanPageName);
 
-	FansPage* curFanPage = system.getPFanPagebyName(fanPageName);
-
-	if (curFanPage != nullptr)
+	try
 	{
+		FansPage& curFanPage = system.getFanPagebyName(fanPageName);
+
 		cout << "\nAll the fans of " << fanPageName << " are:" << endl;
-		system.getPFanPagebyName(fanPageName)->printAllFans();
+		curFanPage.printAllFans();
 	}
-	else
-		cout << "\nThe name does not exist at the system, back to menu." << endl;
+	catch (const char* msg)
+	{
+		cout << msg << " , back to menu." << endl;
+	}
+	catch (...)
+	{
+		cout << "\nSome eror occurred at function 11 (fan page), call support team.";
+		exit(1);
+	}
 }

@@ -21,13 +21,15 @@ public:
 
 	int getNumOfUsers() const { return allTheUsers.size(); }
 	int getNumOfFanPages() const { return allTheFanPages.size(); }
-	User& getTheUser(const int i) { return *(allTheUsers[i]); }
-	FansPage& getAllTheFanPages(const int i) { return *(allTheFanPages[i]); }
+	User& getUser(const int i) { return *(allTheUsers[i]); }
+	FansPage& getFanPage(const int i) { return *(allTheFanPages[i]); }
 
+	User& getUserbyName(std::string userName);
+	FansPage& getFanPagebyName(std::string fanPageName);
 	void addUserToSystem(std::string userName, int day, int month, int year);
 	void addFanPageToSystem(std::string fanPageName) throw (const char*);
-	User* getPUserbyName(std::string userName);
-	FansPage* getPFanPagebyName(std::string fanPageName);
+	bool checkIfUserExist(std::string userName);
+	bool checkIfFanPageExist(std::string fanPageName);
 };
 
 #endif // !___TWITTFACE_H
