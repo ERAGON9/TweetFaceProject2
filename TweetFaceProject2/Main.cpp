@@ -14,6 +14,7 @@ Good luck!
 
 using namespace std;
 const int EXIT = 12;
+const int FIRST = 1;
 enum lior_details { Lior_day = 3, Lior_month = 2, Lior_year = 1999 };
 enum shalev_details { Shalev_day = 29, Shalev_month = 3, Shalev_year = 1999 };
 enum Noa_details { Noa_day = 9, Noa_month = 6, Noa_year = 1999 };
@@ -67,7 +68,7 @@ int main()
 		printMenu();
 		cin >> input;
 		cout << endl;
-		if (input >= 1 && input <= 12)
+		if (input >= FIRST && input <= EXIT)
 			action(input, system);
 		else
 			cout << "You entered wrong input, try again." << endl;
