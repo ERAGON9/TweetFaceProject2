@@ -15,10 +15,14 @@ User::User(const string _name, int day, int month, int year) : bDay(day, month, 
 
 User::~User()
 {
-	for (int i = 0; i < publishBoard.size(); i++)
+	vector<Status*>::iterator itr = publishBoard.begin();
+	vector<Status*>::iterator itrEnd = publishBoard.end();
+
+	for (; itr != itrEnd; ++itr)
 	{
-		delete publishBoard[i];
+		delete *itr;
 	}
+	
 }
 
 
@@ -77,10 +81,12 @@ bool User::operator<(const FansPage& fanPage) const
 void User::printTenLastStatusOfTheUser() const
 {
 	int size = publishBoard.size();
+	auto itr = publishBoard.end();
 
-	for (int i = size - 1; (i > (size - 1) - 10) && (i >= 0); i--)
+	for (int i = 0; i < 10 && i < size; i++)
 	{
-		publishBoard[i]->printStatus();
+		--itr;
+		(*itr)->printStatus();
 	}
 }
 
@@ -94,18 +100,19 @@ void User::addStatus(const string text)
 
 void User::removeFriend(User& _friend)
 {
-	int size = friends.size();
+	vector<User*>::iterator itr = friends.begin();
+	vector<User*>::iterator itrEnd = friends.end();
 
 	if (checkIfFriend(_friend.getName()) == true)
 	{
-		for (int i = 0; i < size; i++)
+		for (; itr != itrEnd; ++itr)
 		{
-			if (friends[i] == &_friend)
+			if (*itr == &_friend)
 			{
-				if (i != friends.size() - 1)
-					swap(friends[i], friends[size - 1]);
+				if (itr != itrEnd)
+					swap(itr, itrEnd);
 				friends.pop_back();
-				i = size;
+				itr = itrEnd;
 			}
 		}
 		_friend.removeFriend(*this);
@@ -115,42 +122,46 @@ void User::removeFriend(User& _friend)
 
 void User::printAllFriends() const
 {
-	int size = friends.size();
+	auto itr = friends.begin();
+	auto itrEnd = friends.end();
 
-	for (int i = 0; i < size; i++)
+	for (; itr != itrEnd; ++itr)
 	{
-		friends[i]->printUser();
+		(*itr)->printUser();
 	}
 }
 
 
 void User::printAllStatuses() const
 {
-	int size = publishBoard.size();
+	auto itr = publishBoard.begin();
+	auto itrEnd = publishBoard.end();
 
-	for (int i = 0; i < size; i++)
+	for (; itr != itrEnd; ++itr)
 	{
-		publishBoard[i]->printStatus();
+		(*itr)->printStatus();
 	}
 }
 
 
 void User::removeFansPage(FansPage& page)
 {
-	int size = fansPages.size();
+	vector<FansPage*>::iterator itr = fansPages.begin();
+	vector<FansPage*>::iterator itrEnd = fansPages.end();
 
 	if (checkIfFanOfFanPage(page) == true)
 	{
-		for (int i = 0; i < size; i++)
+		for (; itr != itrEnd; ++itr)
 		{
-			if (fansPages[i] == &page)
+			if (*itr == &page)
 			{
-				if (i != fansPages.size() - 1)
-					swap(fansPages[i], fansPages[size - 1]);
-				fansPages.pop_back();
-				i = size;
+				if (itr != itrEnd)
+					swap(itr, itrEnd);
+				friends.pop_back();
+				itr = itrEnd;
 			}
 		}
+
 		page.removeFan(*this);
 	}
 }
@@ -158,11 +169,12 @@ void User::removeFansPage(FansPage& page)
 
 bool User::checkIfFriend(const string name) const
 {
-	int size = friends.size();
+	auto itr = friends.begin();
+	auto itrEnd = friends.end();
 
-	for (int i = 0; i < size; i++)
+	for (; itr != itrEnd; ++itr)
 	{
-		if (friends[i]->name == name)
+		if ((*itr)->name == name)
 			return true;
 	}
 

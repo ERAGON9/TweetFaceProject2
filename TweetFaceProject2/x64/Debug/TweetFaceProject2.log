@@ -1,4 +1,13 @@
-﻿  Functions.cpp
-C:\Users\shale\source\repos\TweetFaceProject2\TweetFaceProject2\TwittFace.h(22,28): warning C4267: 'return': conversion from 'size_t' to 'int', possible loss of data
-C:\Users\shale\source\repos\TweetFaceProject2\TweetFaceProject2\TwittFace.h(23,31): warning C4267: 'return': conversion from 'size_t' to 'int', possible loss of data
+﻿  Users.cpp
+C:\Users\shale\source\repos\TweetFaceProject2\TweetFaceProject2\Date.h(15,6): warning C4290: C++ exception specification ignored except to indicate a function is not __declspec(nothrow)
+C:\Users\shale\source\repos\TweetFaceProject2\TweetFaceProject2\Users.h(34,30): warning C4267: 'return': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\shale\source\repos\TweetFaceProject2\TweetFaceProject2\FansPage.h(30,27): warning C4267: 'return': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\shale\source\repos\TweetFaceProject2\TweetFaceProject2\Users.cpp(83,32): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\shale\source\repos\TweetFaceProject2\TweetFaceProject2\Users.cpp(109,27): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\shale\source\repos\TweetFaceProject2\TweetFaceProject2\Users.cpp(130,27): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\shale\source\repos\TweetFaceProject2\TweetFaceProject2\Users.cpp(141,32): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\shale\source\repos\TweetFaceProject2\TweetFaceProject2\Users.cpp(152,29): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\shale\source\repos\TweetFaceProject2\TweetFaceProject2\Users.cpp(173,27): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\shale\source\repos\TweetFaceProject2\TweetFaceProject2\Users.cpp(187,29): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\shale\source\repos\TweetFaceProject2\TweetFaceProject2\Users.cpp(201,29): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
   TweetFaceProject2.vcxproj -> C:\Users\shale\source\repos\TweetFaceProject2\TweetFaceProject2\x64\Debug\TweetFaceProject2.exe

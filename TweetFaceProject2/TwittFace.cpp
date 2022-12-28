@@ -37,7 +37,7 @@ User& TwittFace::getUserbyName(string userName)  throw (const char*)
 }
 
 
-FansPage& TwittFace::getFanPagebyName(string fanPageName)
+FansPage& TwittFace::getFanPagebyName(string fanPageName) throw (const char*)
 {
 	for (int i = 0; i < allTheFanPages.size(); i++)
 	{
