@@ -11,26 +11,33 @@ TwittFace::TwittFace()
 
 TwittFace::~TwittFace()
 {
-	int i;
+	auto itr = allTheUsers.begin();
+	auto itrEnd = allTheUsers.end();
+	auto itr2 = allTheFanPages.begin();
+	auto itrEnd2 = allTheFanPages.end();
 
-	for (i = 0; i < allTheUsers.size(); i++)
+	for (; itr != itrEnd; ++itr)
 	{
-		delete allTheUsers[i];
+		delete (*itr);
 	}
 
-	for (i = 0; i < allTheFanPages.size(); i++)
+	for (; itr2 != itrEnd2; ++itr2)
 	{
-		delete allTheFanPages[i];
+		delete (*itr2);
 	}
+
 }
 
 
 User& TwittFace::getUserbyName(string userName)  throw (const char*)
 {
-	for (int i = 0; i < allTheUsers.size(); i++)
+	auto itr = allTheUsers.begin();
+	auto itrEnd = allTheUsers.end();
+
+	for (; itr != itrEnd; ++itr)
 	{
-		if (allTheUsers[i]->getName() == userName)
-			return *(allTheUsers[i]);
+		if ((*itr)->getName() == userName)
+			return *(*itr);
 	}
 
 	throw "\nThe name of the user does not exist at the system";
@@ -39,10 +46,13 @@ User& TwittFace::getUserbyName(string userName)  throw (const char*)
 
 FansPage& TwittFace::getFanPagebyName(string fanPageName) throw (const char*)
 {
-	for (int i = 0; i < allTheFanPages.size(); i++)
+	auto itr = allTheFanPages.begin();
+	auto itrEnd = allTheFanPages.end();
+
+	for (; itr != itrEnd; ++itr)
 	{
-		if (allTheFanPages[i]->getName() == fanPageName)
-			return *(allTheFanPages[i]);
+		if ((*itr)->getName() == fanPageName)
+			return *(*itr);
 	}
 
 	throw "\nThe name of the fan page does not exist at the system";
@@ -73,9 +83,12 @@ void TwittFace::addFanPageToSystem(string fanPageName) throw (const char*)
 
 bool TwittFace::checkIfUserExist(std::string userName)
 {
-	for (int i = 0; i < allTheUsers.size(); i++)
+	auto itr = allTheUsers.begin();
+	auto itrEnd = allTheUsers.end();
+
+	for (; itr != itrEnd; ++itr)
 	{
-		if (allTheUsers[i]->getName() == userName)
+		if ((*itr)->getName() == userName)
 			return true;
 	}
 
@@ -85,9 +98,12 @@ bool TwittFace::checkIfUserExist(std::string userName)
 
 bool TwittFace::checkIfFanPageExist(std::string fanPageName)
 {
-	for (int i = 0; i < allTheFanPages.size(); i++)
+	auto itr = allTheFanPages.begin();
+	auto itrEnd = allTheFanPages.end();
+
+	for (; itr != itrEnd; ++itr)
 	{
-		if (allTheFanPages[i]->getName() == fanPageName)
+		if ((*itr)->getName() == fanPageName)
 			return true;
 	}
 

@@ -15,9 +15,12 @@ FansPage::FansPage(std::string name)
 
 FansPage::~FansPage()
 {
-	for (int i = 0; i < publishBoard.size(); i++)
+	auto itr = publishBoard.begin();
+	auto itrEnd = publishBoard.end();
+
+	for (; itr != itrEnd; ++itr)
 	{
-		delete publishBoard[i];
+		delete *itr;
 	}
 }
 
@@ -72,22 +75,25 @@ void FansPage::addStatus(std::string text)
 
 void FansPage::printAllStatuses() const
 {
-	int size = publishBoard.size();
+	auto itr = publishBoard.begin();
+	auto itrEnd = publishBoard.end();
 
-	for (int i = 0; i < size; i++)
+	for (; itr != itrEnd; ++itr)
 	{
-		publishBoard[i]->printStatus();
+		(*itr)->printStatus();
 	}
 }
 
 
 bool FansPage::checkIfFan(const User& fan) const
 {
-	int size = Fans.size();
+	auto itr = Fans.begin();
+	auto itrEnd = Fans.end();
+	string fanName = fan.getName();
 
-	for (int i = 0; i < size; i++)
+	for (; itr != itrEnd; ++itr)
 	{
-		if (Fans[i]->getName() == fan.getName())
+		if ((*itr)->getName() == fanName)
 			return true;
 	}
 
@@ -97,18 +103,19 @@ bool FansPage::checkIfFan(const User& fan) const
 
 void FansPage::removeFan(User& fan)
 {
-	int size = Fans.size();
+	auto itr = Fans.begin();
+	auto itrEnd = Fans.end();
 
 	if (checkIfFan(fan) == true)
 	{
-		for (int i = 0; i < size; i++)
+		for (; itr != itrEnd; ++itr)
 		{
-			if (Fans[i] == &fan)
+			if ((*itr) == &fan)
 			{
-				if (i != size - 1)
-					swap(Fans[i], Fans[size - 1]);
+				if (itr != (itrEnd - 1))
+					swap(*itr, *(itrEnd - 1));
 				Fans.pop_back();
-				i = size;
+				itr = itrEnd;
 			}
 		}
 		fan.removeFansPage(*this);
@@ -118,11 +125,12 @@ void FansPage::removeFan(User& fan)
 
 void FansPage::printAllFans() const
 {
-	int size = Fans.size();
+	auto itr = Fans.begin();
+	auto itrEnd = Fans.end();
 
-	for (int i = 0; i < size; i++)
+	for (; itr != itrEnd; ++itr)
 	{
-		Fans[i]->printUser();
+		(*itr)->printUser();
 	}
 }
 
