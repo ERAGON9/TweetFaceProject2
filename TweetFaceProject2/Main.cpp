@@ -25,14 +25,13 @@ int main()
 	{
 		initialNetworkData(system);
 	}
-	catch (const char* msg)
+	catch (TweetFaceException& e)
 	{
-		cout << msg << endl;
-		cout << "\nOccurred at main hard coded data." << endl;
+		cout << e.what() << endl;
 	}
 	catch (...)
 	{
-		cout << "\nSome eror occurred at main hard coded data, call support team.";
+		cout << "\nSome eror occurred, call support team.";
 		exit(1);
 	}
 

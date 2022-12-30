@@ -28,8 +28,8 @@ void printMenu()
 		<< " 8 - Add a user to a fan page." << endl
 		<< " 9 - Delete a user from a fan page." << endl
 		<< "10 - Show all the users and fan pages at the system." << endl
-		<< "11 - Show all the friends of a user / fans of a fan page" << endl
-		<< "12 - Exit" << endl
+		<< "11 - Show all the friends of a user / fans of a fan page." << endl
+		<< "12 - Exit." << endl
 		<< "Your choice: ";
 }
 
@@ -419,7 +419,7 @@ void showAllFans(TwittFace& system)
 	curFanPage.printAllFans();
 }
 
-void initialNetworkData(TwittFace& system)
+void initialNetworkData(TwittFace& system) noexcept(false)
 {
 	system.addUserToSystem("Lior Barak", lior_details::Lior_day, lior_details::Lior_month, lior_details::Lior_year);
 	system.addUserToSystem("Shalev Kedar", shalev_details::Shalev_day, shalev_details::Shalev_month, shalev_details::Shalev_year);

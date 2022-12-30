@@ -45,7 +45,7 @@ void showAllFriens(TwittFace& system);
 // Sub function of action 11
 void showAllFans(TwittFace& system);
 
-void initialNetworkData(TwittFace& system);
+void initialNetworkData(TwittFace& system) noexcept(false);
 
 #endif // !__FUNCTION_H
 
