@@ -109,8 +109,8 @@ void User::removeFriend(User& _friend)
 		{
 			if (*itr == &_friend)
 			{
-				if (itr != itrEnd)
-					swap(itr, itrEnd);
+				if (itr != (itrEnd - 1))
+					swap(*itr, *(itrEnd - 1));
 				friends.pop_back();
 				itr = itrEnd;
 			}
@@ -155,8 +155,8 @@ void User::removeFansPage(FansPage& page)
 		{
 			if (*itr == &page)
 			{
-				if (itr != itrEnd)
-					swap(itr, itrEnd);
+				if (itr != (itrEnd - 1))
+					swap(*itr, *(itrEnd - 1));
 				friends.pop_back();
 				itr = itrEnd;
 			}
@@ -184,11 +184,13 @@ bool User::checkIfFriends(const string name) const
 
 bool User::checkIfFanOfFanPage(const FansPage& fanPage) const
 {
-	int size = fansPages.size();
+	auto itr = fansPages.begin();
+	auto itrEnd = fansPages.end();
+	string pageName = fanPage.getName();
 
-	for (int i = 0; i < size; i++)
+	for (; itr != itrEnd; ++itr)
 	{
-		if (fansPages[i]->getName() == fanPage.getName())
+		if ((*itr)->getName() == pageName)
 			return true;
 	}
 
@@ -198,11 +200,12 @@ bool User::checkIfFanOfFanPage(const FansPage& fanPage) const
 
 void User::printAllFanPages() const
 {
-	int size = fansPages.size();
+	auto itr = fansPages.begin();
+	auto itrEnd = fansPages.end();
 
-	for (int i = 0; i < size; i++)
+	for (; itr != itrEnd; ++itr)
 	{
-		fansPages[i]->printFanPage();
+		(*itr)->printFanPage();
 	}
 }
 
