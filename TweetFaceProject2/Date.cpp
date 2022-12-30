@@ -1,6 +1,7 @@
 
 #include "Date.h"
 #include <ctime>
+#include "Exceptions.h"
 
 #pragma warning (disable: 4996)
 
@@ -21,13 +22,13 @@ Date::Date()
 	year = LAST_CENTURY + currentTime->tm_year;
 }
 
-Date::Date(int day, int month, int year) throw (const char*)
+Date::Date(int day, int month, int year) noexcept(false)
 {
 
 	if (day < FIRST_DAY_OF_THE_MONTH || day > LAST_DAY_OF_THE_MONTH)
-		throw "\nDay must be between 1 to 31";
+		throw IncorrectDayException();
 	if (month < FIRST_MONTH_OF_THE_YEAR || month > LAST_MONTH_OF_THE_YEAR)
-		throw "\nMonth must be between 1 to 31";
+		throw IncorrectMonthException();
 	if (year < LAST_CENTURY || year > CURRENT_YEAR)
 		throw "\nYear must be between 1900 to 2022";
 

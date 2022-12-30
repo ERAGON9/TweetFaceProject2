@@ -23,19 +23,19 @@ void addStatuesToFanPage(TwittFace& system);
 // Action 4
 void printAllStatuses(TwittFace& system);
 // Sub function of action 4
-void printAllUserStatuses(TwittFace& system) throw(const char*);
+void printAllUserStatuses(TwittFace& system) noexcept(false);
 // Sub function of action 4
-void printAllFanPageStatuses(TwittFace& system) throw(const char*);
+void printAllFanPageStatuses(TwittFace& system) noexcept(false);
 // Action 5
 void printTenMostRecentFriendsStatuses(TwittFace& system);
 // Action 6
-void connectUsers(TwittFace& system) throw(const char*);
+void connectUsers(TwittFace& system) noexcept(false);
 // Action 7
-void seperateUsers(TwittFace& system) throw(const char*);
+void seperateUsers(TwittFace& system) noexcept(false);
 // Action 8
-void addFanToFanPage(TwittFace& system) throw(const char*);
+void addFanToFanPage(TwittFace& system) noexcept(false);
 // Action 9
-void removeFanFromFanPage(TwittFace& system) throw(const char*);
+void removeFanFromFanPage(TwittFace& system) noexcept(false);
 // Action 10
 void printAllObjects(TwittFace& system);
 // Action 11

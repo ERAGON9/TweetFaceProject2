@@ -26,8 +26,8 @@ public:
 
 	User& getUserbyName(std::string userName);
 	FansPage& getFanPagebyName(std::string fanPageName);
-	void addUserToSystem(std::string userName, int day, int month, int year) throw (const char*);
-	void addFanPageToSystem(std::string fanPageName) throw (const char*);
+	void addUserToSystem(std::string userName, int day, int month, int year) noexcept(false);
+	void addFanPageToSystem(std::string fanPageName) noexcept(false);
 	bool checkIfUserExist(std::string userName);
 	bool checkIfFanPageExist(std::string fanPageName);
 };

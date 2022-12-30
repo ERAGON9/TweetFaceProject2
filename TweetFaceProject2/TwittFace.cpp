@@ -2,6 +2,7 @@
 #include "TwittFace.h"
 #include "Users.h"
 #include "FansPage.h"
+#include "Exceptions.h"
 #include <string>
 
 using namespace std;
@@ -26,7 +27,7 @@ TwittFace::~TwittFace()
 }
 
 
-User& TwittFace::getUserbyName(string userName)  throw (const char*)
+User& TwittFace::getUserbyName(string userName)  noexcept(false)
 {
 	auto itr = allTheUsers.begin();
 	auto itrEnd = allTheUsers.end();
@@ -37,11 +38,11 @@ User& TwittFace::getUserbyName(string userName)  throw (const char*)
 			return *(*itr);
 	}
 
-	throw "\nThe name of the user does not exist at the system";
+	throw NoSuchUserException();
 }
 
 
-FansPage& TwittFace::getFanPagebyName(string fanPageName) throw (const char*)
+FansPage& TwittFace::getFanPagebyName(string fanPageName) noexcept(false)
 {
 	auto itr = allTheFanPages.begin();
 	auto itrEnd = allTheFanPages.end();
@@ -52,14 +53,14 @@ FansPage& TwittFace::getFanPagebyName(string fanPageName) throw (const char*)
 			return *(*itr);
 	}
 
-	throw "\nThe name of the fan page does not exist at the system";
+	throw NoSuchFanPageException();
 }
 
 
-void TwittFace::addUserToSystem(string userName, int day, int month, int year) throw (const char*)
+void TwittFace::addUserToSystem(string userName, int day, int month, int year) noexcept(false)
 {
 	if (this->checkIfUserExist(userName))
-		throw "\nThe name already taken";
+		throw takenNameException();
 
 	User* newUserTwittFace = new User(userName, day, month, year);
 
@@ -67,10 +68,10 @@ void TwittFace::addUserToSystem(string userName, int day, int month, int year) t
 }
 
 
-void TwittFace::addFanPageToSystem(string fanPageName) throw (const char*)
+void TwittFace::addFanPageToSystem(string fanPageName) noexcept(false)
 {
 	if (this->checkIfFanPageExist(fanPageName))
-		throw "\nThe name already taken";
+		throw takenNameException();
 
 	FansPage* newFanPageTwittFace = new FansPage(fanPageName);
 

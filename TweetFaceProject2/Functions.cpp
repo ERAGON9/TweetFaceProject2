@@ -7,6 +7,7 @@
 #include <string>
 #include "Status.h"
 #include "Users.h"
+#include "Exceptions.h"
 
 using namespace std;
 
@@ -188,7 +189,7 @@ void printAllStatuses(TwittFace& system)
 }
 
 // Sub function of action 4
-void printAllUserStatuses(TwittFace& system) throw(const char*)
+void printAllUserStatuses(TwittFace& system) noexcept(false)
 {
 	string userName;
 	cout << "\nPlease enter the name of the user: ";
@@ -203,11 +204,11 @@ void printAllUserStatuses(TwittFace& system) throw(const char*)
 		curUser.printAllStatuses();
 	}
 	else
-		throw "\nThe user don't have statuses";
+		throw NoUserStatusesException();
 }
 
 // Sub function of action 4
-void printAllFanPageStatuses(TwittFace& system) throw(const char*)
+void printAllFanPageStatuses(TwittFace& system) noexcept(false)
 {
 	string fanPageName;
 	cout << "\nPlease enter the name of the fan page: ";
@@ -222,7 +223,7 @@ void printAllFanPageStatuses(TwittFace& system) throw(const char*)
 		curFanPage.printAllStatuses();
 	}
 	else
-		throw "\nThe fan page don't have statuses";
+		throw NoPageStatusesException();
 }
 
 // Action 5
@@ -249,7 +250,7 @@ void printTenMostRecentFriendsStatuses(TwittFace& system)
 }
 
 // Action 6
-void connectUsers(TwittFace& system) throw(const char*)
+void connectUsers(TwittFace& system) noexcept(false)
 {
 	string name1, name2;
 	cout << "Please enter the name of the first user: ";
@@ -271,14 +272,14 @@ void connectUsers(TwittFace& system) throw(const char*)
 			cout << "\nThe connection added successfully" << endl;
 		}
 		else
-			throw "\nYou entered two users that already friends";
+			throw ExistingFriensdshipException();
 	}
 	else
-		throw "\nYou can't make an user a friend of himself.";
+		throw SelfFriensdshipException();
 }
 
 // Action 7
-void seperateUsers(TwittFace& system) throw(const char*)
+void seperateUsers(TwittFace& system) noexcept(false)
 {
 	string name1, name2;
 
@@ -299,11 +300,11 @@ void seperateUsers(TwittFace& system) throw(const char*)
 		cout << "\nThe seperate happened, the two users no more friends" << endl;
 	}
 	else
-		throw "\nYou entered two users that not friends";
+		throw NotUserFriendsException();
 }
 
 // Action 8
-void addFanToFanPage(TwittFace& system) throw(const char*)
+void addFanToFanPage(TwittFace& system) noexcept(false)
 {
 	string fanPageName, newfanName;
 	cout << "Please enter the name of the fan page: ";
@@ -327,7 +328,7 @@ void addFanToFanPage(TwittFace& system) throw(const char*)
 }
 
 // Action 9
-void removeFanFromFanPage(TwittFace& system) throw(const char*)
+void removeFanFromFanPage(TwittFace& system) noexcept(false)
 {
 	string fanPageName, oldfanName;
 	cout << "Please enter the name of the fan page: ";

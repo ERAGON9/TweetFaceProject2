@@ -12,7 +12,7 @@ private:
 
 public:
 	Date();                                                  // constractor with the current date.
-	Date(int day, int month, int year) throw (const char*);   // constructor with day, month, year by values.
+	Date(int day, int month, int year) noexcept(false);   // constructor with day, month, year by values.
 	const int getDay() const { return day; };
 	const int getmonth() const { return month; };
 	const int getYear() const { return year; };
