@@ -62,6 +62,9 @@ void TwittFace::addUserToSystem(string userName, int day, int month, int year) n
 	if (this->checkIfUserExist(userName))
 		throw takenNameException();
 
+	if (userName.size() == 0)
+		throw EmptyNameException();
+
 	User* newUserTwittFace = new User(userName, day, month, year);
 
 	allTheUsers.push_back(newUserTwittFace);
@@ -71,6 +74,9 @@ void TwittFace::addUserToSystem(string userName, int day, int month, int year) n
 void TwittFace::addFanPageToSystem(string fanPageName) noexcept(false)
 {
 	if (this->checkIfFanPageExist(fanPageName))
+		throw takenNameException();
+
+	if (fanPageName.size() == 0)
 		throw takenNameException();
 
 	FansPage* newFanPageTwittFace = new FansPage(fanPageName);
