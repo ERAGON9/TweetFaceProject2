@@ -103,20 +103,23 @@ bool FansPage::checkIfFan(const User& fan) const
 
 void FansPage::removeFan(User& fan)
 {
+	bool Found = false;
 	auto itr = Fans.begin();
 	auto itrEnd = Fans.end();
 
 	if (checkIfFan(fan) == true)
 	{
-		for (; itr != itrEnd; ++itr)
+		while (Found == false)
 		{
 			if ((*itr) == &fan)
 			{
 				if (itr != (itrEnd - 1))
 					swap(*itr, *(itrEnd - 1));
 				Fans.pop_back();
-				itr = itrEnd;
+				Found = true;
 			}
+			else
+				++itr;
 		}
 		fan.removeFansPage(*this);
 	}

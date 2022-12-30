@@ -100,20 +100,23 @@ void User::addStatus(const string text)
 
 void User::removeFriend(User& _friend)
 {
+	bool Found = false;
 	vector<User*>::iterator itr = friends.begin();
 	vector<User*>::iterator itrEnd = friends.end();
 
 	if (checkIfFriends(_friend.getName()) == true)
 	{
-		for (; itr != itrEnd; ++itr)
+		while (Found == false)
 		{
 			if (*itr == &_friend)
 			{
 				if (itr != (itrEnd - 1))
 					swap(*itr, *(itrEnd - 1));
 				friends.pop_back();
-				itr = itrEnd;
+				Found = true;
 			}
+			else
+				++itr;
 		}
 		_friend.removeFriend(*this);
 	}
@@ -146,20 +149,23 @@ void User::printAllStatuses() const
 
 void User::removeFansPage(FansPage& page)
 {
+	bool Found = false;
 	vector<FansPage*>::iterator itr = fansPages.begin();
 	vector<FansPage*>::iterator itrEnd = fansPages.end();
 
 	if (checkIfFanOfFanPage(page) == true)
 	{
-		for (; itr != itrEnd; ++itr)
+		while (Found == false)
 		{
 			if (*itr == &page)
 			{
 				if (itr != (itrEnd - 1))
 					swap(*itr, *(itrEnd - 1));
 				friends.pop_back();
-				itr = itrEnd;
+				Found = true;
 			}
+			else
+				++itr;
 		}
 
 		page.removeFan(*this);
