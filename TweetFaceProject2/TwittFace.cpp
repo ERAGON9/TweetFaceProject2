@@ -6,9 +6,6 @@
 
 using namespace std;
 
-TwittFace::TwittFace()
-{}
-
 TwittFace::~TwittFace()
 {
 	int i;

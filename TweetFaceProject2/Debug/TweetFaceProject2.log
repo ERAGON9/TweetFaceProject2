@@ -1,4 +1,53 @@
-﻿  Main.cpp
+﻿  FansPage.cpp
 C:\מדעי המחשב\שנה ב\סמסטר א\תכנות c++\TweetFaceProject2\TweetFaceProject2\Date.h(15,6): warning C4290: C++ exception specification ignored except to indicate a function is not __declspec(nothrow)
+C:\מדעי המחשב\שנה ב\סמסטר א\תכנות c++\TweetFaceProject2\TweetFaceProject2\FansPage.cpp(18,20): warning C4018: '<': signed/unsigned mismatch
+C:\מדעי המחשב\שנה ב\סמסטר א\תכנות c++\TweetFaceProject2\TweetFaceProject2\FansPage.cpp(55,18): warning C4018: '>': signed/unsigned mismatch
+  Functions.cpp
+C:\מדעי המחשב\שנה ב\סמסטר א\תכנות c++\TweetFaceProject2\TweetFaceProject2\Functions.h(23,63): warning C4290: C++ exception specification ignored except to indicate a function is not __declspec(nothrow)
+C:\מדעי המחשב\שנה ב\סמסטר א\תכנות c++\TweetFaceProject2\TweetFaceProject2\Functions.h(25,66): warning C4290: C++ exception specification ignored except to indicate a function is not __declspec(nothrow)
+C:\מדעי המחשב\שנה ב\סמסטר א\תכנות c++\TweetFaceProject2\TweetFaceProject2\Functions.h(29,55): warning C4290: C++ exception specification ignored except to indicate a function is not __declspec(nothrow)
+C:\מדעי המחשב\שנה ב\סמסטר א\תכנות c++\TweetFaceProject2\TweetFaceProject2\Functions.h(31,56): warning C4290: C++ exception specification ignored except to indicate a function is not __declspec(nothrow)
+C:\מדעי המחשב\שנה ב\סמסטר א\תכנות c++\TweetFaceProject2\TweetFaceProject2\Functions.h(33,58): warning C4290: C++ exception specification ignored except to indicate a function is not __declspec(nothrow)
+C:\מדעי המחשב\שנה ב\סמסטר א\תכנות c++\TweetFaceProject2\TweetFaceProject2\Functions.h(35,63): warning C4290: C++ exception specification ignored except to indicate a function is not __declspec(nothrow)
+C:\מדעי המחשב\שנה ב\סמסטר א\תכנות c++\TweetFaceProject2\TweetFaceProject2\Date.h(15,6): warning C4290: C++ exception specification ignored except to indicate a function is not __declspec(nothrow)
+C:\מדעי המחשב\שנה ב\סמסטר א\תכנות c++\TweetFaceProject2\TweetFaceProject2\TwittFace.h(29,93): warning C4290: C++ exception specification ignored except to indicate a function is not __declspec(nothrow)
 C:\מדעי המחשב\שנה ב\סמסטר א\תכנות c++\TweetFaceProject2\TweetFaceProject2\TwittFace.h(30,69): warning C4290: C++ exception specification ignored except to indicate a function is not __declspec(nothrow)
+C:\מדעי המחשב\שנה ב\סמסטר א\תכנות c++\TweetFaceProject2\TweetFaceProject2\Functions.cpp(191,63): warning C4290: C++ exception specification ignored except to indicate a function is not __declspec(nothrow)
+C:\מדעי המחשב\שנה ב\סמסטר א\תכנות c++\TweetFaceProject2\TweetFaceProject2\Functions.cpp(210,66): warning C4290: C++ exception specification ignored except to indicate a function is not __declspec(nothrow)
+C:\מדעי המחשב\שנה ב\סמסטר א\תכנות c++\TweetFaceProject2\TweetFaceProject2\Functions.cpp(252,55): warning C4290: C++ exception specification ignored except to indicate a function is not __declspec(nothrow)
+C:\מדעי המחשב\שנה ב\סמסטר א\תכנות c++\TweetFaceProject2\TweetFaceProject2\Functions.cpp(281,56): warning C4290: C++ exception specification ignored except to indicate a function is not __declspec(nothrow)
+C:\מדעי המחשב\שנה ב\סמסטר א\תכנות c++\TweetFaceProject2\TweetFaceProject2\Functions.cpp(306,58): warning C4290: C++ exception specification ignored except to indicate a function is not __declspec(nothrow)
+C:\מדעי המחשב\שנה ב\סמסטר א\תכנות c++\TweetFaceProject2\TweetFaceProject2\Functions.cpp(330,63): warning C4290: C++ exception specification ignored except to indicate a function is not __declspec(nothrow)
+  Main.cpp
+C:\מדעי המחשב\שנה ב\סמסטר א\תכנות c++\TweetFaceProject2\TweetFaceProject2\Date.h(15,6): warning C4290: C++ exception specification ignored except to indicate a function is not __declspec(nothrow)
+C:\מדעי המחשב\שנה ב\סמסטר א\תכנות c++\TweetFaceProject2\TweetFaceProject2\TwittFace.h(29,93): warning C4290: C++ exception specification ignored except to indicate a function is not __declspec(nothrow)
+C:\מדעי המחשב\שנה ב\סמסטר א\תכנות c++\TweetFaceProject2\TweetFaceProject2\TwittFace.h(30,69): warning C4290: C++ exception specification ignored except to indicate a function is not __declspec(nothrow)
+C:\מדעי המחשב\שנה ב\סמסטר א\תכנות c++\TweetFaceProject2\TweetFaceProject2\Functions.h(23,63): warning C4290: C++ exception specification ignored except to indicate a function is not __declspec(nothrow)
+C:\מדעי המחשב\שנה ב\סמסטר א\תכנות c++\TweetFaceProject2\TweetFaceProject2\Functions.h(25,66): warning C4290: C++ exception specification ignored except to indicate a function is not __declspec(nothrow)
+C:\מדעי המחשב\שנה ב\סמסטר א\תכנות c++\TweetFaceProject2\TweetFaceProject2\Functions.h(29,55): warning C4290: C++ exception specification ignored except to indicate a function is not __declspec(nothrow)
+C:\מדעי המחשב\שנה ב\סמסטר א\תכנות c++\TweetFaceProject2\TweetFaceProject2\Functions.h(31,56): warning C4290: C++ exception specification ignored except to indicate a function is not __declspec(nothrow)
+C:\מדעי המחשב\שנה ב\סמסטר א\תכנות c++\TweetFaceProject2\TweetFaceProject2\Functions.h(33,58): warning C4290: C++ exception specification ignored except to indicate a function is not __declspec(nothrow)
+C:\מדעי המחשב\שנה ב\סמסטר א\תכנות c++\TweetFaceProject2\TweetFaceProject2\Functions.h(35,63): warning C4290: C++ exception specification ignored except to indicate a function is not __declspec(nothrow)
+  TwittFace.cpp
+C:\מדעי המחשב\שנה ב\סמסטר א\תכנות c++\TweetFaceProject2\TweetFaceProject2\Date.h(15,6): warning C4290: C++ exception specification ignored except to indicate a function is not __declspec(nothrow)
+C:\מדעי המחשב\שנה ב\סמסטר א\תכנות c++\TweetFaceProject2\TweetFaceProject2\TwittFace.h(29,93): warning C4290: C++ exception specification ignored except to indicate a function is not __declspec(nothrow)
+C:\מדעי המחשב\שנה ב\סמסטר א\תכנות c++\TweetFaceProject2\TweetFaceProject2\TwittFace.h(30,69): warning C4290: C++ exception specification ignored except to indicate a function is not __declspec(nothrow)
+C:\מדעי המחשב\שנה ב\סמסטר א\תכנות c++\TweetFaceProject2\TweetFaceProject2\TwittFace.cpp(13,16): warning C4018: '<': signed/unsigned mismatch
+C:\מדעי המחשב\שנה ב\סמסטר א\תכנות c++\TweetFaceProject2\TweetFaceProject2\TwittFace.cpp(18,16): warning C4018: '<': signed/unsigned mismatch
+C:\מדעי המחשב\שנה ב\סמסטר א\תכנות c++\TweetFaceProject2\TweetFaceProject2\TwittFace.cpp(25,68): warning C4290: C++ exception specification ignored except to indicate a function is not __declspec(nothrow)
+C:\מדעי המחשב\שנה ב\סמסטר א\תכנות c++\TweetFaceProject2\TweetFaceProject2\TwittFace.cpp(26,1): warning C5043: 'TwittFace::getUserbyName': exception specification does not match previous declaration
+C:\מדעי המחשב\שנה ב\סמסטר א\תכנות c++\TweetFaceProject2\TweetFaceProject2\TwittFace.h(27): message : see declaration of 'TwittFace::getUserbyName'
+C:\מדעי המחשב\שנה ב\סמסטר א\תכנות c++\TweetFaceProject2\TweetFaceProject2\TwittFace.cpp(27,20): warning C4018: '<': signed/unsigned mismatch
+C:\מדעי המחשב\שנה ב\סמסטר א\תכנות c++\TweetFaceProject2\TweetFaceProject2\TwittFace.cpp(37,77): warning C4290: C++ exception specification ignored except to indicate a function is not __declspec(nothrow)
+C:\מדעי המחשב\שנה ב\סמסטר א\תכנות c++\TweetFaceProject2\TweetFaceProject2\TwittFace.cpp(38,1): warning C5043: 'TwittFace::getFanPagebyName': exception specification does not match previous declaration
+C:\מדעי המחשב\שנה ב\סמסטר א\תכנות c++\TweetFaceProject2\TweetFaceProject2\TwittFace.h(28): message : see declaration of 'TwittFace::getFanPagebyName'
+C:\מדעי המחשב\שנה ב\סמסטר א\תכנות c++\TweetFaceProject2\TweetFaceProject2\TwittFace.cpp(39,20): warning C4018: '<': signed/unsigned mismatch
+C:\מדעי המחשב\שנה ב\סמסטר א\תכנות c++\TweetFaceProject2\TweetFaceProject2\TwittFace.cpp(49,98): warning C4290: C++ exception specification ignored except to indicate a function is not __declspec(nothrow)
+C:\מדעי המחשב\שנה ב\סמסטר א\תכנות c++\TweetFaceProject2\TweetFaceProject2\TwittFace.cpp(60,74): warning C4290: C++ exception specification ignored except to indicate a function is not __declspec(nothrow)
+C:\מדעי המחשב\שנה ב\סמסטר א\תכנות c++\TweetFaceProject2\TweetFaceProject2\TwittFace.cpp(73,20): warning C4018: '<': signed/unsigned mismatch
+C:\מדעי המחשב\שנה ב\סמסטר א\תכנות c++\TweetFaceProject2\TweetFaceProject2\TwittFace.cpp(85,20): warning C4018: '<': signed/unsigned mismatch
+  Users.cpp
+C:\מדעי המחשב\שנה ב\סמסטר א\תכנות c++\TweetFaceProject2\TweetFaceProject2\Date.h(15,6): warning C4290: C++ exception specification ignored except to indicate a function is not __declspec(nothrow)
+C:\מדעי המחשב\שנה ב\סמסטר א\תכנות c++\TweetFaceProject2\TweetFaceProject2\Users.cpp(71,21): warning C4018: '>': signed/unsigned mismatch
+  Generating Code...
   TweetFaceProject2.vcxproj -> C:\מדעי המחשב\שנה ב\סמסטר א\תכנות c++\TweetFaceProject2\TweetFaceProject2\Debug\TweetFaceProject2.exe

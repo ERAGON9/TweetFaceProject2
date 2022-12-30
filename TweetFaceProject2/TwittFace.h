@@ -15,7 +15,7 @@ private:
 	std::vector<FansPage*> allTheFanPages;
 
 public:
-	TwittFace();
+	TwittFace() = default;
 	TwittFace(TwittFace& twitFace) = delete;
 	~TwittFace();
 
@@ -26,7 +26,7 @@ public:
 
 	User& getUserbyName(std::string userName);
 	FansPage& getFanPagebyName(std::string fanPageName);
-	void addUserToSystem(std::string userName, int day, int month, int year);
+	void addUserToSystem(std::string userName, int day, int month, int year) throw (const char*);
 	void addFanPageToSystem(std::string fanPageName) throw (const char*);
 	bool checkIfUserExist(std::string userName);
 	bool checkIfFanPageExist(std::string fanPageName);

@@ -29,7 +29,7 @@ User::~User()
 
 const User& User::operator+=(User& _friend)
 {
-	if (checkIfFriend(_friend.getName()) == false)
+	if (checkIfFriends(_friend.getName()) == false)
 	{
 		friends.push_back(&_friend);
 
@@ -103,7 +103,7 @@ void User::removeFriend(User& _friend)
 	vector<User*>::iterator itr = friends.begin();
 	vector<User*>::iterator itrEnd = friends.end();
 
-	if (checkIfFriend(_friend.getName()) == true)
+	if (checkIfFriends(_friend.getName()) == true)
 	{
 		for (; itr != itrEnd; ++itr)
 		{
@@ -167,7 +167,7 @@ void User::removeFansPage(FansPage& page)
 }
 
 
-bool User::checkIfFriend(const string name) const
+bool User::checkIfFriends(const string name) const
 {
 	auto itr = friends.begin();
 	auto itrEnd = friends.end();

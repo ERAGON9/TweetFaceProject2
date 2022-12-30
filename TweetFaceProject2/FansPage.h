@@ -28,6 +28,7 @@ public:
 
 	std::string getName() const { return name; }
 	int getNumOfFans() const { return Fans.size(); }
+	int getNumOfStatuses() const { return publishBoard.size(); }
 
 	void addStatus(std::string text);
 	void printAllStatuses() const;

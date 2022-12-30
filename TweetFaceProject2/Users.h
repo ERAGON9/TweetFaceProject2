@@ -1,5 +1,5 @@
-#ifndef __Users_H
-#define __Users_H
+#ifndef __USERS_H
+#define __USERS_H
 
 #include <vector>
 #include <string>
@@ -32,6 +32,7 @@ public:
 
 	std::string getName() const { return name; }
 	int getNumOfFriends() const { return friends.size(); }
+	int getNumOfStatuses() const { return publishBoard.size(); }
 	User& getFriend(const int i) { return *(friends[i]); }
 
 	void printTenLastStatusOfTheUser() const;
@@ -40,10 +41,10 @@ public:
 	void printAllFriends() const;
 	void printAllStatuses() const;
 	void removeFansPage(FansPage& page);
-	bool checkIfFriend(const std::string name) const;
+	bool checkIfFriends(const std::string name) const;
 	bool checkIfFanOfFanPage(const FansPage& fanPage) const;
 	void printAllFanPages() const;
 	void printUser() const;
 };
 
-#endif // !__Users_H
+#endif // !__USERS_H
