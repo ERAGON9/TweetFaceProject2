@@ -3,6 +3,9 @@
 
 class TwittFace;
 class User;
+enum lior_details { Lior_day = 3, Lior_month = 2, Lior_year = 1999 };
+enum shalev_details { Shalev_day = 29, Shalev_month = 3, Shalev_year = 1999 };
+enum Noa_details { Noa_day = 9, Noa_month = 6, Noa_year = 1999 };
 
 void printMenu();
 void action(int value, TwittFace& system);
@@ -41,6 +44,8 @@ void showAllFriendsOrFans(TwittFace& system);
 void showAllFriens(TwittFace& system);
 // Sub function of action 11
 void showAllFans(TwittFace& system);
+
+void initialNetworkData(TwittFace& system);
 
 #endif // !__FUNCTION_H
 
