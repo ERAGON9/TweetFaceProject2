@@ -24,8 +24,8 @@ public:
 	User& getUser(const int i) { return *(allTheUsers[i]); }
 	FansPage& getFanPage(const int i) { return *(allTheFanPages[i]); }
 
-	User& getUserbyName(std::string userName);
-	FansPage& getFanPagebyName(std::string fanPageName);
+	User& getUserbyName(std::string userName) noexcept(false);;
+	FansPage& getFanPagebyName(std::string fanPageName) noexcept(false);
 	void addUserToSystem(std::string userName, int day, int month, int year) noexcept(false);
 	void addFanPageToSystem(std::string fanPageName) noexcept(false);
 	bool checkIfUserExist(std::string userName);

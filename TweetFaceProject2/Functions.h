@@ -27,7 +27,7 @@ void printAllUserStatuses(TwittFace& system) noexcept(false);
 // Sub function of action 4
 void printAllFanPageStatuses(TwittFace& system) noexcept(false);
 // Action 5
-void printTenMostRecentFriendsStatuses(TwittFace& system);
+void printTenMostRecentFriendsStatuses(TwittFace& system) noexcept(false);
 // Action 6
 void connectUsers(TwittFace& system) noexcept(false);
 // Action 7

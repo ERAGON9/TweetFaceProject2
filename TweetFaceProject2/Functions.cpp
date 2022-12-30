@@ -76,13 +76,13 @@ void action(int value, TwittFace& system)
 			break;
 		}
 	}
-	catch (const char* msg)
+	catch (TweetFaceException& e)
 	{
-		cout << msg << " , back to menu." << endl;
+		cout << e.what() << " , back to menu." << endl;
 	}
 	catch (...)
 	{
-		cout << "\nSome eror occurred at function 1, call support team.";
+		cout << "\nSome eror occurred, call support team.";
 		exit(1);
 	}
 }
@@ -227,8 +227,9 @@ void printAllFanPageStatuses(TwittFace& system) noexcept(false)
 }
 
 // Action 5
-void printTenMostRecentFriendsStatuses(TwittFace& system)
+void printTenMostRecentFriendsStatuses(TwittFace& system) noexcept(false)
 {
+	int countStatuses = 0;
 	string userName;
 	cout << "Please enter the name of the user: ";
 	cleanBuffer();
@@ -245,8 +246,12 @@ void printTenMostRecentFriendsStatuses(TwittFace& system)
 		{
 			cout << "\nThe most recent statuses of " << friendOfUser.getName() << " are:" << endl;
 			friendOfUser.printTenLastStatusOfTheUser();
+			++countStatuses;
 		}
 	}
+
+	if (countStatuses == 0)
+		throw NoFriendsStatusesException();
 }
 
 // Action 6
@@ -324,7 +329,7 @@ void addFanToFanPage(TwittFace& system) noexcept(false)
 		cout << "\nThe user is a fan of the fan page now" << endl;
 	}
 	else
-		throw "\nThe user already a fan of this fan page, back to menu.";
+		throw UserFunOfFunPageException();
 }
 
 // Action 9
@@ -348,7 +353,7 @@ void removeFanFromFanPage(TwittFace& system) noexcept(false)
 		cout << "\nThe user no more fan of the fan page" << endl;
 	}
 	else
-		throw "\nThe user already not a fan of this fan page, back to menu.";
+		throw UserNotFunOfFunPageException();
 }
 
 // Action 10

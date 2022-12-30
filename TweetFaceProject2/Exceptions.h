@@ -6,7 +6,7 @@
 class TweetFaceException : public std::exception
 {
 public:
-	virtual const char* what() const override { return "\nSome eror occurred at function 1, call support team."; }
+	virtual const char* what() const override { return "\nSome eror occurred, call support team"; }
 };
 
 class NoSuchUserException : public TweetFaceException
@@ -68,6 +68,31 @@ class IncorrectMonthException : public TweetFaceException
 public:
 	virtual const char* what() const override { return "\nMonth must be between 1 to 12"; }
 };
+
+class UserNotFunOfFunPageException : public TweetFaceException
+{
+public:
+	virtual const char* what() const override { return "\nThe user already not a fan of this fan page"; }
+};
+
+class UserFunOfFunPageException : public TweetFaceException
+{
+public:
+	virtual const char* what() const override { return "\nThe user already a fan of this fan page"; }
+};
+
+class IncorrectYearException : public TweetFaceException
+{
+public:
+	virtual const char* what() const override { return "\nYear must be between 1900 to 2022"; }
+};
+
+class NoFriendsStatusesException : public TweetFaceException
+{
+public:
+	virtual const char* what() const override { return "\nAll your friend don't have statuses"; }
+};
+
 
 
 

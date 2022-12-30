@@ -30,7 +30,7 @@ Date::Date(int day, int month, int year) noexcept(false)
 	if (month < FIRST_MONTH_OF_THE_YEAR || month > LAST_MONTH_OF_THE_YEAR)
 		throw IncorrectMonthException();
 	if (year < LAST_CENTURY || year > CURRENT_YEAR)
-		throw "\nYear must be between 1900 to 2022";
+		throw IncorrectYearException();
 
 	this->day = day;
 	this->month = month;
