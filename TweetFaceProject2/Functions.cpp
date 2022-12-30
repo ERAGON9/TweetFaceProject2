@@ -108,6 +108,9 @@ void addUser(TwittFace& system)
 	cleanBuffer();
 	getline(cin, userName);
 
+	if (userName.size() == 0)
+		throw EmptyNameException();
+
 	cout << "\nPlease enter your birth date (day (space/enter)  month (space/enter) year ): ";
 	cin >> day >> month >> year;
 

@@ -93,6 +93,18 @@ public:
 	virtual const char* what() const override { return "\nAll your friend don't have statuses"; }
 };
 
+class EmptyNameException : public TweetFaceException
+{
+public:
+	virtual const char* what() const override { return "\nName is empty"; }
+};
+
+class EmptyStatusException : public TweetFaceException
+{
+public:
+	virtual const char* what() const override { return "\nThe status is empty"; }
+};
+
 
 
 

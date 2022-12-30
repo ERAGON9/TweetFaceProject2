@@ -10,6 +10,9 @@ const int TEN = 10;
 Status::Status(const std::string text) : date(), time()
 {
 	this->text = text;
+
+	if (text.size() == 0)
+		throw EmptyStatusException();
 }
 
 
