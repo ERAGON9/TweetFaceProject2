@@ -99,7 +99,7 @@ void cleanBuffer()
 }
 
 // Action 1
-void addUser(TwittFace& system)
+void addUser(TwittFace& system) noexcept(false)
 {
 	string userName;
 	int day, month, year;
@@ -164,13 +164,13 @@ void addStatusToUser(TwittFace& system)
 // Sub function of action 3
 void addStatuesToFanPage(TwittFace& system)
 {
-	string fanPageName;
+	string fanPageName, statusData;
 	cout << "\nPlease enter the name of the fan page: ";
 	cleanBuffer();
 	getline(cin, fanPageName);
 
 	FansPage& curFanPage = system.getFanPagebyName(fanPageName);
-	string statusData;
+
 	cout << "\nPlease enter the new status: ";
 	getline(cin, statusData);
 	curFanPage.addStatus(statusData);
@@ -303,15 +303,20 @@ void seperateUsers(TwittFace& system) noexcept(false)
 	cout << "\nPlease enter the name of the second user: ";
 	getline(cin, name2);
 
-	User& curUser2 = system.getUserbyName(name2);
-
-	if (curUser1.checkIfFriends(name2) == true)
+	if (name1 != name2)
 	{
-		curUser1.removeFriend(curUser2);
-		cout << "\nThe seperate happened, the two users no more friends" << endl;
+		User& curUser2 = system.getUserbyName(name2);
+
+		if (curUser1.checkIfFriends(name2) == true)
+		{
+			curUser1.removeFriend(curUser2);
+			cout << "\nThe seperate happened, the two users no more friends" << endl;
+		}
+		else
+			throw NotUserFriendsException();
 	}
 	else
-		throw NotUserFriendsException();
+		throw DeleteSelfFriensdshipException();
 }
 
 // Action 8
@@ -397,7 +402,7 @@ void showAllFriendsOrFans(TwittFace& system)
 }
 
 // Sub function of action 11
-void showAllFriens(TwittFace& system)
+void showAllFriens(TwittFace& system) noexcept(false)
 {
 	string userName;
 	cout << "\nPlease enter the name of the user: ";
@@ -415,7 +420,7 @@ void showAllFriens(TwittFace& system)
 }
 
 // Sub function of action 11
-void showAllFans(TwittFace& system)
+void showAllFans(TwittFace& system) noexcept(false)
 {
 	string fanPageName;
 	cout << "\nPlease enter the name of the fan page: ";

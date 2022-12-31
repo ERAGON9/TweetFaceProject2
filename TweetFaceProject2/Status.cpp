@@ -2,6 +2,7 @@
 #include "Status.h"
 #include <string>
 #include <iostream>
+#include "Exceptions.h"
 
 using namespace std;
 

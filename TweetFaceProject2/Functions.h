@@ -11,7 +11,7 @@ void printMenu();
 void action(int value, TwittFace& system);
 void cleanBuffer();
 // Action 1
-void addUser(TwittFace& system);
+void addUser(TwittFace& system) noexcept(false);
 // Action 2
 void addFanPage(TwittFace& system);
 // Action 3
@@ -41,9 +41,9 @@ void printAllObjects(TwittFace& system);
 // Action 11
 void showAllFriendsOrFans(TwittFace& system);
 // Sub function of action 11
-void showAllFriens(TwittFace& system);
+void showAllFriens(TwittFace& system) noexcept(false);
 // Sub function of action 11
-void showAllFans(TwittFace& system);
+void showAllFans(TwittFace& system) noexcept(false);
 
 void initialNetworkData(TwittFace& system) noexcept(false);
 

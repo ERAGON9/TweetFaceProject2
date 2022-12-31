@@ -4,6 +4,7 @@
 #include "Users.h"
 #include "Status.h"
 #include "FansPage.h"
+#include "Exceptions.h"
 
 using namespace std;
 

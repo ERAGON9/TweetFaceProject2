@@ -48,7 +48,13 @@ public:
 class SelfFriensdshipException : public TweetFaceException
 {
 public:
-	virtual const char* what() const override { return "\nYou can't make an user a friend of himself."; }
+	virtual const char* what() const override { return "\nYou can't make an user a friend of himself"; }
+};
+
+class DeleteSelfFriensdshipException : public TweetFaceException
+{
+public:
+	virtual const char* what() const override { return "\nYou can't delete friendship for an user of himself"; }
 };
 
 class NotUserFriendsException : public TweetFaceException

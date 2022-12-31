@@ -6,11 +6,14 @@ Every user (a friend) and fan page can upload statuses, and more option with a 1
 Good luck!
 */
 #include <iostream>
-#include "TwittFace.h"
-#include "Users.h"
-#include "Status.h"
+#include "Date.h"
+#include "Exceptions.h"
 #include "FansPage.h"
 #include "Functions.h"
+#include "Status.h"
+#include "Time.h"
+#include "TwittFace.h"
+#include "Users.h"
 
 using namespace std;
 const int EXIT = 12;
