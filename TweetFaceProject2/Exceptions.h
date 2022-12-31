@@ -105,6 +105,18 @@ public:
 	virtual const char* what() const override { return "\nThe status is empty"; }
 };
 
+class NoFansException : public TweetFaceException
+{
+public:
+	virtual const char* what() const override { return "\nThe fan page has no fans"; }
+};
+
+class NoFriendsException : public TweetFaceException
+{
+public:
+	virtual const char* what() const override { return "\nThe user has no friends"; }
+};
+
 
 
 

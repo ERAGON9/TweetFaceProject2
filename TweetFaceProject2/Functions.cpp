@@ -78,7 +78,7 @@ void action(int value, TwittFace& system)
 	}
 	catch (TweetFaceException& e)
 	{
-		cout << e.what() << " , back to menu." << endl;
+		cout << e.what() << ", back to menu." << endl;
 	}
 	catch (...)
 	{
@@ -242,6 +242,9 @@ void printTenMostRecentFriendsStatuses(TwittFace& system) noexcept(false)
 
 	int numberOfFriends = curUser.getNumOfFriends();
 
+	if (numberOfFriends == 0)
+		throw NoFriendsException();
+
 	for (int i = 0; i < numberOfFriends; i++)
 	{
 		const User& friendOfUser = curUser.getFriend(i);
@@ -403,6 +406,9 @@ void showAllFriens(TwittFace& system)
 
 	User& curUser = system.getUserbyName(userName);
 
+	if (curUser.getNumOfFriends() == 0)
+		throw NoFriendsException();
+
 	cout << "\nAll the friends of " << userName << " are:" << endl;
 	curUser.printAllFriends();
 
@@ -417,6 +423,9 @@ void showAllFans(TwittFace& system)
 	getline(cin, fanPageName);
 
 	FansPage& curFanPage = system.getFanPagebyName(fanPageName);
+
+	if (curFanPage.getNumOfFans() == 0)
+		throw NoFansException();
 
 	cout << "\nAll the fans of " << fanPageName << " are:" << endl;
 	curFanPage.printAllFans();

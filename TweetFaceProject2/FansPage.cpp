@@ -4,6 +4,7 @@
 #include "Status.h"
 #include "Users.h"
 #include <iostream>
+#include "Exceptions.h"
 
 using namespace std;
 
@@ -128,6 +129,9 @@ void FansPage::removeFan(User& fan)
 
 void FansPage::printAllFans() const
 {
+	if (Fans.size() == 0)
+		throw NoFansException();
+
 	auto itr = Fans.begin();
 	auto itrEnd = Fans.end();
 

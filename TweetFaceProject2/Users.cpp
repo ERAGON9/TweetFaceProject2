@@ -125,6 +125,9 @@ void User::removeFriend(User& _friend)
 
 void User::printAllFriends() const
 {
+	if (friends.size() == 0)
+		throw NoFriendsException();
+
 	auto itr = friends.begin();
 	auto itrEnd = friends.end();
 
