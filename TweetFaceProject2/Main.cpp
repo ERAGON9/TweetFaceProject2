@@ -6,6 +6,7 @@ Every user and fan page can upload statuses, and more option with a 12 options m
 The program is sensitive to lower and upper letters for names and more.
 Good luck!
 */
+
 #include <iostream>
 #include "Date.h"
 #include "Exceptions.h"

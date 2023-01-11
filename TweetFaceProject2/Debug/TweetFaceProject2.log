@@ -1,1 +1,11 @@
-﻿  TweetFaceProject2.vcxproj -> C:\מדעי המחשב\שנה ב\סמסטר א\תכנות c++\TweetFaceProject2\TweetFaceProject2\Debug\TweetFaceProject2.exe
+﻿  Date.cpp
+  FansPage.cpp
+C:\מדעי המחשב\שנה ב\סמסטר א\תכנות c++\TweetFaceProject2\TweetFaceProject2\FansPage.cpp(59,18): warning C4018: '>': signed/unsigned mismatch
+  Functions.cpp
+  Main.cpp
+  Status.cpp
+  TwittFace.cpp
+  Users.cpp
+C:\מדעי המחשב\שנה ב\סמסטר א\תכנות c++\TweetFaceProject2\TweetFaceProject2\Users.cpp(72,21): warning C4018: '>': signed/unsigned mismatch
+  Generating Code...
+  TweetFaceProject2.vcxproj -> C:\מדעי המחשב\שנה ב\סמסטר א\תכנות c++\TweetFaceProject2\TweetFaceProject2\Debug\TweetFaceProject2.exe

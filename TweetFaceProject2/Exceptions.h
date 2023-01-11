@@ -123,16 +123,5 @@ public:
 	virtual const char* what() const override { return "\nThe user has no friends"; }
 };
 
-
-
-
-
-
-
-
-
-
-
-
 #endif // !__EXCEPTIONS_H
 

@@ -27,7 +27,6 @@ User::~User()
 }
 
 
-
 const User& User::operator+=(User& _friend)
 {
 	if (checkIfFriends(_friend.getName()) == false)
