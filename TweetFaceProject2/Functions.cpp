@@ -14,6 +14,7 @@ using namespace std;
 const char USER = 'U';
 const char FANPAGE = 'F';
 enum options { OPTION1=1, OPTION2, OPTION3, OPTION4, OPTION5, OPTION6, OPTION7, OPTION8, OPTION9, OPTION10, OPTION11 };
+enum StatusTypes { TEXT = 1, IMAGE, VIDEO };
 
 void printMenu()
 {
@@ -145,18 +146,43 @@ void addStatus(TwittFace& system)
 }
 
 // Sub function of action 3
-void addStatusToUser(TwittFace& system)
+void addStatusToUser(TwittFace& system) noexcept(false)
 {
-	string userName, statusData;
+	string userName, statusText, imageName, videoName;
+	int statusType;
+
 	cout << "\nPlease enter the name of the user: ";
 	cleanBuffer();
 	getline(cin, userName);
-
 	User& curUser = system.getUserbyName(userName);
 
-	cout << "\nPlease enter the new status: ";
-	getline(cin, statusData);
-	curUser.addStatus(statusData);
+	cout << "\nPlease enter what kind of status do you want to create (1-text, 2-image and text, 3-video and text): ";
+	cin >> statusType;
+	if (statusType > 3 || statusType < 1)
+		throw NoSuchStatusTypeException();
+
+	cout << "\nPlease enter the new text for the status: ";
+	cleanBuffer();
+	getline(cin, statusText);
+
+	switch (statusType)
+	{
+	case StatusTypes::TEXT:
+		curUser.addTextStatus(statusText);
+		break;
+	case StatusTypes::IMAGE:
+		cout << "\nPlease enter the image name (for example dog.jpg): ";
+		getline(cin, imageName);
+		curUser.addImageStatus(statusText, imageName);
+		break;
+	case StatusTypes::VIDEO:
+		cout << "\nPlease enter the video name (for example dog_walk_to_park.mp4): ";
+		getline(cin, videoName);
+		curUser.addVideoStatus(statusText, videoName);
+		break;
+	default:
+		break;
+	}
 	cout << "\nUser status added successfully" << endl;
 }
 
@@ -164,16 +190,41 @@ void addStatusToUser(TwittFace& system)
 // Sub function of action 3
 void addStatuesToFanPage(TwittFace& system)
 {
-	string fanPageName, statusData;
+	string fanPageName, statusText, imageName, videoName;
+	int statusType;
+
 	cout << "\nPlease enter the name of the fan page: ";
 	cleanBuffer();
 	getline(cin, fanPageName);
-
 	FansPage& curFanPage = system.getFanPagebyName(fanPageName);
 
-	cout << "\nPlease enter the new status: ";
-	getline(cin, statusData);
-	curFanPage.addStatus(statusData);
+	cout << "\nPlease enter what kind of status do you want to create (1-text, 2-image and text, 3-video and text): ";
+	cin >> statusType;
+	if (statusType > 3 || statusType < 1)
+		throw NoSuchStatusTypeException();
+
+	cout << "\nPlease enter the new text for the status: ";
+	cleanBuffer();
+	getline(cin, statusText);
+
+	switch (statusType)
+	{
+	case StatusTypes::TEXT:
+		curFanPage.addTextStatus(statusText);
+		break;
+	case StatusTypes::IMAGE:
+		cout << "\nPlease enter the image name (for example dog.jpg): ";
+		getline(cin, imageName);
+		curFanPage.addImageStatus(statusText, imageName);
+		break;
+	case StatusTypes::VIDEO:
+		cout << "\nPlease enter the video name (for example dog_walk_to_park.mp4): ";
+		getline(cin, videoName);
+		curFanPage.addVideoStatus(statusText, videoName);
+		break;
+	default:
+		break;
+	}
 	cout << "\nFan page status added successfully" << endl;
 }
 
@@ -195,10 +246,10 @@ void printAllStatuses(TwittFace& system)
 void printAllUserStatuses(TwittFace& system) noexcept(false)
 {
 	string userName;
+
 	cout << "\nPlease enter the name of the user: ";
 	cleanBuffer();
 	getline(cin, userName);
-
 	User& curUser = system.getUserbyName(userName);
 
 	if (curUser.getNumOfStatuses() > 0)
@@ -214,10 +265,10 @@ void printAllUserStatuses(TwittFace& system) noexcept(false)
 void printAllFanPageStatuses(TwittFace& system) noexcept(false)
 {
 	string fanPageName;
+
 	cout << "\nPlease enter the name of the fan page: ";
 	cleanBuffer();
 	getline(cin, fanPageName);
-
 	FansPage& curFanPage = system.getFanPagebyName(fanPageName);
 
 	if (curFanPage.getNumOfStatuses() > 0)
@@ -232,15 +283,15 @@ void printAllFanPageStatuses(TwittFace& system) noexcept(false)
 // Action 5
 void printTenMostRecentFriendsStatuses(TwittFace& system) noexcept(false)
 {
-	int countStatuses = 0;
+	int countStatuses = 0, numberOfFriends;
 	string userName;
+
 	cout << "Please enter the name of the user: ";
 	cleanBuffer();
 	getline(cin, userName);
-
 	User& curUser = system.getUserbyName(userName);
 
-	int numberOfFriends = curUser.getNumOfFriends();
+	numberOfFriends = curUser.getNumOfFriends();
 
 	if (numberOfFriends == 0)
 		throw NoFriendsException();
@@ -445,18 +496,18 @@ void initialNetworkData(TwittFace& system) noexcept(false)
 	system.addFanPageToSystem("Shalev Business");
 	system.addFanPageToSystem("Noa Business");
 
-	system.getUserbyName("Lior Barak").addStatus("Lior Barak first status");
-	system.getUserbyName("Lior Barak").addStatus("Lior Barak second status");
-	system.getUserbyName("Shalev Kedar").addStatus("Shalev Kedar first status");
-	system.getUserbyName("Shalev Kedar").addStatus("Shalev Kedar second status");
-	system.getUserbyName("Noa Margolius").addStatus("Noa Margolius first status");
-	system.getUserbyName("Noa Margolius").addStatus("Noa Margolius second status");
-	system.getFanPagebyName("Lior Business").addStatus("Lior Business first status");
-	system.getFanPagebyName("Lior Business").addStatus("Lior Business second status");
-	system.getFanPagebyName("Shalev Business").addStatus("Shalev Business first status");
-	system.getFanPagebyName("Shalev Business").addStatus("Shalev Business second status");
-	system.getFanPagebyName("Noa Business").addStatus("Noa Business first status");
-	system.getFanPagebyName("Noa Business").addStatus("Noa Business second status");
+	system.getUserbyName("Lior Barak").addTextStatus("Lior Barak first status");
+	system.getUserbyName("Lior Barak").addImageStatus("Lior Barak second status", "lior.jpg");
+	system.getUserbyName("Shalev Kedar").addTextStatus("Shalev Kedar first status");
+	system.getUserbyName("Shalev Kedar").addImageStatus("Shalev Kedar second status", "shalev.jpg");
+	system.getUserbyName("Noa Margolius").addTextStatus("Noa Margolius first status");
+	system.getUserbyName("Noa Margolius").addVideoStatus("Noa Margolius second status", "noa.mp4");
+	system.getFanPagebyName("Lior Business").addTextStatus("Lior Business first status");
+	system.getFanPagebyName("Lior Business").addVideoStatus("Lior Business second status", "lior_at_business.mp4");
+	system.getFanPagebyName("Shalev Business").addTextStatus("Shalev Business first status");
+	system.getFanPagebyName("Shalev Business").addImageStatus("Shalev Business second status", "shalev_at_business.jpg");
+	system.getFanPagebyName("Noa Business").addTextStatus("Noa Business first status");
+	system.getFanPagebyName("Noa Business").addImageStatus("Noa Business second status", "noa_at_business.jpg");
 
 	system.getUserbyName("Shalev Kedar") += system.getUserbyName("Lior Barak");
 	system.getUserbyName("Lior Barak") += system.getUserbyName("Noa Margolius");

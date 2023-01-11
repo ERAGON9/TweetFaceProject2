@@ -5,6 +5,7 @@
 #include "Date.h"
 #include "Time.h"
 
+// Default text status
 
 class Status
 {
@@ -14,9 +15,8 @@ protected:
 	std::string text;
 
 public:
-	Status(const std::string text);
+	Status(const std::string text) noexcept(false);
 	Status(const Status& other) = delete;
-	//virtual ~Status() = default;
 
 	virtual bool operator==(const Status& otherStatus) const;
 	virtual bool operator!=(const Status& otherStatus) const;
@@ -29,6 +29,8 @@ public:
 };
 
 
+// Image Status that inherited from the default text status
+
 class ImageStatus :public Status
 {
 private:
@@ -39,7 +41,6 @@ public:
 	ImageStatus(const ImageStatus& other) = delete;
 
 	virtual bool operator==(const Status& otherStatus) const override;
-	//virtual bool operator!=(const Status& otherStatus) const override;
 
 	std::string getImage() const { return image; }
 
@@ -47,18 +48,18 @@ public:
 };
 
 
+// Video Status that inherited from the default text status
+
 class VideoStatus :public Status
 {
 private:
 	std::string video;
-
 
 public:
 	VideoStatus(const std::string text, const std::string video);
 	VideoStatus(const VideoStatus& other) = delete;
 
 	virtual bool operator==(const Status& otherStatus) const override;
-	//virtual bool operator!=(const Status& otherStatus) const override;
 
 	std::string getVideo() const { return video; }
 

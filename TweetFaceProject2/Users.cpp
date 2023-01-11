@@ -78,22 +78,24 @@ bool User::operator<(const FansPage& fanPage) const
 	return fanPage > *this;
 }
 
-void User::printTenLastStatusOfTheUser() const
-{
-	int size = publishBoard.size();
-	auto itr = publishBoard.end();
 
-	for (int i = 0; i < 10 && i < size; i++)
-	{
-		--itr;
-		(*itr)->printStatus();
-	}
+void User::addTextStatus(const string text)
+{
+	Status* tweet = new Status(text);
+	publishBoard.push_back(tweet);
 }
 
 
-void User::addStatus(const string text)
+void User::addImageStatus(const string text, const string image)
 {
-	Status* tweet = new Status(text);
+	Status* tweet = new ImageStatus(text, image);
+	publishBoard.push_back(tweet);
+}
+
+
+void User::addVideoStatus(const string text, const string video)
+{
+	Status* tweet = new VideoStatus(text, video);
 	publishBoard.push_back(tweet);
 }
 
@@ -119,33 +121,6 @@ void User::removeFriend(User& _friend)
 				++itr;
 		}
 		_friend.removeFriend(*this);
-	}
-}
-
-
-void User::printAllFriends() const
-{
-	if (friends.size() == 0)
-		throw NoFriendsException();
-
-	auto itr = friends.begin();
-	auto itrEnd = friends.end();
-
-	for (; itr != itrEnd; ++itr)
-	{
-		(*itr)->printUser();
-	}
-}
-
-
-void User::printAllStatuses() const
-{
-	auto itr = publishBoard.begin();
-	auto itrEnd = publishBoard.end();
-
-	for (; itr != itrEnd; ++itr)
-	{
-		(*itr)->printStatus();
 	}
 }
 
@@ -206,6 +181,44 @@ bool User::checkIfFanOfFanPage(const FansPage& fanPage) const
 	return false;
 }
 
+
+void User::printAllFriends() const
+{
+	if (friends.size() == 0)
+		throw NoFriendsException();
+
+	auto itr = friends.begin();
+	auto itrEnd = friends.end();
+
+	for (; itr != itrEnd; ++itr)
+	{
+		(*itr)->printUser();
+	}
+}
+
+
+void User::printAllStatuses() const
+{
+	auto itr = publishBoard.begin();
+	auto itrEnd = publishBoard.end();
+
+	for (; itr != itrEnd; ++itr)
+	{
+		(*itr)->printStatus();
+	}
+}
+
+void User::printTenLastStatusOfTheUser() const
+{
+	int size = publishBoard.size();
+	auto itr = publishBoard.end();
+
+	for (int i = 0; i < 10 && i < size; i++)
+	{
+		--itr;
+		(*itr)->printStatus();
+	}
+}
 
 void User::printAllFanPages() const
 {

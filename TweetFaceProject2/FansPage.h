@@ -30,10 +30,13 @@ public:
 	int getNumOfFans() const { return Fans.size(); }
 	int getNumOfStatuses() const { return publishBoard.size(); }
 
-	void addStatus(std::string text);
-	void printAllStatuses() const;
+	void addTextStatus(std::string text);
+	void addImageStatus(const std::string text, const std::string image);
+	void addVideoStatus(const std::string text, const std::string video);
+
 	bool checkIfFan(const User& fan) const;
 	void removeFan(User& fan);
+	void printAllStatuses() const;
 	void printAllFans() const;
 	void printFanPage() const;
 };

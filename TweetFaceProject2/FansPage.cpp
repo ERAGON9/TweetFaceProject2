@@ -67,22 +67,24 @@ bool FansPage::operator<(const User& user) const
 }
 
 
-void FansPage::addStatus(std::string text)
+void FansPage::addTextStatus(std::string text)
 {
 	Status* tweet = new Status(text);
 	publishBoard.push_back(tweet);
 }
 
 
-void FansPage::printAllStatuses() const
+void FansPage::addImageStatus(const string text, const string image)
 {
-	auto itr = publishBoard.begin();
-	auto itrEnd = publishBoard.end();
+	Status* tweet = new ImageStatus(text, image);
+	publishBoard.push_back(tweet);
+}
 
-	for (; itr != itrEnd; ++itr)
-	{
-		(*itr)->printStatus();
-	}
+
+void FansPage::addVideoStatus(const string text, const string video)
+{
+	Status* tweet = new VideoStatus(text, video);
+	publishBoard.push_back(tweet);
 }
 
 
@@ -123,6 +125,18 @@ void FansPage::removeFan(User& fan)
 				++itr;
 		}
 		fan.removeFansPage(*this);
+	}
+}
+
+
+void FansPage::printAllStatuses() const
+{
+	auto itr = publishBoard.begin();
+	auto itrEnd = publishBoard.end();
+
+	for (; itr != itrEnd; ++itr)
+	{
+		(*itr)->printStatus();
 	}
 }
 

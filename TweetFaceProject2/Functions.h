@@ -17,7 +17,7 @@ void addFanPage(TwittFace& system);
 // Action 3
 void addStatus(TwittFace& system);
 // Sub function of action 3
-void addStatusToUser(TwittFace& system);
+void addStatusToUser(TwittFace& system) noexcept(false);
 // Sub function of action 3
 void addStatuesToFanPage(TwittFace& system);
 // Action 4

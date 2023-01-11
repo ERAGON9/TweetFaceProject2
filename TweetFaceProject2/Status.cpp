@@ -11,12 +11,12 @@ const int TEN = 10;
 
 // Status definition
 
-Status::Status(const string text) : date(), time()
+Status::Status(const string text) noexcept(false) : date(), time()
 {
-	this->text = text;
-
 	if (text.size() == 0)
 		throw EmptyStatusException();
+
+	this->text = text;
 }
 
 

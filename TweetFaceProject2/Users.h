@@ -35,14 +35,17 @@ public:
 	int getNumOfStatuses() const { return publishBoard.size(); }
 	User& getFriend(const int i) { return *(friends[i]); }
 
-	void printTenLastStatusOfTheUser() const;
-	void addStatus(const std::string text);
+	void addTextStatus(const std::string text);
+	void addImageStatus(const std::string text, const std::string image);
+	void addVideoStatus(const std::string text, const std::string video);
+
 	void removeFriend(User& _friend);
-	void printAllFriends() const;
-	void printAllStatuses() const;
 	void removeFansPage(FansPage& page);
 	bool checkIfFriends(const std::string name) const;
 	bool checkIfFanOfFanPage(const FansPage& fanPage) const;
+	void printAllFriends() const;
+	void printAllStatuses() const;
+	void printTenLastStatusOfTheUser() const;
 	void printAllFanPages() const;
 	void printUser() const;
 };

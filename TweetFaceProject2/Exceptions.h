@@ -123,5 +123,10 @@ public:
 	virtual const char* what() const override { return "\nThe user has no friends"; }
 };
 
+class NoSuchStatusTypeException : public TweetFaceException
+{
+public:
+	virtual const char* what() const override { return "\nStatus type is between 1 to 3, you entered wrong input"; }
+};
 #endif // !__EXCEPTIONS_H
 
