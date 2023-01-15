@@ -8,6 +8,7 @@
 #include "Status.h"
 #include "Users.h"
 #include "Exceptions.h"
+#include <fstream>
 
 using namespace std;
 
@@ -171,12 +172,12 @@ void addStatusToUser(TwittFace& system) noexcept(false)
 		curUser.addTextStatus(statusText);
 		break;
 	case StatusTypes::IMAGE:
-		cout << "\nPlease enter the image name (for example dog.jpg): ";
+		cout << "\nPlease enter the image name (for example: dog.jpg): ";
 		getline(cin, imageName);
 		curUser.addImageStatus(statusText, imageName);
 		break;
 	case StatusTypes::VIDEO:
-		cout << "\nPlease enter the video name (for example dog_walk_to_park.mp4): ";
+		cout << "\nPlease enter the video name (for example: dog walk to park.mp4): ";
 		getline(cin, videoName);
 		curUser.addVideoStatus(statusText, videoName);
 		break;
@@ -492,6 +493,7 @@ void initialNetworkData(TwittFace& system) noexcept(false)
 	system.addUserToSystem("Lior Barak", lior_details::Lior_day, lior_details::Lior_month, lior_details::Lior_year);
 	system.addUserToSystem("Shalev Kedar", shalev_details::Shalev_day, shalev_details::Shalev_month, shalev_details::Shalev_year);
 	system.addUserToSystem("Noa Margolius", Noa_details::Noa_day, Noa_details::Noa_month, Noa_details::Noa_year);
+
 	system.addFanPageToSystem("Lior Business");
 	system.addFanPageToSystem("Shalev Business");
 	system.addFanPageToSystem("Noa Business");
@@ -502,16 +504,53 @@ void initialNetworkData(TwittFace& system) noexcept(false)
 	system.getUserbyName("Shalev Kedar").addImageStatus("Shalev Kedar second status", "shalev.jpg");
 	system.getUserbyName("Noa Margolius").addTextStatus("Noa Margolius first status");
 	system.getUserbyName("Noa Margolius").addVideoStatus("Noa Margolius second status", "noa.mp4");
+
 	system.getFanPagebyName("Lior Business").addTextStatus("Lior Business first status");
-	system.getFanPagebyName("Lior Business").addVideoStatus("Lior Business second status", "lior_at_business.mp4");
+	system.getFanPagebyName("Lior Business").addVideoStatus("Lior Business second status", "lior at business.mp4");
 	system.getFanPagebyName("Shalev Business").addTextStatus("Shalev Business first status");
-	system.getFanPagebyName("Shalev Business").addImageStatus("Shalev Business second status", "shalev_at_business.jpg");
-	system.getFanPagebyName("Noa Business").addTextStatus("Noa Business first status");
-	system.getFanPagebyName("Noa Business").addImageStatus("Noa Business second status", "noa_at_business.jpg");
+	system.getFanPagebyName("Shalev Business").addImageStatus("Shalev Business second status", "shalev at business.jpg");
+	system.getFanPagebyName("Noa Business").addVideoStatus("Noa Business first status", "noa at business.mp4");
+	system.getFanPagebyName("Noa Business").addImageStatus("Noa Business second status", "noa at the park.jpg");
 
 	system.getUserbyName("Shalev Kedar") += system.getUserbyName("Lior Barak");
 	system.getUserbyName("Lior Barak") += system.getUserbyName("Noa Margolius");
 	system.getUserbyName("Shalev Kedar") += system.getFanPagebyName("Shalev Business");
-	system.getUserbyName("Lior Barak") += system.getFanPagebyName("Lior Business");
 	system.getUserbyName("Noa Margolius") += system.getFanPagebyName("Noa Business");
+	system.getFanPagebyName("Lior Business") += system.getUserbyName("Lior Barak");
+}
+
+
+void loadDataFromFile(TwittFace& system, ifstream& inFile)
+{
+
+}
+
+
+void saveDataToFile(const TwittFace& system, const char* fileName)
+{
+	ofstream outFile(fileName, ios::trunc);
+	int i, j, numOfUsers = system.getNumOfUsers(), numOfStatusesForAUser, numOfFanPages = system.getNumOfFanPages();
+
+	outFile << numOfUsers << endl;
+	for (i = 0; i < numOfUsers; i++)
+	{
+		User& curUser = system.getUser(i);
+		outFile << curUser << endl;
+
+		numOfStatusesForAUser = curUser.getNumOfStatuses();
+		outFile << numOfStatusesForAUser << endl;
+		for (i = 0; i < numOfStatusesForAUser; i++)
+		{
+			outFile << typeid(curUser.getStatus(i)).name() + 6 << " " << curUser.getStatus(i) << endl;
+		}
+	}
+
+	outFile << numOfFanPages << endl;
+	for (i = 0; i < numOfFanPages; i++)
+	{
+		FansPage& curFanPage = system.getFanPage(i);
+		outFile << curFanPage << endl;
+	}
+
+
 }

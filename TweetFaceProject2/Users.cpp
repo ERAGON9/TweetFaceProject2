@@ -61,10 +61,12 @@ bool User::operator>(const User& _friend) const
 		return false;
 }
 
+
 bool User::operator<(const User& _friend) const
 {
 	return _friend > *this;
 }
+
 
 bool User::operator>(const FansPage& fanPage) const
 {
@@ -73,6 +75,8 @@ bool User::operator>(const FansPage& fanPage) const
 	else
 		return false;
 }
+
+
 bool User::operator<(const FansPage& fanPage) const
 {
 	return fanPage > *this;

@@ -1,6 +1,8 @@
 #ifndef __TIME_H
 #define __TIME_H
 
+#include <iostream>
+
 class Time
 {
 private:
@@ -9,6 +11,13 @@ private:
 
 public:
 	Time();
+
+	friend std::ostream& operator<<(std::ostream& os, const Time& time)
+	{
+		os << time.hour << " " << time.minute;
+		return os;
+	}
+
 	int getHour() const { return hour; };
 	int getminute() const { return minute; };
 };

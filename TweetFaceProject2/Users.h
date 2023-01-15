@@ -4,6 +4,7 @@
 #include <vector>
 #include <string>
 #include "Date.h"
+#include<iostream>
 
 class FansPage;
 class Status;
@@ -30,10 +31,17 @@ public:
 	bool operator>(const FansPage& fanPage) const;
 	bool operator<(const FansPage& fanPage) const;
 
+	friend std::ostream& operator<<(std::ostream& os, const User& user)
+	{
+		os << user.name << std::endl << user.bDay;
+		return os;
+	}
+
 	std::string getName() const { return name; }
 	int getNumOfFriends() const { return friends.size(); }
 	int getNumOfStatuses() const { return publishBoard.size(); }
-	User& getFriend(const int i) { return *(friends[i]); }
+	User& getFriend(int i) const { return *(friends[i]); }
+	Status& getStatus(int i) { return *(publishBoard[i]); }
 
 	void addTextStatus(const std::string text);
 	void addImageStatus(const std::string text, const std::string image);
@@ -43,6 +51,7 @@ public:
 	void removeFansPage(FansPage& page);
 	bool checkIfFriends(const std::string name) const;
 	bool checkIfFanOfFanPage(const FansPage& fanPage) const;
+
 	void printAllFriends() const;
 	void printAllStatuses() const;
 	void printTenLastStatusOfTheUser() const;

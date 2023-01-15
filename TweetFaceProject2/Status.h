@@ -4,6 +4,7 @@
 #include <string>
 #include "Date.h"
 #include "Time.h"
+#include <iostream>
 
 // Default text status
 
@@ -21,11 +22,19 @@ public:
 	virtual bool operator==(const Status& otherStatus) const;
 	virtual bool operator!=(const Status& otherStatus) const;
 
+	friend std::ostream& operator<<(std::ostream& os, const Status& status)
+	{
+		os << status.date << " " << status.time << std::endl << status.text;
+		//toOs(os);
+		return os;
+	}
+
+	//virtual void toOs(std::ostream& os);
+
 	std::string getText() const { return text; }
 
 	void printStatus() const;
 	virtual void addToPrint() const;
-
 };
 
 

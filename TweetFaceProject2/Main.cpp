@@ -16,10 +16,12 @@ Good luck!
 #include "Time.h"
 #include "TwittFace.h"
 #include "Users.h"
+#include <fstream>
 
 using namespace std;
 const int EXIT = 12;
 const int FIRST = 1;
+const char* FILE_NAME = "DataBase.txt";
 
 int main()
 {
@@ -28,7 +30,17 @@ int main()
 
 	try
 	{
-		initialNetworkData(system);
+		ifstream inFile(FILE_NAME);
+
+		if (inFile)
+		{
+			loadDataFromFile(system, inFile);
+			inFile.close();
+		}
+		else
+		{
+			initialNetworkData(system);
+		}
 	}
 	catch (TweetFaceException& e)
 	{
@@ -51,4 +63,8 @@ int main()
 			cout << "You entered wrong input, try again." << endl;
 
 	} while (input != EXIT);
+
+
+	//saveDataToFile(system, FILE_NAME);
+
 }

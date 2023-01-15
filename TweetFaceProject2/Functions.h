@@ -1,8 +1,11 @@
 #ifndef __FUNCTION_H
 #define __FUNCTION_H
 
+#include <fstream>
+
 class TwittFace;
 class User;
+
 enum lior_details { Lior_day = 3, Lior_month = 2, Lior_year = 1999 };
 enum shalev_details { Shalev_day = 29, Shalev_month = 3, Shalev_year = 1999 };
 enum Noa_details { Noa_day = 9, Noa_month = 6, Noa_year = 1999 };
@@ -46,6 +49,10 @@ void showAllFriens(TwittFace& system) noexcept(false);
 void showAllFans(TwittFace& system) noexcept(false);
 
 void initialNetworkData(TwittFace& system) noexcept(false);
+
+void loadDataFromFile(TwittFace& system, std::ifstream& inFile);
+
+void saveDataToFile(const TwittFace& system, const char* fileName);
 
 #endif // !__FUNCTION_H
 

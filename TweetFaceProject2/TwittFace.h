@@ -21,13 +21,15 @@ public:
 
 	int getNumOfUsers() const { return allTheUsers.size(); }
 	int getNumOfFanPages() const { return allTheFanPages.size(); }
-	User& getUser(const int i) { return *(allTheUsers[i]); }
-	FansPage& getFanPage(const int i) { return *(allTheFanPages[i]); }
-
-	User& getUserbyName(std::string userName) noexcept(false);;
+	User& getUser(const int i) const { return *(allTheUsers[i]); }
+	FansPage& getFanPage(const int i) const { return *(allTheFanPages[i]); }
+	//int getNumOfUsersStatuses() const;
+	User& getUserbyName(std::string userName) noexcept(false);
 	FansPage& getFanPagebyName(std::string fanPageName) noexcept(false);
+
 	void addUserToSystem(std::string userName, int day, int month, int year) noexcept(false);
 	void addFanPageToSystem(std::string fanPageName) noexcept(false);
+
 	bool checkIfUserExist(std::string userName);
 	bool checkIfFanPageExist(std::string fanPageName);
 };

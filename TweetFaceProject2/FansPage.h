@@ -3,6 +3,7 @@
 
 #include <string>
 #include <vector>
+#include <iostream>
 
 class Status;
 class User;
@@ -26,6 +27,12 @@ public:
 	bool operator>(const User& user) const;
 	bool operator<(const User& user) const;
 
+	friend std::ostream& operator<<(std::ostream& os, const FansPage& fanPage)
+	{
+		os << fanPage.name;
+		return os;
+	}
+
 	std::string getName() const { return name; }
 	int getNumOfFans() const { return Fans.size(); }
 	int getNumOfStatuses() const { return publishBoard.size(); }
@@ -36,6 +43,7 @@ public:
 
 	bool checkIfFan(const User& fan) const;
 	void removeFan(User& fan);
+
 	void printAllStatuses() const;
 	void printAllFans() const;
 	void printFanPage() const;

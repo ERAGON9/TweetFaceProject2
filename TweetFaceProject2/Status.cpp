@@ -84,14 +84,6 @@ bool ImageStatus::operator==(const Status& otherStatus) const
 }
 
 
-//bool ImageStatus::operator!=(const Status& otherStatus) const
-//{
-//	if (*this == otherStatus)
-//		return false;
-//	else
-//		return true;
-//}
-
 void ImageStatus::addToPrint() const
 {
 	cout << "This status is printed at black & white or colorfully" << endl
@@ -124,15 +116,6 @@ bool VideoStatus::operator==(const Status& otherStatus) const
 
 	return true;
 }
-
-
-//bool VideoStatus::operator!=(const Status& otherStatus) const
-//{
-//	if (*this == otherStatus)
-//		return false;
-//	else
-//		return true;
-//}
 
 
 void VideoStatus::addToPrint() const
