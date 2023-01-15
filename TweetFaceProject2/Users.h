@@ -38,10 +38,13 @@ public:
 	}
 
 	std::string getName() const { return name; }
-	int getNumOfFriends() const { return friends.size(); }
 	int getNumOfStatuses() const { return publishBoard.size(); }
-	User& getFriend(int i) const { return *(friends[i]); }
-	Status& getStatus(int i) { return *(publishBoard[i]); }
+	int getNumOfFriends() const { return friends.size(); }
+	int getNumOfFansPages() const { return fansPages.size(); }
+	const Status& getStatus(int i) const { return *(publishBoard[i]); }
+	const User& getFriend(int i) const { return *(friends[i]); }
+	const FansPage& getFansPage(int i) const { return *(fansPages[i]); }
+	
 
 	void addTextStatus(const std::string text);
 	void addImageStatus(const std::string text, const std::string image);

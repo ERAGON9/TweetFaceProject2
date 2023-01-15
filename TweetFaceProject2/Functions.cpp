@@ -392,7 +392,7 @@ void addFanToFanPage(TwittFace& system) noexcept(false)
 		cout << "\nThe user is a fan of the fan page now" << endl;
 	}
 	else
-		throw UserFunOfFunPageException();
+		throw UserFanOfFanPageException();
 }
 
 // Action 9
@@ -529,28 +529,82 @@ void loadDataFromFile(TwittFace& system, ifstream& inFile)
 void saveDataToFile(const TwittFace& system, const char* fileName)
 {
 	ofstream outFile(fileName, ios::trunc);
-	int i, j, numOfUsers = system.getNumOfUsers(), numOfStatusesForAUser, numOfFanPages = system.getNumOfFanPages();
+
+	saveUsersAndStatuses(system, outFile);
+
+	saveFansPagesAndStatuses(system, outFile);
+
+	saveConections(system, outFile);
+
+	outFile.close();
+}
+
+void saveUsersAndStatuses(const TwittFace& system, ofstream& outFile)
+{
+	int i, j, numOfUsers = system.getNumOfUsers(), numOfStatusesForAUser;
 
 	outFile << numOfUsers << endl;
 	for (i = 0; i < numOfUsers; i++)
 	{
-		User& curUser = system.getUser(i);
+		const User& curUser = system.getUser(i);
 		outFile << curUser << endl;
 
 		numOfStatusesForAUser = curUser.getNumOfStatuses();
 		outFile << numOfStatusesForAUser << endl;
-		for (i = 0; i < numOfStatusesForAUser; i++)
+
+		for (j = 0; j < numOfStatusesForAUser; j++)
 		{
-			outFile << typeid(curUser.getStatus(i)).name() + 6 << " " << curUser.getStatus(i) << endl;
+			const Status& curUserStatus = curUser.getStatus(j);
+			outFile << typeid(curUserStatus).name() + 6 << " " << curUserStatus << endl;
 		}
 	}
+}
+
+void saveFansPagesAndStatuses(const TwittFace& system, ofstream& outFile)
+{
+	int i, j, numOfFanPages = system.getNumOfFanPages(), numOfStatusesForAFanPage;
 
 	outFile << numOfFanPages << endl;
 	for (i = 0; i < numOfFanPages; i++)
 	{
-		FansPage& curFanPage = system.getFanPage(i);
+		const FansPage& curFanPage = system.getFanPage(i);
 		outFile << curFanPage << endl;
+
+		numOfStatusesForAFanPage = curFanPage.getNumOfStatuses();
+		outFile << numOfStatusesForAFanPage << endl;
+
+		for (j = 0; j < numOfStatusesForAFanPage; j++)
+		{
+			const Status& curFanPageStatus = curFanPage.getStatus(j);
+			outFile << typeid(curFanPageStatus).name() + 6 << " " << curFanPageStatus << endl;
+		}
 	}
+}
 
+void saveConections(const TwittFace& system, ofstream& outFile)
+{
+	int i, j, numOfUsers = system.getNumOfUsers(), numOfFriendsForUser, numOfFansPagesForUser;
 
+	outFile << numOfUsers << endl;
+	for (i = 0; i < numOfUsers; i++)
+	{
+		const User& curUser = system.getUser(i);
+		outFile << curUser.getName() << endl;
+
+		numOfFriendsForUser = curUser.getNumOfFriends();
+		outFile << numOfFriendsForUser << endl;
+
+		for (j = 0; j < numOfFriendsForUser; j++)
+		{
+			outFile << curUser.getFriend(j).getName() << endl;
+		}
+
+		numOfFansPagesForUser = curUser.getNumOfFansPages();
+		outFile << numOfFansPagesForUser << endl;
+
+		for (j = 0; j < numOfFansPagesForUser; j++)
+		{
+			outFile << curUser.getFansPage(j).getName() << endl;
+		}
+	}
 }

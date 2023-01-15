@@ -25,11 +25,11 @@ public:
 	friend std::ostream& operator<<(std::ostream& os, const Status& status)
 	{
 		os << status.date << " " << status.time << std::endl << status.text;
-		//toOs(os);
+		status.toOs(os);
 		return os;
 	}
 
-	//virtual void toOs(std::ostream& os);
+	virtual void toOs(std::ostream& os) const {};
 
 	std::string getText() const { return text; }
 
@@ -51,6 +51,8 @@ public:
 
 	virtual bool operator==(const Status& otherStatus) const override;
 
+	virtual void toOs(std::ostream& os) const override;
+
 	std::string getImage() const { return image; }
 
 	virtual void addToPrint() const override;
@@ -69,6 +71,8 @@ public:
 	VideoStatus(const VideoStatus& other) = delete;
 
 	virtual bool operator==(const Status& otherStatus) const override;
+
+	virtual void toOs(std::ostream& os) const override;
 
 	std::string getVideo() const { return video; }
 

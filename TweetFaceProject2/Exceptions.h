@@ -81,7 +81,7 @@ public:
 	virtual const char* what() const override { return "\nThe user already not a fan of this fan page"; }
 };
 
-class UserFunOfFunPageException : public TweetFaceException
+class UserFanOfFanPageException : public TweetFaceException
 {
 public:
 	virtual const char* what() const override { return "\nThe user already a fan of this fan page"; }

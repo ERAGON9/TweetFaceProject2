@@ -84,6 +84,12 @@ bool ImageStatus::operator==(const Status& otherStatus) const
 }
 
 
+void ImageStatus::toOs(std::ostream& os) const
+{
+	os << endl << image;
+}
+
+
 void ImageStatus::addToPrint() const
 {
 	cout << "This status is printed at black & white or colorfully" << endl
@@ -115,6 +121,12 @@ bool VideoStatus::operator==(const Status& otherStatus) const
 		return false;
 
 	return true;
+}
+
+
+void VideoStatus::toOs(std::ostream& os) const
+{
+	os << endl << video;
 }
 
 

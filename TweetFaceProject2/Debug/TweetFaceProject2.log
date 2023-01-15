@@ -1,10 +1,4 @@
-﻿  FansPage.cpp
-C:\מדעי המחשב\שנה ב\סמסטר א\תכנות c++\TweetFaceProject2\TweetFaceProject2\FansPage.cpp(59,18): warning C4018: '>': signed/unsigned mismatch
-  Functions.cpp
-C:\מדעי המחשב\שנה ב\סמסטר א\תכנות c++\TweetFaceProject2\TweetFaceProject2\Functions.cpp(532,9): warning C4101: 'j': unreferenced local variable
+﻿  Functions.cpp
   Main.cpp
-  Status.cpp
-  Users.cpp
-C:\מדעי המחשב\שנה ב\סמסטר א\תכנות c++\TweetFaceProject2\TweetFaceProject2\Users.cpp(73,21): warning C4018: '>': signed/unsigned mismatch
   Generating Code...
   TweetFaceProject2.vcxproj -> C:\מדעי המחשב\שנה ב\סמסטר א\תכנות c++\TweetFaceProject2\TweetFaceProject2\Debug\TweetFaceProject2.exe

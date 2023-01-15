@@ -65,6 +65,6 @@ int main()
 	} while (input != EXIT);
 
 
-	//saveDataToFile(system, FILE_NAME);
+	saveDataToFile(system, FILE_NAME);
 
 }

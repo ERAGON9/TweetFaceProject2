@@ -13,8 +13,8 @@ class FansPage
 private:
 	std::string name;
 
-	std::vector<User*> Fans;
 	std::vector<Status*> publishBoard;
+	std::vector<User*> Fans;
 
 public:
 	FansPage(std::string name);
@@ -36,6 +36,7 @@ public:
 	std::string getName() const { return name; }
 	int getNumOfFans() const { return Fans.size(); }
 	int getNumOfStatuses() const { return publishBoard.size(); }
+	const Status& getStatus(int i) const { return *(publishBoard[i]); }
 
 	void addTextStatus(std::string text);
 	void addImageStatus(const std::string text, const std::string image);
