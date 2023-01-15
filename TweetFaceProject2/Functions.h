@@ -50,12 +50,15 @@ void showAllFans(TwittFace& system) noexcept(false);
 // Initial at the first run of the program hard coded data for the network.
 void initialNetworkData(TwittFace& system) noexcept(false);
 
-void loadDataFromFile(TwittFace& system, std::ifstream& inFile);
 
 void saveDataToFile(const TwittFace& system, const char* fileName);
 void saveUsersAndStatuses(const TwittFace& system, std::ofstream& outFile);
 void saveFansPagesAndStatuses(const TwittFace& system, std::ofstream& outFile);
 void saveConections(const TwittFace& system, std::ofstream& outFile);
+void readUsersAndStatuses(TwittFace& system, std::ifstream& inFile);
+void readFansPagesAndStatuses(TwittFace& system, std::ifstream& inFile);
+void readConections(TwittFace& system, std::ifstream& inFile);
+void loadDataFromFile(TwittFace& system, std::ifstream& inFile);
 
 #endif // !__FUNCTION_H
 

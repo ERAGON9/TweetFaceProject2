@@ -1,8 +1,10 @@
 ﻿  Functions.cpp
-C:\Users\shale\source\repos\TweetFaceProject2\TweetFaceProject2\Users.h(34,30): warning C4267: 'return': conversion from 'size_t' to 'int', possible loss of data
-C:\Users\shale\source\repos\TweetFaceProject2\TweetFaceProject2\Users.h(35,31): warning C4267: 'return': conversion from 'size_t' to 'int', possible loss of data
-C:\Users\shale\source\repos\TweetFaceProject2\TweetFaceProject2\FansPage.h(30,27): warning C4267: 'return': conversion from 'size_t' to 'int', possible loss of data
-C:\Users\shale\source\repos\TweetFaceProject2\TweetFaceProject2\FansPage.h(31,31): warning C4267: 'return': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\shale\source\repos\TweetFaceProject2\TweetFaceProject2\Users.h(41,31): warning C4267: 'return': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\shale\source\repos\TweetFaceProject2\TweetFaceProject2\Users.h(42,30): warning C4267: 'return': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\shale\source\repos\TweetFaceProject2\TweetFaceProject2\Users.h(43,32): warning C4267: 'return': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\shale\source\repos\TweetFaceProject2\TweetFaceProject2\FansPage.h(37,27): warning C4267: 'return': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\shale\source\repos\TweetFaceProject2\TweetFaceProject2\FansPage.h(38,31): warning C4267: 'return': conversion from 'size_t' to 'int', possible loss of data
 C:\Users\shale\source\repos\TweetFaceProject2\TweetFaceProject2\TwittFace.h(22,28): warning C4267: 'return': conversion from 'size_t' to 'int', possible loss of data
 C:\Users\shale\source\repos\TweetFaceProject2\TweetFaceProject2\TwittFace.h(23,31): warning C4267: 'return': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\shale\source\repos\TweetFaceProject2\TweetFaceProject2\Functions.cpp(619,7): warning C4101: 'delimeter': unreferenced local variable
   TweetFaceProject2.vcxproj -> C:\Users\shale\source\repos\TweetFaceProject2\TweetFaceProject2\x64\Debug\TweetFaceProject2.exe

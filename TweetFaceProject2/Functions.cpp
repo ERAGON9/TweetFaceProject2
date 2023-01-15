@@ -1,4 +1,3 @@
-
 #include "Functions.h"
 #include <iostream>
 #include "TwittFace.h"
@@ -9,11 +8,13 @@
 #include "Users.h"
 #include "Exceptions.h"
 #include <fstream>
+#include <sstream>
 
 using namespace std;
 
 const char USER = 'U';
 const char FANPAGE = 'F';
+const char* STATUS_TYPES[3] = { "Status", "ImageStatus", "VideoStatus" };
 enum options { OPTION1=1, OPTION2, OPTION3, OPTION4, OPTION5, OPTION6, OPTION7, OPTION8, OPTION9, OPTION10, OPTION11 };
 enum StatusTypes { TEXT = 1, IMAGE, VIDEO };
 
@@ -520,12 +521,6 @@ void initialNetworkData(TwittFace& system) noexcept(false)
 }
 
 
-void loadDataFromFile(TwittFace& system, ifstream& inFile)
-{
-
-}
-
-
 void saveDataToFile(const TwittFace& system, const char* fileName)
 {
 	ofstream outFile(fileName, ios::trunc);
@@ -605,6 +600,144 @@ void saveConections(const TwittFace& system, ofstream& outFile)
 		for (j = 0; j < numOfFansPagesForUser; j++)
 		{
 			outFile << curUser.getFansPage(j).getName() << endl;
+		}
+	}
+}
+
+void loadDataFromFile(TwittFace& system, ifstream& inFile)
+{
+	readUsersAndStatuses(system, inFile);
+	readFansPagesAndStatuses(system, inFile);
+	readConections(system, inFile);
+}
+
+void readUsersAndStatuses(TwittFace& system, ifstream& inFile)
+{
+	int i, j, numOfUsers, day, month, year, hour, minute, numOfStatuses;
+	string name, statusType, txt, media, str;
+	User* currUser;
+	char delimeter;
+
+	getline(inFile, str);
+	istringstream my_stream1(str);
+	my_stream1 >> numOfUsers;
+
+	for (i = 0; i < numOfUsers; i++)
+	{
+		getline(inFile, name);
+
+		getline(inFile, str);
+		istringstream my_stream2(str);
+		my_stream2 >> day >> month >> year;
+
+		system.addUserToSystem(name, day, month, year);
+		currUser = &system.getUser(i);
+
+		getline(inFile, str);
+		istringstream my_stream3(str);
+		my_stream3 >> numOfStatuses;
+
+		for (j = 0; j < numOfStatuses; j++)
+		{
+			getline(inFile, str);
+			istringstream my_stream4(str);
+			my_stream4 >> statusType >> day >> month >> year >> hour >> minute;
+
+			if (!statusType.compare(STATUS_TYPES[0])){
+				getline(inFile, txt);
+				currUser->addTextStatus(txt);
+			}
+			else if (!statusType.compare(STATUS_TYPES[1])) {
+				getline(inFile, txt);
+				getline(inFile, media);
+				currUser->addImageStatus(txt, media);
+			}
+			else if (!statusType.compare(STATUS_TYPES[2])) {
+				getline(inFile, txt);
+				getline(inFile, media);
+				currUser->addImageStatus(txt, media);
+			}
+		}
+	}
+}
+
+void readFansPagesAndStatuses(TwittFace& system, ifstream& inFile)
+{
+	int i, j, numOfPages,day, month, year, hour, minute, numOfStatuses;
+	string name, statusType, txt, media, str;
+	FansPage* currPage;
+
+	getline(inFile, str);
+	istringstream my_stream1(str);
+	my_stream1 >> numOfPages;
+
+	for (i = 0; i < numOfPages; i++)
+	{
+		getline(inFile, name);
+		system.addFanPageToSystem(name);
+		currPage = &system.getFanPage(i);
+
+		getline(inFile, str);
+		istringstream my_stream2(str);
+		my_stream2 >> numOfStatuses;
+
+		for (j = 0; j < numOfStatuses; j++)
+		{
+			getline(inFile, str);
+			istringstream my_stream3(str);
+			my_stream3 >> statusType >> day >> month >> year >> hour >> minute;
+
+			if (!statusType.compare(STATUS_TYPES[0])) {
+				getline(inFile, txt);
+				currPage->addTextStatus(txt);
+			}
+			else if (!statusType.compare(STATUS_TYPES[1])) {
+				getline(inFile, txt);
+				getline(inFile, media);
+				currPage->addImageStatus(txt, media);
+			}
+			else if (!statusType.compare(STATUS_TYPES[2])) {
+				getline(inFile, txt);
+				getline(inFile, media);
+				currPage->addImageStatus(txt, media);
+			}
+		}
+	}
+}
+
+void readConections(TwittFace& system, ifstream& inFile)
+{
+	int i, j, numOfUsers, numOfFiends, numOfFanPages;
+	string name, str;
+	User* currUser;
+
+	getline(inFile, str);
+	istringstream my_stream1(str);
+	my_stream1 >> numOfUsers;
+
+	for (i = 0; i < numOfUsers; i++)
+	{
+		getline(inFile, name);
+		currUser = &system.getUserbyName(name);
+
+		getline(inFile, str);
+		istringstream my_stream2(str);
+		my_stream2 >> numOfFiends;
+
+		for (j = 0; j < numOfFiends; j++)
+		{
+			getline(inFile, name);
+			*currUser += system.getUserbyName(name);
+		}
+
+		getline(inFile, str);
+		istringstream my_stream3(str);
+		my_stream3 >> numOfFanPages;
+
+		for (j = 0; j < numOfFanPages; j++)
+		{
+			getline(inFile, name);
+			*currUser += system.getFanPagebyName(name);
 		}
 	}
 }
