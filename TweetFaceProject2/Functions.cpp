@@ -655,7 +655,7 @@ void readUsersAndStatuses(TwittFace& system, ifstream& inFile)
 			else if (!statusType.compare(STATUS_TYPES[2])) {
 				getline(inFile, txt);
 				getline(inFile, media);
-				currUser->addImageStatus(txt, media);
+				currUser->addVideoStatus(txt, media);
 			}
 		}
 	}
@@ -699,7 +699,7 @@ void readFansPagesAndStatuses(TwittFace& system, ifstream& inFile)
 			else if (!statusType.compare(STATUS_TYPES[2])) {
 				getline(inFile, txt);
 				getline(inFile, media);
-				currPage->addImageStatus(txt, media);
+				currPage->addVideoStatus(txt, media);
 			}
 		}
 	}
