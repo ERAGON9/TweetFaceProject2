@@ -21,7 +21,7 @@ public:
 	FansPage(const FansPage& other) = delete;
 	~FansPage();
 
-	const FansPage& operator+=(User& newFan);
+	FansPage& operator+=(User& newFan);
 	bool operator>(const FansPage& fanPage) const;
 	bool operator<(const FansPage& fanPage) const;
 	bool operator>(const User& user) const;

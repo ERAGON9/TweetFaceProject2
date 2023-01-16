@@ -27,7 +27,7 @@ User::~User()
 }
 
 
-const User& User::operator+=(User& _friend)
+User& User::operator+=(User& _friend)
 {
 	if (checkIfFriends(_friend.getName()) == false)
 	{
@@ -40,7 +40,7 @@ const User& User::operator+=(User& _friend)
 }
 
 
-const User& User::operator+=(FansPage& fanPage)
+User& User::operator+=(FansPage& fanPage)
 {
 	if (checkIfFanOfFanPage(fanPage) == false)
 	{
@@ -102,7 +102,7 @@ void User::addImageStatus(const string text, const string image)
 	publishBoard.push_back(tweet);
 }
 
-void User::addPreviusImageStatus(const std::string text, const std::string image, int day, int month, 
+void User::addPreviusImageStatus(const string text, const std::string image, int day, int month, 
 	int year, int hour, int minute)
 {
 	Status* tweet = new ImageStatus(text, image, day, month, year, hour, minute);
@@ -116,7 +116,7 @@ void User::addVideoStatus(const string text, const string video)
 	publishBoard.push_back(tweet);
 }
 
-void User::addPreviousVideoStatus(const std::string text, const std::string video, int day, int month,
+void User::addPreviousVideoStatus(const string text, const std::string video, int day, int month,
 	int year, int hour, int minute)
 {
 	Status* tweet = new VideoStatus(text, video, day, month, year, hour, minute);

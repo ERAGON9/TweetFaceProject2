@@ -21,8 +21,10 @@ public:
 
 	int getNumOfUsers() const { return allTheUsers.size(); }
 	int getNumOfFanPages() const { return allTheFanPages.size(); }
-	User& getUser(int i) const { return *(allTheUsers[i]); }
-	FansPage& getFanPage(int i) const { return *(allTheFanPages[i]); }
+	User& getUser(int i) { return *(allTheUsers[i]); }
+	const User& getUser(int i) const { return *(allTheUsers[i]); }
+	FansPage& getFanPage(int i) { return *(allTheFanPages[i]); }
+	const FansPage& getFanPage(int i) const { return *(allTheFanPages[i]); }
 	User& getUserbyName(std::string userName) noexcept(false);
 	FansPage& getFanPagebyName(std::string fanPageName) noexcept(false);
 

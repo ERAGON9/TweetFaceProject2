@@ -24,8 +24,8 @@ public:
 	User(const User& other) = delete;
 	~User();
 
-	const User& operator+=(User& _friend);
-	const User& operator+=(FansPage& fanPage);
+	User& operator+=(User& _friend);
+	User& operator+=(FansPage& fanPage);
 	bool operator>(const User& _friend) const;
 	bool operator<(const User& _friend) const;
 	bool operator>(const FansPage& fanPage) const;

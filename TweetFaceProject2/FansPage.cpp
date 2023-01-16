@@ -26,7 +26,7 @@ FansPage::~FansPage()
 }
 
 
-const FansPage& FansPage::operator+=(User& newFan)
+FansPage& FansPage::operator+=(User& newFan)
 {
 	if (checkIfFan(newFan) == false)
 	{

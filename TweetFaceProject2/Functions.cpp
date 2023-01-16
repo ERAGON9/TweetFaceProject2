@@ -93,7 +93,7 @@ void action(int value, TwittFace& system)
 // sub function
 void cleanBuffer()
 {
-	int c;
+	char c;
 
 	do
 	{
@@ -615,7 +615,6 @@ void readUsersAndStatuses(TwittFace& system, ifstream& inFile)
 {
 	int i, j, numOfUsers, day, month, year, hour, minute, numOfStatuses;
 	string name, statusType, txt, media, str;
-	User* currUser;
 	char delimeter;
 
 	getline(inFile, str);
@@ -631,7 +630,7 @@ void readUsersAndStatuses(TwittFace& system, ifstream& inFile)
 		my_stream2 >> day >> month >> year;
 
 		system.addUserToSystem(name, day, month, year);
-		currUser = &system.getUser(i);
+		User& currUser = system.getUser(i);
 
 		getline(inFile, str);
 		istringstream my_stream3(str);
@@ -645,17 +644,17 @@ void readUsersAndStatuses(TwittFace& system, ifstream& inFile)
 
 			if (!statusType.compare(STATUS_TYPES[0])){
 				getline(inFile, txt);
-				currUser->addPreviousTextStatus(txt, day, month, year, hour, minute);
+				currUser.addPreviousTextStatus(txt, day, month, year, hour, minute);
 			}
 			else if (!statusType.compare(STATUS_TYPES[1])) {
 				getline(inFile, txt);
 				getline(inFile, media);
-				currUser->addPreviusImageStatus(txt, media, day, month, year, hour, minute);
+				currUser.addPreviusImageStatus(txt, media, day, month, year, hour, minute);
 			}
 			else if (!statusType.compare(STATUS_TYPES[2])) {
 				getline(inFile, txt);
 				getline(inFile, media);
-				currUser->addPreviousVideoStatus(txt, media, day, month, year, hour, minute);
+				currUser.addPreviousVideoStatus(txt, media, day, month, year, hour, minute);
 			}
 		}
 	}
@@ -665,7 +664,6 @@ void readFansPagesAndStatuses(TwittFace& system, ifstream& inFile)
 {
 	int i, j, numOfPages,day, month, year, hour, minute, numOfStatuses;
 	string name, statusType, txt, media, str;
-	FansPage* currPage;
 
 	getline(inFile, str);
 	istringstream my_stream1(str);
@@ -675,7 +673,7 @@ void readFansPagesAndStatuses(TwittFace& system, ifstream& inFile)
 	{
 		getline(inFile, name);
 		system.addFanPageToSystem(name);
-		currPage = &system.getFanPage(i);
+		FansPage& currPage = system.getFanPage(i);
 
 		getline(inFile, str);
 		istringstream my_stream2(str);
@@ -689,17 +687,17 @@ void readFansPagesAndStatuses(TwittFace& system, ifstream& inFile)
 
 			if (!statusType.compare(STATUS_TYPES[0])) {
 				getline(inFile, txt);
-				currPage->addTextStatus(txt);
+				currPage.addTextStatus(txt);
 			}
 			else if (!statusType.compare(STATUS_TYPES[1])) {
 				getline(inFile, txt);
 				getline(inFile, media);
-				currPage->addImageStatus(txt, media);
+				currPage.addImageStatus(txt, media);
 			}
 			else if (!statusType.compare(STATUS_TYPES[2])) {
 				getline(inFile, txt);
 				getline(inFile, media);
-				currPage->addVideoStatus(txt, media);
+				currPage.addVideoStatus(txt, media);
 			}
 		}
 	}
@@ -709,7 +707,6 @@ void readConections(TwittFace& system, ifstream& inFile)
 {
 	int i, j, numOfUsers, numOfFiends, numOfFanPages;
 	string name, str;
-	User* currUser;
 
 	getline(inFile, str);
 	istringstream my_stream1(str);
@@ -718,7 +715,7 @@ void readConections(TwittFace& system, ifstream& inFile)
 	for (i = 0; i < numOfUsers; i++)
 	{
 		getline(inFile, name);
-		currUser = &system.getUserbyName(name);
+		User& currUser = system.getUserbyName(name);
 
 		getline(inFile, str);
 		istringstream my_stream2(str);
@@ -727,7 +724,7 @@ void readConections(TwittFace& system, ifstream& inFile)
 		for (j = 0; j < numOfFiends; j++)
 		{
 			getline(inFile, name);
-			*currUser += system.getUserbyName(name);
+			currUser += system.getUserbyName(name);
 		}
 
 		getline(inFile, str);
@@ -737,7 +734,7 @@ void readConections(TwittFace& system, ifstream& inFile)
 		for (j = 0; j < numOfFanPages; j++)
 		{
 			getline(inFile, name);
-			*currUser += system.getFanPagebyName(name);
+			currUser += system.getFanPagebyName(name);
 		}
 	}
 }
