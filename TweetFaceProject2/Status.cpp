@@ -14,7 +14,7 @@ const int TEN = 10;
 Status::Status(const string text) noexcept(false) : date(), time()
 {
 	if (text.size() == 0)
-		throw EmptyStatusException();
+		throw EmptyTextStatusException();
 
 	this->text = text;
 }
@@ -22,7 +22,7 @@ Status::Status(const string text) noexcept(false) : date(), time()
 Status::Status(const string text, int day, int month, int year, int hour, int minute) : date(day, month, year), time(hour, minute)
 {
 	if (text.size() == 0)
-		throw EmptyStatusException();
+		throw EmptyTextStatusException();
 
 	this->text = text;
 }
@@ -71,6 +71,9 @@ void Status::addToPrint() const
 
 ImageStatus::ImageStatus(const string text, const string image) : Status(text)
 {
+	if (image.size() == 0)
+		throw EmptyImageStatusException();
+
 	this->image = image;
 }
 
@@ -117,6 +120,9 @@ void ImageStatus::addToPrint() const
 
 VideoStatus::VideoStatus(const string text, const string video) : Status(text)
 {
+	if (video.size() == 0)
+		throw EmptyVideoStatusException();
+
 	this->video = video;
 }
 

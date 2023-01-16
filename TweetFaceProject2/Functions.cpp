@@ -14,7 +14,6 @@ using namespace std;
 
 const char USER = 'U';
 const char FANPAGE = 'F';
-const char* STATUS_TYPES[3] = { "Status", "ImageStatus", "VideoStatus" };
 enum options { OPTION1=1, OPTION2, OPTION3, OPTION4, OPTION5, OPTION6, OPTION7, OPTION8, OPTION9, OPTION10, OPTION11 };
 enum StatusTypes { TEXT = 1, IMAGE, VIDEO };
 
@@ -642,16 +641,19 @@ void readUsersAndStatuses(TwittFace& system, ifstream& inFile)
 			istringstream my_stream4(str);
 			my_stream4 >> statusType >> day >> month >> year >> hour >> minute;
 
-			if (!statusType.compare(STATUS_TYPES[0])){
+			if (statusType == (typeid(Status).name() + 6))
+			{
 				getline(inFile, txt);
 				currUser.addPreviousTextStatus(txt, day, month, year, hour, minute);
 			}
-			else if (!statusType.compare(STATUS_TYPES[1])) {
+			else if (statusType == (typeid(ImageStatus).name() + 6))
+			{
 				getline(inFile, txt);
 				getline(inFile, media);
 				currUser.addPreviusImageStatus(txt, media, day, month, year, hour, minute);
 			}
-			else if (!statusType.compare(STATUS_TYPES[2])) {
+			else if (statusType == (typeid(VideoStatus).name() + 6))
+			{
 				getline(inFile, txt);
 				getline(inFile, media);
 				currUser.addPreviousVideoStatus(txt, media, day, month, year, hour, minute);
@@ -685,16 +687,19 @@ void readFansPagesAndStatuses(TwittFace& system, ifstream& inFile)
 			istringstream my_stream3(str);
 			my_stream3 >> statusType >> day >> month >> year >> hour >> minute;
 
-			if (!statusType.compare(STATUS_TYPES[0])) {
+			if (statusType == (typeid(Status).name() + 6))
+			{
 				getline(inFile, txt);
 				currPage.addTextStatus(txt);
 			}
-			else if (!statusType.compare(STATUS_TYPES[1])) {
+			else if (statusType == (typeid(ImageStatus).name() + 6))
+			{
 				getline(inFile, txt);
 				getline(inFile, media);
 				currPage.addImageStatus(txt, media);
 			}
-			else if (!statusType.compare(STATUS_TYPES[2])) {
+			else if (statusType == (typeid(VideoStatus).name() + 6))
+			{
 				getline(inFile, txt);
 				getline(inFile, media);
 				currPage.addVideoStatus(txt, media);

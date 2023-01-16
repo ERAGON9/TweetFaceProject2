@@ -105,10 +105,22 @@ public:
 	virtual const char* what() const override { return "\nName is empty"; }
 };
 
-class EmptyStatusException : public TweetFaceException
+class EmptyTextStatusException : public TweetFaceException
 {
 public:
-	virtual const char* what() const override { return "\nThe status is empty"; }
+	virtual const char* what() const override { return "\nThe status text is empty"; }
+};
+
+class EmptyImageStatusException : public TweetFaceException
+{
+public:
+	virtual const char* what() const override { return "\nThe status image name is empty"; }
+};
+
+class EmptyVideoStatusException : public TweetFaceException
+{
+public:
+	virtual const char* what() const override { return "\nThe status video name is empty"; }
 };
 
 class NoFansException : public TweetFaceException

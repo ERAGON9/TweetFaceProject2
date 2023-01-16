@@ -27,21 +27,6 @@ TwittFace::~TwittFace()
 }
 
 
-//int TwittFace::getNumOfUsersStatuses() const
-//{
-//	int sum = 0;
-//	auto itr = allTheUsers.begin();
-//	auto itrEnd = allTheUsers.end();
-//
-//	for (; itr != itrEnd; ++itr)
-//	{
-//		sum += (*itr)->getNumOfStatuses();
-//	}
-//
-//	return sum;
-//}
-
-
 User& TwittFace::getUserbyName(string userName)  noexcept(false)
 {
 	auto itr = allTheUsers.begin();
