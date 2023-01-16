@@ -80,6 +80,9 @@ ImageStatus::ImageStatus(const string text, const string image) : Status(text)
 ImageStatus::ImageStatus(const string text, const std::string image, int day, int month,
 	int year, int hour, int minute) : Status(text, day, month, year, hour, minute)
 {
+	if (image.size() == 0)
+		throw EmptyImageStatusException();
+
 	this->image = image;
 }
 
@@ -129,6 +132,9 @@ VideoStatus::VideoStatus(const string text, const string video) : Status(text)
 VideoStatus::VideoStatus(const string text, const std::string video, int day, int month,
 	int year, int hour, int minute) : Status(text, day, month, year, hour, minute)
 {
+	if (video.size() == 0)
+		throw EmptyVideoStatusException();
+
 	this->video = video;
 }
 
