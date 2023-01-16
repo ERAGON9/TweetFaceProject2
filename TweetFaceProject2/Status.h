@@ -17,6 +17,7 @@ protected:
 
 public:
 	Status(const std::string text) noexcept(false);
+	Status(const std::string text, int day, int month, int year, int hour, int minute);
 	Status(const Status& other) = delete;
 
 	virtual bool operator==(const Status& otherStatus) const;
@@ -47,6 +48,8 @@ private:
 
 public:
 	ImageStatus(const std::string text, const std::string image);
+	ImageStatus(const std::string text, const std::string image, int day, int month,
+		int year, int hour, int minute);
 	ImageStatus(const ImageStatus& other) = delete;
 
 	virtual bool operator==(const Status& otherStatus) const override;
@@ -68,6 +71,8 @@ private:
 
 public:
 	VideoStatus(const std::string text, const std::string video);
+	VideoStatus(const std::string text, const std::string video, int day, int month,
+		int year, int hour, int minute);
 	VideoStatus(const VideoStatus& other) = delete;
 
 	virtual bool operator==(const Status& otherStatus) const override;

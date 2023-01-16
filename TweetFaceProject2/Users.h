@@ -47,8 +47,11 @@ public:
 	
 
 	void addTextStatus(const std::string text);
+	void addPreviousTextStatus(const std::string text, int day, int month, int year, int hour, int minute);
 	void addImageStatus(const std::string text, const std::string image);
+	void addPreviusImageStatus(const std::string text, const std::string image, int day, int month, int year, int hour, int minute);
 	void addVideoStatus(const std::string text, const std::string video);
+	void addPreviousVideoStatus(const std::string text, const std::string video, int day, int month, int year, int hour, int minute);
 
 	void removeFriend(User& _friend);
 	void removeFansPage(FansPage& page);

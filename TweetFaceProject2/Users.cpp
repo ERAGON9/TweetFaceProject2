@@ -89,6 +89,12 @@ void User::addTextStatus(const string text)
 	publishBoard.push_back(tweet);
 }
 
+void User::addPreviousTextStatus(const string text, int day, int month, int year, int hour, int minute)
+{
+	Status* tweet = new Status(text, day, month, year, hour, minute);
+	publishBoard.push_back(tweet);
+}
+
 
 void User::addImageStatus(const string text, const string image)
 {
@@ -96,10 +102,24 @@ void User::addImageStatus(const string text, const string image)
 	publishBoard.push_back(tweet);
 }
 
+void User::addPreviusImageStatus(const std::string text, const std::string image, int day, int month, 
+	int year, int hour, int minute)
+{
+	Status* tweet = new ImageStatus(text, image, day, month, year, hour, minute);
+	publishBoard.push_back(tweet);
+}
+
 
 void User::addVideoStatus(const string text, const string video)
 {
 	Status* tweet = new VideoStatus(text, video);
+	publishBoard.push_back(tweet);
+}
+
+void User::addPreviousVideoStatus(const std::string text, const std::string video, int day, int month,
+	int year, int hour, int minute)
+{
+	Status* tweet = new VideoStatus(text, video, day, month, year, hour, minute);
 	publishBoard.push_back(tweet);
 }
 

@@ -11,6 +11,7 @@ private:
 
 public:
 	Time();
+	Time(int hour, int minute) noexcept(false);
 
 	friend std::ostream& operator<<(std::ostream& os, const Time& time)
 	{

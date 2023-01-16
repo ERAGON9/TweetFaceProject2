@@ -19,6 +19,14 @@ Status::Status(const string text) noexcept(false) : date(), time()
 	this->text = text;
 }
 
+Status::Status(const std::string text, int day, int month, int year, int hour, int minute) : date(day, month, year), time(hour, minute)
+{
+	if (text.size() == 0)
+		throw EmptyStatusException();
+
+	this->text = text;
+}
+
 
 bool Status::operator==(const Status& otherStatus) const
 {
@@ -66,6 +74,12 @@ ImageStatus::ImageStatus(const string text, const string image) : Status(text)
 	this->image = image;
 }
 
+ImageStatus::ImageStatus(const std::string text, const std::string image, int day, int month,
+	int year, int hour, int minute) : Status(text, day, month, year, hour, minute)
+{
+	this->image = image;
+}
+
 
 bool ImageStatus::operator==(const Status& otherStatus) const
 {
@@ -102,6 +116,12 @@ void ImageStatus::addToPrint() const
 
 
 VideoStatus::VideoStatus(const string text, const string video) : Status(text)
+{
+	this->video = video;
+}
+
+VideoStatus::VideoStatus(const std::string text, const std::string video, int day, int month,
+	int year, int hour, int minute) : Status(text, day, month, year, hour, minute)
 {
 	this->video = video;
 }

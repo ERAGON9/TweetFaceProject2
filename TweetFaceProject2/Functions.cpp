@@ -645,17 +645,17 @@ void readUsersAndStatuses(TwittFace& system, ifstream& inFile)
 
 			if (!statusType.compare(STATUS_TYPES[0])){
 				getline(inFile, txt);
-				currUser->addTextStatus(txt);
+				currUser->addPreviousTextStatus(txt, day, month, year, hour, minute);
 			}
 			else if (!statusType.compare(STATUS_TYPES[1])) {
 				getline(inFile, txt);
 				getline(inFile, media);
-				currUser->addImageStatus(txt, media);
+				currUser->addPreviusImageStatus(txt, media, day, month, year, hour, minute);
 			}
 			else if (!statusType.compare(STATUS_TYPES[2])) {
 				getline(inFile, txt);
 				getline(inFile, media);
-				currUser->addVideoStatus(txt, media);
+				currUser->addPreviousVideoStatus(txt, media, day, month, year, hour, minute);
 			}
 		}
 	}

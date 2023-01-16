@@ -6,7 +6,7 @@
 #pragma warning (disable: 4996)
 
 const int LAST_CENTURY = 1900;
-const int CURRENT_YEAR = 2022;
+const int CURRENT_YEAR = 2023;
 const int FIRST_DAY_OF_THE_MONTH = 1;
 const int LAST_DAY_OF_THE_MONTH = 30;
 const int FIRST_MONTH_OF_THE_YEAR = 1;

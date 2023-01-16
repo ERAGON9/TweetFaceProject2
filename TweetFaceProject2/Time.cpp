@@ -12,3 +12,9 @@ Time::Time()
 	hour = currentTime->tm_hour;
 	minute = currentTime->tm_min;
 }
+
+Time::Time(int hour, int minute)
+{
+	this->hour = hour;
+	this->minute = minute;
+}
