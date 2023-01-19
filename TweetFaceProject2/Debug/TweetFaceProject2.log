@@ -5,6 +5,7 @@ C:\מדעי המחשב\שנה ב\סמסטר א\תכנות c++\TweetFaceProject2\
 C:\מדעי המחשב\שנה ב\סמסטר א\תכנות c++\TweetFaceProject2\TweetFaceProject2\Functions.cpp(617,7): warning C4101: 'delimeter': unreferenced local variable
   Main.cpp
   Status.cpp
+  Time.cpp
   TwittFace.cpp
   Users.cpp
 C:\מדעי המחשב\שנה ב\סמסטר א\תכנות c++\TweetFaceProject2\TweetFaceProject2\Users.cpp(73,21): warning C4018: '>': signed/unsigned mismatch

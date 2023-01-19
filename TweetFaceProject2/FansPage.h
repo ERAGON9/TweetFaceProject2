@@ -19,6 +19,7 @@ private:
 public:
 	FansPage(std::string name);
 	FansPage(const FansPage& other) = delete;
+	const FansPage& operator=(const FansPage& other) = delete;
 	~FansPage();
 
 	FansPage& operator+=(User& newFan);

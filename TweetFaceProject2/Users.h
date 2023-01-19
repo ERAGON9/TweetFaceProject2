@@ -22,6 +22,7 @@ private:
 public:
 	User(const std::string _name, int day, int month, int year);
 	User(const User& other) = delete;
+	const User& operator=(const User& other) = delete;
 	~User();
 
 	User& operator+=(User& _friend);

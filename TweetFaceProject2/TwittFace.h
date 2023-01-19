@@ -17,6 +17,7 @@ private:
 public:
 	TwittFace() = default;
 	TwittFace(TwittFace& twitFace) = delete;
+	const TwittFace& operator=(const TwittFace& other) = delete;
 	~TwittFace();
 
 	int getNumOfUsers() const { return allTheUsers.size(); }
